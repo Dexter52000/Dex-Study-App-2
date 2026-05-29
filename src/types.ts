@@ -11,6 +11,16 @@ export interface Card {
   /** Epoch ms when this card is next due. New cards are due immediately. */
   due: number;
   createdAt: number;
+
+  // ── Optional AI-explanation extras (backward compatible) ───────────────
+  /** Sanitized SVG geometry diagram, if one was generated. */
+  diagramSvg?: string;
+  /** A real-life analogy connecting the concept to everyday life. */
+  realLifeExample?: string;
+  /** Step-by-step explanation text (one entry per step). */
+  explanation?: string[];
+  /** Concept/skill tag, e.g. "三角形面积" — used for weak-area tracking. */
+  concept?: string;
 }
 
 export interface Deck {

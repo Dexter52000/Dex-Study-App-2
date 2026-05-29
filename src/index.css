@@ -243,13 +243,21 @@ textarea {
 }
 .card-row {
   display: grid;
-  grid-template-columns: 1fr 1fr auto;
+  grid-template-columns: 1fr 1fr auto auto;
   gap: 0.6rem;
   align-items: center;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 0.7rem 0.8rem;
+}
+.card-badge {
+  font-size: 0.72rem;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 99px;
+  padding: 0.1rem 0.5rem;
+  white-space: nowrap;
 }
 .card-row .ftext {
   font-weight: 600;
@@ -272,4 +280,151 @@ textarea {
   letter-spacing: 0.06em;
   color: var(--muted);
   margin: 1.5rem 0 0.5rem;
+}
+
+/* ── Mode tabs ─────────────────────────────────────────────── */
+.mode-tabs {
+  display: flex;
+  gap: 0.4rem;
+}
+.tab {
+  background: transparent;
+  border: 1px solid var(--border);
+}
+.tab.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+/* ── Explain view ──────────────────────────────────────────── */
+.explain-input {
+  display: grid;
+  gap: 0.7rem;
+}
+.examples {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  align-items: center;
+}
+.example-chip {
+  font-size: 0.82rem;
+  padding: 0.35rem 0.6rem;
+  background: var(--surface);
+}
+.image-chip {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.image-chip img {
+  max-height: 80px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+.error-box {
+  margin-top: 1rem;
+  background: rgba(255, 107, 107, 0.12);
+  border: 1px solid var(--again);
+  color: #ffd0d0;
+  border-radius: var(--radius);
+  padding: 0.8rem 1rem;
+}
+
+.result {
+  margin-top: 1.5rem;
+}
+.concept-tag {
+  font-size: 0.78rem;
+  color: var(--good);
+  border: 1px solid var(--good);
+  border-radius: 99px;
+  padding: 0.15rem 0.6rem;
+  white-space: nowrap;
+}
+.diagram-wrap,
+.svg-diagram {
+  margin: 1rem 0;
+}
+/* AI diagrams are stroke-on-light; render them on a light card for contrast. */
+.svg-diagram {
+  background: #fbfbf7;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+}
+.svg-diagram svg {
+  max-width: 100%;
+  height: auto;
+}
+
+.steps {
+  list-style: none;
+  counter-reset: step;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.7rem;
+}
+.step {
+  counter-increment: step;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.85rem 1rem;
+}
+.step-hint {
+  font-weight: 600;
+}
+.step-hint::before {
+  content: "第 " counter(step) " 步 · ";
+  color: var(--muted);
+  font-weight: 400;
+}
+.step-explain {
+  margin-top: 0.6rem;
+  color: var(--text);
+  white-space: pre-wrap;
+}
+
+.answer-box {
+  margin-top: 1rem;
+  background: rgba(62, 207, 142, 0.1);
+  border: 1px solid var(--good);
+  border-radius: var(--radius);
+  padding: 0.9rem 1rem;
+  white-space: pre-wrap;
+}
+.reallife-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.9rem 1rem;
+  white-space: pre-wrap;
+}
+
+.flashcard-suggestions {
+  display: grid;
+  gap: 0.6rem;
+}
+.fc-suggestion {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.7rem 0.9rem;
+}
+.fc-front {
+  font-weight: 600;
+}
+.fc-back {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-top: 0.2rem;
 }

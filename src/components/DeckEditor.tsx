@@ -104,10 +104,15 @@ export default function DeckEditor({ deck, onChange, onBack }: Props) {
                 value={c.back}
                 onChange={(e) => editCard(c.id, { back: e.target.value })}
               />
+              {(c.diagramSvg || c.explanation) && (
+                <span className="card-badge" title="含 AI 图解 / 讲解">
+                  图解
+                </span>
+              )}
               <button
                 className="btn-ghost btn-danger"
                 onClick={() => deleteCard(c.id)}
-                title="Delete card"
+                title="删除卡片"
               >
                 ✕
               </button>

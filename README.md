@@ -1,57 +1,67 @@
-# 📚 Dex Study
+# 📐 VisuMath — 看图理解数学
 
-A lightweight flashcard study app with spaced repetition, built with React +
-Vite + TypeScript. Everything runs in the browser and persists to
-`localStorage` — no backend, no account.
+帮助 5~8 年级(小学高年级到初中)、对数学没感觉、脑子里建立不起几何画面的学生**真正看懂数学**。学生输入题目(打字或拍照),AI 老师给出**引导式讲解**(不直接丢答案)、**几何图**、**生活里的例子**,并能把要点存成**闪卡**用间隔重复巩固。
 
-## Features
+技术栈:React + Vite + TypeScript(前端)+ Express + Claude API(后端)。
 
-- **Decks & cards** — create decks, add/edit/delete cards inline.
-- **Spaced repetition** — review scheduling uses the SM-2 algorithm with four
-  grades (Again / Hard / Good / Easy) and live interval previews.
-- **Study sessions** — flip cards, grade recall, track progress; keyboard
-  shortcuts (`Space`/`Enter` to flip, `1`–`4` to grade).
-- **Local persistence** — your decks are saved automatically in the browser.
-- **Seed deck** — a starter "Spanish Basics" deck on first launch.
+> 本仓库按分阶段路线图开发,完整设计见计划文档。**当前已完成 Phase 1:引导式讲解核心。**
 
-## Getting started
+## 已实现(Phase 1)
+
+- **讲解模式**:打字或**拍照/传图**输入题目 → Claude(`claude-sonnet-4-6`)生成:
+  - **引导式分步讲解**:每步先给启发性提示,学生想不出来再看解法;最终答案最后揭示,也可"直接看完整解答"(规避"答案机器"定位)。
+  - **几何图(SVG)**:服务端 + 客户端**双重消毒**,杜绝脚本注入。
+  - **生活里的例子**:把抽象概念和现实联系起来。
+  - **建议闪卡**:一键存入「AI 讲解」卡组。
+- **复习模式**:保留 SM-2 间隔重复;复习时卡片可显示图解与生活例子。
+- **安全后端代理**:`ANTHROPIC_API_KEY` 只在服务器,浏览器只访问同源 `/api`。结构化输出(Zod)、提示缓存、统一中文错误信封。
+
+## 快速开始
 
 ```bash
 npm install
-npm run dev      # start the dev server
+cp .env.example .env      # 填入 ANTHROPIC_API_KEY
+npm run dev               # 同时启动 Vite(5173)和 API(8787)
 ```
 
-Then open the printed local URL.
+打开终端里打印的本地地址。讲解功能需要联网访问 `api.anthropic.com`。
 
-## Scripts
+## 脚本
 
-| Command            | Description                          |
-| ------------------ | ------------------------------------ |
-| `npm run dev`      | Start the Vite dev server            |
-| `npm run build`    | Type-check and build for production   |
-| `npm run preview`  | Preview the production build          |
-| `npm test`         | Run the unit tests (Vitest)          |
+| 命令              | 说明                                   |
+| ----------------- | -------------------------------------- |
+| `npm run dev`     | 同时启动前端(Vite)与后端(API)      |
+| `npm run build`   | 类型检查 + 生产构建                     |
+| `npm start`       | 生产模式(同一进程服务 `dist/` + API) |
+| `npm test`        | 运行单元测试(Vitest,无需联网)       |
 
-## How scheduling works
-
-Each card tracks an ease factor, interval, and due date. Grading a card runs
-the SM-2 update in [`src/srs.ts`](src/srs.ts):
-
-- **Again** resets the streak and re-shows the card in ~10 minutes.
-- **Hard / Good / Easy** grow the interval geometrically by the ease factor.
-
-The algorithm is covered by unit tests in `src/srs.test.ts`.
-
-## Project structure
+## 项目结构
 
 ```
+server/
+  index.ts        Express:/api/explain + 生产静态托管
+  claude.ts       Claude 集成(结构化输出 + 缓存 + 识图 + 错误映射)
+  prompt.ts       中文系统提示(CRA / 引导式 / SVG 安全规范)
+  schema.ts       Zod 结构化输出 schema
+  sanitizeSvg.ts  服务端 SVG 消毒
 src/
-  types.ts          Domain types (Deck, Card, Grade)
-  srs.ts            SM-2 scheduling logic
-  storage.ts        localStorage load/save + seed deck
-  App.tsx           State container + view routing
+  api.ts          前端调用 /api/explain
+  imageUtils.ts   上传前图片缩放
   components/
-    DeckList.tsx    Deck overview
-    StudySession.tsx Review flow
-    DeckEditor.tsx  Deck/card editing
+    ExplainView.tsx   讲解模式 UI(引导式揭示 + 存卡)
+    SvgDiagram.tsx    客户端 SVG 再消毒后渲染
+    DeckList / StudySession / DeckEditor   复习模式
+  srs.ts          SM-2 间隔重复(含测试)
 ```
+
+## 测试
+
+```bash
+npm test
+```
+
+覆盖:SM-2 调度、结构化输出 schema 校验、**SVG 安全消毒(恶意输入清除 / 正常几何保留)**、API 客户端成功与各错误码处理。
+
+## 路线图(后续阶段)
+
+Phase 2 动态可拖动几何 · Phase 3 真实生活图片(Imagen/gpt-image,插画风) · Phase 4 家长账号+孩子档案+合规(未成年人模式/防沉迷) · Phase 5 家长面板(掌握度/薄弱点/有效时长/花费) · Phase 6 预制视频库。
