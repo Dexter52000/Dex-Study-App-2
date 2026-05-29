@@ -68,6 +68,25 @@
   .src a{color:#6a87b5;text-decoration:none}
   .footer{font-size:11px;color:#5a606e;text-align:center;margin-top:8px;line-height:1.6}
   details summary{cursor:pointer;font-size:13px;color:var(--accent);padding:4px 0}
+  .live{background:linear-gradient(160deg,#1c2230,#161a22);border:1px solid #2f3a4f;
+    border-radius:16px;padding:16px;margin-bottom:14px}
+  .live h2{margin:0 0 4px;font-size:13px;color:#8fa6c8;letter-spacing:.5px;text-transform:uppercase}
+  .reccards{display:flex;gap:10px;margin:12px 0}
+  .reccard{flex:1;background:#0f1115;border:1px solid var(--line);border-radius:12px;
+    padding:12px 8px;text-align:center}
+  .reccard .lbl{font-size:11px;color:var(--muted)}
+  .reccard .val{font-size:24px;font-weight:800;margin:4px 0}
+  .reccard .pctv{font-size:12px;color:var(--muted)}
+  .recbadge{display:block;text-align:center;padding:8px;border-radius:10px;font-size:12px;
+    font-weight:600;line-height:1.5}
+  .recbadge.none{background:#2a1414;border:1px solid #5a2020;color:#f08c8c}
+  .recbadge.weak{background:#2a2514;border:1px solid #5a5020;color:var(--warn)}
+  .recbadge.strong{background:#142a1c;border:1px solid #205a3a;color:#7fe0a8}
+  .steps{display:flex;gap:6px;font-size:11px;color:var(--muted);margin-bottom:6px;flex-wrap:wrap}
+  .steps span{background:var(--panel2);border:1px solid var(--line);border-radius:20px;padding:3px 9px}
+  .bigphoto{display:block;width:100%;background:var(--accent);color:#fff;border:none;
+    border-radius:12px;padding:14px;font-size:15px;font-weight:700;cursor:pointer;margin-top:8px}
+  .bigphoto:active{filter:brightness(1.15)}
   #wheelCanvasWrap{display:flex;justify-content:center;margin:6px 0}
   .ocrimg{max-width:100%;border-radius:8px;margin-top:8px;display:none}
   .pill{display:inline-block;background:var(--panel2);border:1px solid var(--line);border-radius:20px;
@@ -82,6 +101,31 @@
     ⚠️ <b>必读。</b> 唯一靠"堆数据"真能算出东西的,是<b>物理轮盘的偏差</b>(松隔片、倾斜、磨损,甚至被动手脚的扇区)。
     要可靠判断通常需 <b>≥ 几千局同一台轮盘</b>。<b>电子盘/网上盘用认证 RNG,无物理偏差,堆数据无效。</b>
     样本不足时下面的"热门号/热门扇区"只是<b>随机噪声</b>。
+  </div>
+
+  <!-- 现场模式 -->
+  <div class="live">
+    <h2>🎰 现场模式 · 下一注建议</h2>
+    <div class="steps">
+      <span>① 拍开奖板</span><span>② 每局点开出的数字</span><span>③ 看下方建议下注</span>
+    </div>
+    <div class="reccards">
+      <div class="reccard">
+        <div class="lbl">建议颜色</div>
+        <div class="val" id="recColor">—</div>
+        <div class="pctv" id="recColorPct"></div>
+      </div>
+      <div class="reccard">
+        <div class="lbl">建议单/双</div>
+        <div class="val" id="recParity">—</div>
+        <div class="pctv" id="recParityPct"></div>
+      </div>
+    </div>
+    <div class="recbadge none" id="recBadge">先记录数据(本桌至少几百局)才能给建议</div>
+    <button class="bigphoto" onclick="document.getElementById('photo').click()">📷 拍/上传开奖板照片(自动识别)</button>
+    <div style="font-size:11px;color:var(--muted);margin-top:8px;line-height:1.5">
+      你专注同一台幸运桌就把数据都记在当前档案里。建议只在<b>本桌测出可信偏差</b>时才有意义,否则红黑/单双永远约 50/50。
+    </div>
   </div>
 
   <!-- 档案管理 -->
@@ -426,6 +470,54 @@
       `<div class="row"><span>小(1-18)/大(19-36)</span><span class="v">${low} / ${high}</span></div>`+barRow('小 vs 大',low,high)+
       `<div class="row"><span>打 1/2/3</span><span class="v">${d1} / ${d2} / ${d3}</span></div>`+
       `<div class="row"><span>列 1/2/3</span><span class="v">${c1} / ${c2} / ${c3}</span></div>`;
+
+    renderRecommendation(r,b,odd,even,n);
+  }
+
+  // 现场建议:基于本桌已记录数据,算红/黑、单/双的偏向与可信度(诚实标注)
+  function renderRecommendation(red,black,odd,even,n){
+    const elC=document.getElementById('recColor'), elCP=document.getElementById('recColorPct');
+    const elP=document.getElementById('recParity'), elPP=document.getElementById('recParityPct');
+    const badge=document.getElementById('recBadge');
+
+    // 二项 z:在公平盘上 红=黑=18 格,p=0.5(绿不计)
+    function lean(a,bb){ const m=a+bb; if(m===0) return {side:null,pct:50,z:0,m:0};
+      const z=(a-m*0.5)/Math.sqrt(m*0.25); // a 的偏离;>0 偏向 a
+      return {side: a===bb?null:(a>bb?'A':'B'), pct:a/m*100, z, m}; }
+
+    const cL=lean(red,black);   // A=红 B=黑
+    const cP=lean(odd,even);    // A=单 B=双
+    const bestZ=Math.max(Math.abs(cL.z),Math.abs(cP.z));
+
+    if(n<200){
+      elC.textContent='—'; elP.textContent='—'; elCP.textContent=''; elPP.textContent='';
+      badge.className='recbadge none';
+      badge.innerHTML='数据不足('+n+' 局)。再多记一些;不足时红黑/单双就是约 50/50,<b>不建议下注</b>。';
+      return;
+    }
+
+    // 颜色建议
+    if(cL.side==null){ elC.textContent='红=黑'; }
+    else { const isRed=cL.side==='A'; elC.textContent=isRed?'🔴 红':'⚫ 黑';
+      elC.style.color=isRed?'#ff7b7b':'#cfd3da'; }
+    elCP.textContent=`红 ${(red/(red+black||1)*100).toFixed(1)}% · 黑 ${(black/(red+black||1)*100).toFixed(1)}% (z=${cL.z.toFixed(1)})`;
+
+    // 单双建议
+    if(cP.side==null){ elP.textContent='单=双'; }
+    else { const isOdd=cP.side==='A'; elP.textContent=isOdd?'单 Odd':'双 Even'; elP.style.color='#e8eaed'; }
+    elPP.textContent=`单 ${(odd/(odd+even||1)*100).toFixed(1)}% · 双 ${(even/(odd+even||1)*100).toFixed(1)}% (z=${cP.z.toFixed(1)})`;
+
+    // 可信度徽章(诚实)
+    if(bestZ>=3){
+      badge.className='recbadge strong';
+      badge.innerHTML='✅ 本桌测到<b>统计上可信的偏向</b>(|z|≥3)。可小注试探,但绿色 0 仍吃你期望,且偏向随时可能消失。';
+    } else if(bestZ>=2){
+      badge.className='recbadge weak';
+      badge.innerHTML='⚠️ 只有<b>微弱信号</b>(2≤|z|<3),很可能是随机波动。建议继续累积数据,先别当真。';
+    } else {
+      badge.className='recbadge none';
+      badge.innerHTML='这一桌目前<b>看不出任何优势</b>,红黑/单双约 50/50。诚实结论:<b>下一注无法预测</b>,上面的偏向只是噪声。';
+    }
   }
 
   function buildGrid(){ const g=document.getElementById('numgrid'); g.innerHTML='';
