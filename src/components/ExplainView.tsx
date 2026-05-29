@@ -17,6 +17,8 @@ export interface SaveExtras {
 interface Props {
   /** Persist one flashcard (with optional AI extras) into the AI deck. */
   onSaveCard: (front: string, back: string, extras: SaveExtras) => void;
+  /** Active child id (child mode) — enforces per-child daily limits. */
+  childId?: string | null;
 }
 
 const EXAMPLES = [
@@ -26,7 +28,7 @@ const EXAMPLES = [
   "一个长方形长 8cm、宽 3cm,周长和面积各是多少?",
 ];
 
-export default function ExplainView({ onSaveCard }: Props) {
+export default function ExplainView({ onSaveCard, childId }: Props) {
   const [problem, setProblem] = useState("");
   const [image, setImage] = useState<ImagePayload | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
@@ -68,7 +70,7 @@ export default function ExplainView({ onSaveCard }: Props) {
     setError(null);
     setResult(null);
     try {
-      const res = await explainProblem(problem, image);
+      const res = await explainProblem(problem, image, childId);
       setResult(res);
       resetReveal();
     } catch (e) {

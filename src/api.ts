@@ -88,12 +88,16 @@ export class ApiError extends Error {
 export async function explainProblem(
   problem: string,
   image: ImagePayload | null,
+  childId?: string | null,
 ): Promise<MathResult> {
   let res: Response;
   try {
+    const headers: Record<string, string> = { "Content-Type": "application/json" };
+    if (childId) headers["x-child-id"] = childId;
     res = await fetch("/api/explain", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+      headers,
       body: JSON.stringify({ problem, image }),
     });
   } catch {

@@ -1,7 +1,12 @@
 import type { Deck } from "./types";
 import { createCard } from "./srs";
 
-const STORAGE_KEY = "dex-study:decks:v1";
+const STORAGE_PREFIX = "visumath:decks:v1";
+
+/** Decks are namespaced per child profile (or "guest") so kids stay separate. */
+function keyFor(namespace: string): string {
+  return `${STORAGE_PREFIX}:${namespace}`;
+}
 
 /** A small starter deck so a first-time user has something to study. */
 function seedDecks(): Deck[] {
@@ -23,9 +28,9 @@ function seedDecks(): Deck[] {
   ];
 }
 
-export function loadDecks(): Deck[] {
+export function loadDecks(namespace = "guest"): Deck[] {
   try {
-    const raw = localStorage.getItem(STORAGE_KEY);
+    const raw = localStorage.getItem(keyFor(namespace));
     if (!raw) return seedDecks();
     const parsed = JSON.parse(raw) as Deck[];
     if (!Array.isArray(parsed)) return seedDecks();
@@ -35,9 +40,9 @@ export function loadDecks(): Deck[] {
   }
 }
 
-export function saveDecks(decks: Deck[]): void {
+export function saveDecks(decks: Deck[], namespace = "guest"): void {
   try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(decks));
+    localStorage.setItem(keyFor(namespace), JSON.stringify(decks));
   } catch {
     // Storage may be unavailable (private mode, quota). Fail silently —
     // the app stays usable for the current session.

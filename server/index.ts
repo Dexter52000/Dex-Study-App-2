@@ -1,5 +1,6 @@
 import "dotenv/config";
 import express from "express";
+import cookieParser from "cookie-parser";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import {
@@ -10,14 +11,21 @@ import {
   type ImageMediaType,
 } from "./claude";
 import { ensureRealLifeImage, imageEnabled, readImage } from "./images";
+import { accountRouter } from "./accounts";
+import { currentParent } from "./auth";
+import { addUsage, getChild, usageFor } from "./db";
+import { isOverDailyLimit } from "./usage";
 
 const PORT = Number(process.env.PORT) || 8787;
 const isProd = process.env.NODE_ENV === "production";
 
 const app = express();
+app.use(cookieParser());
 // Base64 images inflate the body; allow headroom but cap it (oversized →
 // Express returns 413, which we surface as a friendly message below).
 app.use(express.json({ limit: "12mb" }));
+
+app.use("/api", accountRouter);
 
 app.get("/api/health", (_req, res) => {
   res.json({
@@ -57,7 +65,26 @@ app.post("/api/explain", async (req, res) => {
       image = { mediaType: mediaType as ImageMediaType, data };
     }
 
+    // 孩子模式:若带了 child id,必须是已登录家长名下的档案,并执行每日上限。
+    const childId = req.header("x-child-id");
+    let child = null;
+    if (childId) {
+      const parent = currentParent(req);
+      child = getChild(childId);
+      if (!parent || !child || child.parentId !== parent.id) {
+        throw new ExplainError("bad_request", 403, "请用家长账号登录后再使用孩子模式。");
+      }
+      if (isOverDailyLimit(child, usageFor(child.id))) {
+        throw new ExplainError(
+          "bad_request",
+          429,
+          "今天的使用次数到上限啦,明天再来,或让家长调整设置。",
+        );
+      }
+    }
+
     const result = await explain({ problem, image });
+    if (child) addUsage({ childId: child.id, kind: "explain", estCostCents: 5 });
 
     // Generate a real-life illustration (best-effort; null if disabled/fails).
     const realLifeImageUrl = await ensureRealLifeImage(result.realLifePrompt);

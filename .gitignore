@@ -27,3 +27,6 @@ dist-ssr
 
 # Cached AI-generated illustrations
 .image-cache
+
+# Local file-backed datastore (accounts/profiles)
+.data
