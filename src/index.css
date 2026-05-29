@@ -361,6 +361,77 @@ textarea {
   height: auto;
 }
 
+/* ── Dynamic geometry ──────────────────────────────────────── */
+.dynamic-geo {
+  margin: 1rem 0;
+  background: #fbfbf7;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.75rem;
+}
+.geo-svg {
+  width: 100%;
+  height: auto;
+  touch-action: none; /* let us own pointer drags on touch */
+  display: block;
+}
+.geo-polygon {
+  fill: rgba(91, 140, 255, 0.14);
+  stroke: #4275f5;
+  stroke-width: 2;
+}
+.geo-circle {
+  fill: rgba(91, 140, 255, 0.08);
+  stroke: #4275f5;
+  stroke-width: 2;
+}
+.geo-segment {
+  stroke: #2d3340;
+  stroke-width: 2;
+}
+.geo-angle-mark {
+  fill: none;
+  stroke: #f5a623;
+  stroke-width: 2;
+}
+.geo-point {
+  fill: #8a93a6;
+  stroke: #fbfbf7;
+  stroke-width: 2;
+}
+.geo-point.draggable {
+  fill: #4275f5;
+  stroke: #fff;
+  stroke-width: 2.5;
+}
+.geo-point-label {
+  fill: #1a1d24;
+  font-size: 15px;
+  font-weight: 700;
+}
+.geo-length-label {
+  fill: #2d3340;
+  font-size: 13px;
+  font-weight: 600;
+}
+.geo-area-label {
+  fill: #2657c9;
+  font-size: 14px;
+  font-weight: 700;
+}
+.geo-angle-label {
+  fill: #b9770f;
+  font-size: 13px;
+  font-weight: 700;
+}
+.geo-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+}
+
 .steps {
   list-style: none;
   counter-reset: step;

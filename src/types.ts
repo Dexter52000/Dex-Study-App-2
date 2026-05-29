@@ -13,6 +13,8 @@ export interface Card {
   createdAt: number;
 
   // ── Optional AI-explanation extras (backward compatible) ───────────────
+  /** Interactive, draggable geometry spec, if one was generated. */
+  diagramSpec?: import("./api").DiagramSpec;
   /** Sanitized SVG geometry diagram, if one was generated. */
   diagramSvg?: string;
   /** A real-life analogy connecting the concept to everyday life. */

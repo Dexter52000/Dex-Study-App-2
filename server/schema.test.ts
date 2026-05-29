@@ -1,11 +1,24 @@
 import { describe, expect, it } from "vitest";
 import { MathResultSchema } from "./schema";
 
+const emptySpec = {
+  width: 400,
+  height: 300,
+  unit: "cm",
+  unitScale: 0.05,
+  points: [],
+  segments: [],
+  polygons: [],
+  circles: [],
+  angles: [],
+};
+
 const valid = {
   title: "三角形面积",
   concept: "三角形面积",
   steps: [{ hint: "底和高是多少?", explanation: "底=5,高=4" }],
   answer: "面积 = 10 平方厘米",
+  diagramSpec: emptySpec,
   diagramSvg: "<svg viewBox='0 0 10 10'></svg>",
   realLifeExample: "像一块三角形的披萨",
   flashcards: [{ front: "三角形面积公式", back: "底×高÷2" }],

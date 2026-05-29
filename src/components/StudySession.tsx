@@ -1,7 +1,9 @@
 import { useEffect, useMemo, useState } from "react";
 import type { Card, Deck, Grade } from "../types";
 import { dueCards, previewInterval, review } from "../srs";
+import { hasGeometry } from "../api";
 import SvgDiagram from "./SvgDiagram";
+import DynamicGeometry from "./DynamicGeometry";
 
 interface Props {
   deck: Deck;
@@ -89,7 +91,11 @@ export default function StudySession({ deck, onGrade, onExit }: Props) {
           <>
             <div className="divider" />
             <div className="back">{card.back}</div>
-            {card.diagramSvg && <SvgDiagram svg={card.diagramSvg} />}
+            {hasGeometry(card.diagramSpec) ? (
+              <DynamicGeometry spec={card.diagramSpec} />
+            ) : (
+              card.diagramSvg && <SvgDiagram svg={card.diagramSvg} />
+            )}
             {card.realLifeExample && (
               <div className="reallife-box" style={{ textAlign: "left" }}>
                 🌍 {card.realLifeExample}

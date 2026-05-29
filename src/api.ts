@@ -10,14 +10,60 @@ export interface Flashcard {
   back: string;
 }
 
+export interface GeometryPoint {
+  id: string;
+  x: number;
+  y: number;
+  label: string;
+  draggable: boolean;
+}
+export interface GeometrySegment {
+  from: string;
+  to: string;
+  showLength: boolean;
+}
+export interface GeometryPolygon {
+  points: string[];
+  showArea: boolean;
+}
+export interface GeometryCircle {
+  center: string;
+  throughPoint: string;
+  showRadius: boolean;
+}
+export interface GeometryAngle {
+  vertex: string;
+  from: string;
+  to: string;
+  showDegrees: boolean;
+  right: boolean;
+}
+export interface DiagramSpec {
+  width: number;
+  height: number;
+  unit: string;
+  unitScale: number;
+  points: GeometryPoint[];
+  segments: GeometrySegment[];
+  polygons: GeometryPolygon[];
+  circles: GeometryCircle[];
+  angles: GeometryAngle[];
+}
+
 export interface MathResult {
   title: string;
   concept: string;
   steps: Step[];
   answer: string;
+  diagramSpec: DiagramSpec;
   diagramSvg: string;
   realLifeExample: string;
   flashcards: Flashcard[];
+}
+
+/** True when a spec actually has geometry to render. */
+export function hasGeometry(spec: DiagramSpec | undefined | null): spec is DiagramSpec {
+  return !!spec && Array.isArray(spec.points) && spec.points.length > 0;
 }
 
 export interface ImagePayload {

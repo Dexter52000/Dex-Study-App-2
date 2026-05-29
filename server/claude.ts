@@ -104,7 +104,7 @@ export async function explain(input: ExplainInput): Promise<MathResult> {
   try {
     response = await getClient().messages.parse({
       model: MODEL,
-      max_tokens: 4096,
+      max_tokens: 6000,
       system: [
         { type: "text", text: SYSTEM_PROMPT, cache_control: { type: "ephemeral" } },
       ],

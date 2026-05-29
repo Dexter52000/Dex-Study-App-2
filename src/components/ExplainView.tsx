@@ -1,10 +1,12 @@
 import { useRef, useState } from "react";
-import { ApiError, explainProblem, type MathResult } from "../api";
+import { ApiError, explainProblem, hasGeometry, type MathResult } from "../api";
 import { fileToDownscaledPayload } from "../imageUtils";
-import type { ImagePayload } from "../api";
+import type { DiagramSpec, ImagePayload } from "../api";
 import SvgDiagram from "./SvgDiagram";
+import DynamicGeometry from "./DynamicGeometry";
 
 export interface SaveExtras {
+  diagramSpec?: DiagramSpec;
   diagramSvg?: string;
   realLifeExample?: string;
   explanation?: string[];
@@ -151,10 +153,16 @@ export default function ExplainView({ onSaveCard }: Props) {
             {result.concept && <span className="concept-tag">{result.concept}</span>}
           </div>
 
-          {result.diagramSvg && (
+          {hasGeometry(result.diagramSpec) ? (
             <div className="diagram-wrap">
-              <SvgDiagram svg={result.diagramSvg} />
+              <DynamicGeometry spec={result.diagramSpec} />
             </div>
+          ) : (
+            result.diagramSvg && (
+              <div className="diagram-wrap">
+                <SvgDiagram svg={result.diagramSvg} />
+              </div>
+            )
           )}
 
           <div className="section-title">一步一步来</div>
@@ -234,6 +242,9 @@ export default function ExplainView({ onSaveCard }: Props) {
                         disabled={saved}
                         onClick={() => {
                           onSaveCard(fc.front, fc.back, {
+                            diagramSpec: hasGeometry(result.diagramSpec)
+                              ? result.diagramSpec
+                              : undefined,
                             diagramSvg: result.diagramSvg || undefined,
                             realLifeExample: result.realLifeExample || undefined,
                             explanation: result.steps.map((s) => s.explanation),
