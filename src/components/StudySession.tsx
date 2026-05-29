@@ -96,6 +96,14 @@ export default function StudySession({ deck, onGrade, onExit }: Props) {
             ) : (
               card.diagramSvg && <SvgDiagram svg={card.diagramSvg} />
             )}
+            {card.realLifeImageUrl && (
+              <img
+                className="reallife-image"
+                src={card.realLifeImageUrl}
+                alt="生活场景配图"
+                loading="lazy"
+              />
+            )}
             {card.realLifeExample && (
               <div className="reallife-box" style={{ textAlign: "left" }}>
                 🌍 {card.realLifeExample}

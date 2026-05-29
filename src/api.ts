@@ -58,6 +58,9 @@ export interface MathResult {
   diagramSpec: DiagramSpec;
   diagramSvg: string;
   realLifeExample: string;
+  realLifePrompt: string;
+  /** Same-origin URL of a generated illustration, or null/absent if none. */
+  realLifeImageUrl?: string | null;
   flashcards: Flashcard[];
 }
 

@@ -9,6 +9,7 @@ import {
   SUPPORTED_IMAGE_TYPES,
   type ImageMediaType,
 } from "./claude";
+import { ensureRealLifeImage, imageEnabled, readImage } from "./images";
 
 const PORT = Number(process.env.PORT) || 8787;
 const isProd = process.env.NODE_ENV === "production";
@@ -19,7 +20,23 @@ const app = express();
 app.use(express.json({ limit: "12mb" }));
 
 app.get("/api/health", (_req, res) => {
-  res.json({ ok: true, hasKey: Boolean(process.env.ANTHROPIC_API_KEY) });
+  res.json({
+    ok: true,
+    hasKey: Boolean(process.env.ANTHROPIC_API_KEY),
+    imagesEnabled: imageEnabled(),
+  });
+});
+
+// Serve cached real-life illustrations.
+app.get("/api/image/:hash", (req, res) => {
+  const img = readImage(req.params.hash);
+  if (!img) {
+    res.status(404).end();
+    return;
+  }
+  res.type(img.contentType);
+  res.setHeader("Cache-Control", "public, max-age=604800, immutable");
+  res.send(img.buf);
 });
 
 app.post("/api/explain", async (req, res) => {
@@ -41,7 +58,11 @@ app.post("/api/explain", async (req, res) => {
     }
 
     const result = await explain({ problem, image });
-    res.json(result);
+
+    // Generate a real-life illustration (best-effort; null if disabled/fails).
+    const realLifeImageUrl = await ensureRealLifeImage(result.realLifePrompt);
+
+    res.json({ ...result, realLifeImageUrl });
   } catch (err) {
     const e = err instanceof ExplainError ? err : mapAnthropicError(err);
     res.status(e.httpStatus).json({ error: { code: e.code, message: e.userMessage } });

@@ -24,3 +24,6 @@ dist-ssr
 
 # TS build cache
 *.tsbuildinfo
+
+# Cached AI-generated illustrations
+.image-cache

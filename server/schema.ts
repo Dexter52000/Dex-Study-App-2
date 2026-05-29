@@ -80,6 +80,8 @@ export const MathResultSchema = z.object({
   /** Static SVG fallback for figures the spec can't express. "" → none. */
   diagramSvg: z.string(),
   realLifeExample: z.string(),
+  /** Short, concrete, child-safe scene for illustration generation. "" → none. */
+  realLifePrompt: z.string(),
   flashcards: z.array(FlashcardSchema),
 });
 

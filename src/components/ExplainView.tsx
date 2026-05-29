@@ -9,6 +9,7 @@ export interface SaveExtras {
   diagramSpec?: DiagramSpec;
   diagramSvg?: string;
   realLifeExample?: string;
+  realLifeImageUrl?: string;
   explanation?: string[];
   concept?: string;
 }
@@ -221,6 +222,14 @@ export default function ExplainView({ onSaveCard }: Props) {
           {result.realLifeExample && (
             <>
               <div className="section-title">生活里的例子 🌍</div>
+              {result.realLifeImageUrl && (
+                <img
+                  className="reallife-image"
+                  src={result.realLifeImageUrl}
+                  alt="生活场景配图"
+                  loading="lazy"
+                />
+              )}
               <div className="reallife-box">{result.realLifeExample}</div>
             </>
           )}
@@ -247,6 +256,7 @@ export default function ExplainView({ onSaveCard }: Props) {
                               : undefined,
                             diagramSvg: result.diagramSvg || undefined,
                             realLifeExample: result.realLifeExample || undefined,
+                            realLifeImageUrl: result.realLifeImageUrl || undefined,
                             explanation: result.steps.map((s) => s.explanation),
                             concept: result.concept || undefined,
                           });

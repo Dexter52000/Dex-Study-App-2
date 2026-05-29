@@ -476,6 +476,14 @@ textarea {
   padding: 0.9rem 1rem;
   white-space: pre-wrap;
 }
+.reallife-image {
+  display: block;
+  width: 100%;
+  max-width: 360px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  margin-bottom: 0.6rem;
+}
 
 .flashcard-suggestions {
   display: grid;

@@ -21,6 +21,7 @@ const valid = {
   diagramSpec: emptySpec,
   diagramSvg: "<svg viewBox='0 0 10 10'></svg>",
   realLifeExample: "像一块三角形的披萨",
+  realLifePrompt: "切成三角形的披萨",
   flashcards: [{ front: "三角形面积公式", back: "底×高÷2" }],
 };
 

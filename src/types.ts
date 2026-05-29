@@ -19,6 +19,8 @@ export interface Card {
   diagramSvg?: string;
   /** A real-life analogy connecting the concept to everyday life. */
   realLifeExample?: string;
+  /** URL of a generated real-life illustration, if any. */
+  realLifeImageUrl?: string;
   /** Step-by-step explanation text (one entry per step). */
   explanation?: string[];
   /** Concept/skill tag, e.g. "三角形面积" — used for weak-area tracking. */
