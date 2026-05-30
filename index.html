@@ -4,6 +4,14 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <title>轮盘数据分析与偏差检测器</title>
+<meta name="theme-color" content="#0f1115" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="轮盘分析" />
+<link rel="manifest" href="manifest.webmanifest" />
+<link rel="apple-touch-icon" href="icon.svg" />
+<link rel="icon" href="icon.svg" type="image/svg+xml" />
 <style>
   :root{
     --bg:#0f1115; --panel:#1a1d24; --panel2:#222630;
@@ -528,6 +536,11 @@
   refreshProfileSelect();
   buildGrid();
   render();
+
+  // PWA: 离线可用 + 可加到主屏
+  if('serviceWorker' in navigator){
+    window.addEventListener('load',()=>{ navigator.serviceWorker.register('sw.js').catch(()=>{}); });
+  }
 </script>
 </body>
 </html>

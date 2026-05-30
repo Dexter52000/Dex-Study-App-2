@@ -1,0 +1,14 @@
+{
+  "name": "轮盘数据分析与偏差检测器",
+  "short_name": "轮盘分析",
+  "description": "记录单台轮盘历史数据,用卡方/扇区检验检测偏差,给出诚实的下一注建议。",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0f1115",
+  "theme_color": "#0f1115",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
