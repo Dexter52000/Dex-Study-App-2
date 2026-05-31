@@ -1,46 +1,36 @@
-# 轮盘数据分析与偏差检测器 (Roulette Data Analyzer & Bias Detector)
+# Wheel Lab — Roulette Tracker & Bias Detector
 
-一个**诚实**的轮盘历史数据工具:堆数据 → 统计每个数字/颜色的频率 → 用统计学(卡方检验)判断这台轮盘是否真的"偏"。
+A clean, honest, mobile-first web app for logging spins on **one physical roulette wheel**,
+visualising the stats, and using real statistics (chi-square + sector analysis) to check
+whether that wheel is actually biased. Installable as a PWA — works offline.
 
-用浏览器(手机/电脑)直接打开 `index.html` 即可,无需安装、无需联网,数据只存你自己的浏览器本地。
+Open `index.html` in any browser, or install it to your home screen.
 
-## 功能
+## Layout (bottom tabs)
 
-- **多台轮盘档案**:每台机器分开存(例:Casino Bern 3号桌),随时切换、改名、删除
-- **导出 / 导入**:全部数据导出为 JSON,换设备也能继续
-- **记录**:点数字盘、粘贴文本批量导入,或 **📷 拍历史开奖板照片自动 OCR**(在你设备本地运行,务必核对)
-- **频率统计**:每个数字出现次数、热力条;红黑/单双/大小/打/列等投注区频率
-- **单号偏差检测**:整体**卡方检验** χ² + 单号 **z 值**(|z|≥3 才有统计意义)+ 数据充分度提示
-- **扇区偏差检测(物理盘核心)**:按欧式盘**真实物理排列顺序**滑动统计相邻扇区(3/5/7/9 格),
-  抓松隔片、轮盘倾斜、磨损甚至做手脚造成的"一片格子偏热";配轮盘热力图
-- **下一局概率估计(诚实版)**:数据不足时直说"无法预测";数据充分且检验显著时,列出偏多的号/扇区,并提醒优势有限
+- **Play** — next-bet suggestion (colour + odd/even with an honesty badge), tap-to-log number pad, board scanner (OCR), recent spins
+- **Stats** — sample-size meter, even-money bets, dozens & columns
+- **Analysis** — wheel heatmap, chi-square verdict, sector-bias test, hottest numbers
+- **More** — table profiles (one per machine), wheel type, export/import, demos, and the honest "how it works" notes
 
-## 关于磁铁 / 做手脚(瑞士适用)
+## The honest part
 
-- 正规持牌赌场(瑞士由 **ESBK** 监管,eCOGRA/TST 检测)**基本不用磁铁**——作弊会吊照+重罚,而庄家优势本就稳赚
-- 磁铁作弊真实出现在无牌照/地下赌场,或作弊玩家自带磁化球
-- 你真正该防的不是磁铁,而是**机械偏差**(松隔片、倾斜、摆动)造成的**扇区偏差**——本工具的扇区面板就是抓这个
-- 关键:不论原因是磨损还是做手脚,只要球偏向某物理区域,**扇区检测都会显出来**
-
-## 这背后的真实依据
-
-| 真相 | 说明 |
+| Truth | Why it matters |
 |---|---|
-| **轮盘偏差是真的、合法的** | García-Pelayo 一家手工记录 3 万多局,用统计找出机械磨损偏差的物理轮盘,赢超 100 万欧元;casino 起诉还败诉 |
-| **要几千局才可靠** | 偏差不明显时,通常需要 ≥ 数千局同一台轮盘的数据才能确认 |
-| **只对物理轮盘有效** | 电子轮盘/online 用认证 RNG(GLI、eCOGRA),无物理偏差,堆数据无效 |
-| **赌场设计在对付你** | 迷宫布局、无时钟无窗、近失效应、中奖音效 FOMO,都是为了让你玩更久输更多 |
-| **庄家优势是数学定数** | 0(和 00)使长期期望对玩家为负,玩越久越接近这个负值 |
+| Fair wheels can't be predicted | Spins are independent — believing otherwise is the gambler's fallacy |
+| Bias detection is the only real edge | And it needs **thousands of spins** on the same physical wheel |
+| Online/electronic wheels use certified RNGs | No physical bias — logging does nothing there |
+| Magnets are mostly a myth in licensed casinos | Swiss casinos are ESBK-regulated; what you *can* catch is mechanical **sector bias** |
+| The green zero(s) make the long-run EV negative | The longer you play, the closer you get to that loss |
 
-### 资料来源
-- [casino.org — García-Pelayo 偏差法](https://www.casino.org/news/vegas-myths-busted-gonzalo-garcia-pelayo-invented-the-only-technique-to-beat-roulette-without-cheating/)
-- [rouletteonline.net — 如何识别偏差轮盘](https://www.rouletteonline.net/biased-roulette-wheel/)
-- [robottler.com — RNG vs 物理轮盘预测](https://robottler.com/roulette-prediction-software/)
-- [culture.org — 赌场设计心理学](https://culture.org/gambling/casino-tricks/)
-- [archdaily — 赌场空间设计](https://www.archdaily.com/935448/the-psychology-of-casinos-in-las-vegas-spaces-designed-to-make-you-gamble-more-and-win-less)
+The colour / odd-even suggestion only carries weight when the app shows **"Bias detected"** (|z| ≥ 3).
+Otherwise it says so plainly.
 
-## 重要说明
+### Sources
+[García-Pelayo](https://www.casino.org/news/vegas-myths-busted-gonzalo-garcia-pelayo-invented-the-only-technique-to-beat-roulette-without-cheating/) ·
+[wheel bias](https://www.roulettephysics.com/roulette-wheel-bias/) ·
+[magnets myth](https://www.roulettephysics.com/casino-roulette-wheel-magnets/) ·
+[Swiss regulation](https://www.gespa.ch/en/regulation-and-licensing/operators) ·
+[casino psychology](https://culture.org/gambling/casino-tricks/)
 
-- 没有"推特内部消息"能预测下一局——能预测红黑/数字的"内部算法"不存在
-- 唯一靠堆数据有意义的是**物理轮盘偏差检测**,而且只是把胜率从随机**略微**抬高,绝非"必中"
-- 这是**教育/记录工具,不是盈利工具**。请设好预算、理性娱乐
+> Educational / record-keeping tool — not a way to beat the house. Data stays on your device. Set a budget and play responsibly.

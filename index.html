@@ -1,291 +1,389 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-<title>轮盘数据分析与偏差检测器</title>
-<meta name="theme-color" content="#0f1115" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+<title>Wheel Lab — Roulette Tracker</title>
+<meta name="theme-color" content="#0b0d10" />
 <meta name="mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-<meta name="apple-mobile-web-app-title" content="轮盘分析" />
+<meta name="apple-mobile-web-app-title" content="Wheel Lab" />
 <link rel="manifest" href="manifest.webmanifest" />
 <link rel="apple-touch-icon" href="icon.svg" />
 <link rel="icon" href="icon.svg" type="image/svg+xml" />
 <style>
   :root{
-    --bg:#0f1115; --panel:#1a1d24; --panel2:#222630;
-    --red:#d23b3b; --black:#33373f; --green:#2e9e63; --text:#e8eaed; --muted:#9aa0ac;
-    --hot:#ff8c42; --line:#2c313c; --accent:#5b8def; --warn:#f0c674;
+    --bg:#0b0d10; --surface:#14171c; --surface2:#1b1f26; --border:#272d36;
+    --text:#f2f4f7; --muted:#8b93a1; --faint:#5b626e;
+    --accent:#21c08a; --accent-d:#15835f;
+    --red:#e5484d; --black:#2c323b; --green:#21a86a; --gold:#e8b339;
+    --amber:#e8a13a; --danger:#e5484d;
+    --shadow:0 8px 30px rgba(0,0,0,.4);
   }
   *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-  body{margin:0;background:var(--bg);color:var(--text);
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;
-    padding:14px;max-width:600px;margin:0 auto;padding-bottom:70px}
-  h1{font-size:19px;margin:0 0 4px}
-  .sub{color:var(--muted);font-size:12px;margin-bottom:14px;line-height:1.5}
-  .warn{background:#2a1f14;border:1px solid #5a4320;color:var(--warn);
-    padding:10px 12px;border-radius:10px;font-size:12px;line-height:1.6;margin-bottom:14px}
-  .panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:14px}
-  .panel h2{font-size:13px;margin:0 0 10px;color:var(--muted);font-weight:600;
-    text-transform:uppercase;letter-spacing:.5px}
-  .grid{display:grid;grid-template-columns:repeat(13,1fr);gap:4px}
-  .cell{aspect-ratio:1;border:none;border-radius:6px;color:#fff;font-weight:700;
-    font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center;
-    position:relative;padding:0}
-  .cell:active{filter:brightness(1.3)}
-  .cell.r{background:var(--red)} .cell.b{background:var(--black)} .cell.g{background:var(--green)}
-  .cell .hb{position:absolute;bottom:1px;left:1px;right:1px;height:3px;border-radius:2px;background:rgba(0,0,0,.25)}
-  .cell .hf{height:100%;border-radius:2px;background:var(--hot)}
-  .gridwrap{overflow-x:auto}
-  .smbtns{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
-  .smbtn{flex:1;min-width:84px;background:var(--panel2);border:1px solid var(--line);color:var(--text);
-    border-radius:10px;padding:10px 6px;font-size:13px;cursor:pointer}
-  .smbtn:active{background:#2c313c}
-  .smbtn.danger{color:#f08c8c}
-  .history{display:flex;flex-wrap:wrap;gap:5px;min-height:28px}
-  .hdot{min-width:26px;height:26px;padding:0 4px;border-radius:6px;display:flex;align-items:center;
-    justify-content:center;font-size:12px;color:#fff;font-weight:700}
-  .hdot.r{background:var(--red)} .hdot.b{background:var(--black)} .hdot.g{background:var(--green)}
-  .row{display:flex;justify-content:space-between;align-items:center;
-    padding:6px 0;border-bottom:1px solid var(--line);font-size:13px}
-  .row:last-child{border-bottom:none}
-  .row .v{font-weight:700}
-  .barwrap{margin:4px 0}
-  .barlabel{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:3px}
-  .bar{height:8px;border-radius:4px;background:var(--panel2);overflow:hidden}
-  .bar .fill{height:100%;border-radius:4px;background:var(--accent)}
-  .suff{padding:10px;border-radius:10px;font-size:12px;line-height:1.6;text-align:center}
-  .suff.bad{background:#2a1414;border:1px solid #5a2020;color:#f08c8c}
-  .suff.mid{background:#2a2514;border:1px solid #5a5020;color:var(--warn)}
-  .suff.ok{background:#142a1c;border:1px solid #205a3a;color:#7fe0a8}
-  table{width:100%;border-collapse:collapse;font-size:12px}
-  th,td{padding:5px 4px;text-align:right;border-bottom:1px solid var(--line)}
+  html,body{margin:0;background:var(--bg);color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased}
+  body{max-width:480px;margin:0 auto;padding:0 0 96px;min-height:100vh;position:relative}
+  .app-header{position:sticky;top:0;z-index:20;background:rgba(11,13,16,.82);
+    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--border);padding:14px 18px 12px}
+  .app-header .row{display:flex;align-items:center;justify-content:space-between}
+  .table-name{display:flex;align-items:center;gap:7px;font-size:17px;font-weight:700;
+    background:none;border:none;color:var(--text);cursor:pointer;padding:0}
+  .table-name .chev{color:var(--muted);font-size:12px}
+  .table-meta{font-size:12px;color:var(--muted);margin-top:2px}
+  .pill-sm{font-size:11px;color:var(--accent);background:rgba(33,192,138,.12);
+    border:1px solid rgba(33,192,138,.25);padding:3px 9px;border-radius:20px;font-weight:600}
+
+  .view{display:none;padding:16px 16px 0;animation:fade .25s ease}
+  .view.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:18px;
+    padding:16px;margin-bottom:14px}
+  .card h3{margin:0 0 12px;font-size:12px;font-weight:600;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.6px}
+  .card.flush h3{margin-bottom:8px}
+
+  /* Recommendation hero */
+  .hero{background:linear-gradient(165deg,#1a2129,#12161c);border:1px solid #2b3a44;
+    border-radius:20px;padding:18px;margin-bottom:14px;box-shadow:var(--shadow)}
+  .hero .eyebrow{font-size:11px;letter-spacing:.8px;text-transform:uppercase;color:var(--accent);font-weight:700}
+  .rec-row{display:flex;gap:12px;margin:14px 0}
+  .rec{flex:1;background:#0c0f13;border:1px solid var(--border);border-radius:14px;padding:14px 10px;text-align:center}
+  .rec .k{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+  .rec .v{font-size:26px;font-weight:800;margin:6px 0 2px;line-height:1}
+  .rec .p{font-size:11px;color:var(--faint)}
+  .badge{display:flex;align-items:center;gap:8px;border-radius:12px;padding:11px 13px;
+    font-size:12.5px;line-height:1.45;font-weight:500}
+  .badge .ic{font-size:15px}
+  .badge.none{background:rgba(229,72,77,.1);border:1px solid rgba(229,72,77,.3);color:#f3989b}
+  .badge.weak{background:rgba(232,161,58,.1);border:1px solid rgba(232,161,58,.3);color:#f0c074}
+  .badge.strong{background:rgba(33,192,138,.1);border:1px solid rgba(33,192,138,.3);color:#6fe0b3}
+
+  /* number pad */
+  .pad{display:grid;grid-template-columns:repeat(6,1fr);gap:7px}
+  .zero-row{display:grid;grid-template-columns:1fr;gap:7px;margin-bottom:7px}
+  .zero-row.two{grid-template-columns:1fr 1fr}
+  .num{aspect-ratio:1.15;border:none;border-radius:11px;color:#fff;font-weight:700;font-size:15px;
+    cursor:pointer;display:flex;align-items:center;justify-content:center;transition:transform .06s,filter .1s}
+  .num:active{transform:scale(.92);filter:brightness(1.25)}
+  .num.r{background:var(--red)} .num.b{background:var(--black)} .num.g{background:var(--green)}
+  .num.wide{aspect-ratio:auto;padding:13px 0;font-size:15px}
+
+  .actions{display:flex;gap:9px;margin-top:12px}
+  .btn{flex:1;border:1px solid var(--border);background:var(--surface2);color:var(--text);
+    border-radius:12px;padding:12px;font-size:14px;font-weight:600;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;gap:6px}
+  .btn:active{filter:brightness(1.2)}
+  .btn.ghost{background:transparent}
+  .btn.accent{background:var(--accent);border-color:var(--accent);color:#04130d}
+  .btn.danger{color:#f3989b}
+  .btn.full{width:100%;flex:none}
+
+  /* recent strip */
+  .strip{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;-webkit-overflow-scrolling:touch}
+  .strip::-webkit-scrollbar{display:none}
+  .chip{flex:none;min-width:30px;height:30px;padding:0 7px;border-radius:8px;display:flex;
+    align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff}
+  .chip.r{background:var(--red)} .chip.b{background:var(--black)} .chip.g{background:var(--green)}
+  .empty{color:var(--faint);font-size:13px;padding:6px 0}
+
+  /* sufficiency meter */
+  .meter{height:8px;border-radius:6px;background:var(--surface2);overflow:hidden;margin:10px 0 8px}
+  .meter .fill{height:100%;border-radius:6px;transition:width .4s ease}
+  .meter-label{display:flex;justify-content:space-between;font-size:12px}
+  .meter-note{font-size:12.5px;line-height:1.5;color:var(--muted);margin-top:4px}
+
+  /* stat bars */
+  .stat{margin-bottom:14px}
+  .stat:last-child{margin-bottom:0}
+  .stat .top{display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px}
+  .stat .top .lab{color:var(--muted)}
+  .stat .top .num-v{font-variant-numeric:tabular-nums}
+  .split{height:9px;border-radius:6px;display:flex;overflow:hidden;background:var(--surface2)}
+  .split i{display:block;height:100%}
+
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th,td{padding:7px 6px;text-align:right;border-bottom:1px solid var(--border)}
   th:first-child,td:first-child{text-align:left}
-  th{color:var(--muted);font-weight:600}
-  .tag{display:inline-block;padding:1px 6px;border-radius:5px;font-size:10px;font-weight:700;color:#fff}
-  .tag.hot{background:var(--hot)} .tag.cold{background:#4a7fb5} .tag.norm{background:#444}
-  select,input[type=text]{background:var(--panel2);color:var(--text);border:1px solid var(--line);
-    border-radius:8px;padding:7px 8px;font-size:13px;width:100%}
-  textarea{width:100%;background:var(--panel2);color:var(--text);border:1px solid var(--line);
-    border-radius:8px;padding:8px;font-size:13px;resize:vertical;min-height:46px}
-  label.fld{font-size:12px;color:var(--muted);display:block;margin-bottom:5px}
-  .psych{font-size:12px;color:var(--muted);line-height:1.7;padding-left:18px;margin:0}
-  .psych li{margin-bottom:6px}
-  .src{font-size:11px;color:#5a606e;line-height:1.6}
-  .src a{color:#6a87b5;text-decoration:none}
-  .footer{font-size:11px;color:#5a606e;text-align:center;margin-top:8px;line-height:1.6}
-  details summary{cursor:pointer;font-size:13px;color:var(--accent);padding:4px 0}
-  .live{background:linear-gradient(160deg,#1c2230,#161a22);border:1px solid #2f3a4f;
-    border-radius:16px;padding:16px;margin-bottom:14px}
-  .live h2{margin:0 0 4px;font-size:13px;color:#8fa6c8;letter-spacing:.5px;text-transform:uppercase}
-  .reccards{display:flex;gap:10px;margin:12px 0}
-  .reccard{flex:1;background:#0f1115;border:1px solid var(--line);border-radius:12px;
-    padding:12px 8px;text-align:center}
-  .reccard .lbl{font-size:11px;color:var(--muted)}
-  .reccard .val{font-size:24px;font-weight:800;margin:4px 0}
-  .reccard .pctv{font-size:12px;color:var(--muted)}
-  .recbadge{display:block;text-align:center;padding:8px;border-radius:10px;font-size:12px;
-    font-weight:600;line-height:1.5}
-  .recbadge.none{background:#2a1414;border:1px solid #5a2020;color:#f08c8c}
-  .recbadge.weak{background:#2a2514;border:1px solid #5a5020;color:var(--warn)}
-  .recbadge.strong{background:#142a1c;border:1px solid #205a3a;color:#7fe0a8}
-  .steps{display:flex;gap:6px;font-size:11px;color:var(--muted);margin-bottom:6px;flex-wrap:wrap}
-  .steps span{background:var(--panel2);border:1px solid var(--line);border-radius:20px;padding:3px 9px}
-  .bigphoto{display:block;width:100%;background:var(--accent);color:#fff;border:none;
-    border-radius:12px;padding:14px;font-size:15px;font-weight:700;cursor:pointer;margin-top:8px}
-  .bigphoto:active{filter:brightness(1.15)}
-  #wheelCanvasWrap{display:flex;justify-content:center;margin:6px 0}
-  .ocrimg{max-width:100%;border-radius:8px;margin-top:8px;display:none}
-  .pill{display:inline-block;background:var(--panel2);border:1px solid var(--line);border-radius:20px;
-    padding:4px 10px;font-size:12px;margin-right:6px}
+  th{color:var(--muted);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.4px}
+  td{font-variant-numeric:tabular-nums}
+  .tag{display:inline-block;padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700}
+  .tag.hot{background:rgba(232,161,58,.18);color:var(--gold)}
+  .tag.cold{background:rgba(91,143,196,.18);color:#86b3e0}
+  .tag.norm{background:var(--surface2);color:var(--faint)}
+
+  canvas{display:block;margin:4px auto}
+  .verdict{font-size:14px;font-weight:700}
+
+  select,input[type=text]{width:100%;background:var(--surface2);color:var(--text);
+    border:1px solid var(--border);border-radius:11px;padding:11px 12px;font-size:14px;
+    -webkit-appearance:none;appearance:none}
+  label.fld{font-size:12px;color:var(--muted);display:block;margin:0 0 7px}
+  .field{margin-bottom:14px}
+
+  details{border-top:1px solid var(--border);padding:12px 0 2px}
+  details:first-of-type{border-top:none}
+  summary{cursor:pointer;font-size:14px;font-weight:600;list-style:none;display:flex;
+    justify-content:space-between;align-items:center}
+  summary::-webkit-details-marker{display:none}
+  summary .arrow{color:var(--muted);transition:transform .2s}
+  details[open] summary .arrow{transform:rotate(90deg)}
+  .prose{font-size:13px;line-height:1.65;color:var(--muted);margin-top:10px}
+  .prose b{color:var(--text)}
+  .prose ul{padding-left:18px;margin:8px 0}
+  .prose li{margin-bottom:6px}
+  .src{font-size:11px;color:var(--faint);margin-top:10px;line-height:1.7}
+  .src a{color:#7a93b8;text-decoration:none}
+
+  .ocr-img{max-width:100%;border-radius:12px;margin-top:10px;display:none}
+  .ocr-status{font-size:12.5px;color:var(--muted);margin-top:8px;line-height:1.5}
+  input[type=file]{font-size:12px;color:var(--muted)}
+
+  .disclaimer{font-size:11.5px;color:var(--faint);text-align:center;line-height:1.6;padding:8px 4px 0}
+
+  /* bottom nav */
+  .nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;
+    z-index:30;display:flex;background:rgba(13,16,20,.9);backdrop-filter:blur(16px);
+    -webkit-backdrop-filter:blur(16px);border-top:1px solid var(--border);
+    padding:8px 8px calc(8px + env(safe-area-inset-bottom))}
+  .nav button{flex:1;background:none;border:none;color:var(--faint);font-size:10.5px;font-weight:600;
+    cursor:pointer;padding:6px 0;display:flex;flex-direction:column;align-items:center;gap:4px}
+  .nav button .ic{font-size:20px;line-height:1}
+  .nav button.active{color:var(--accent)}
+  .toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%);background:var(--surface2);
+    border:1px solid var(--border);color:var(--text);padding:10px 16px;border-radius:12px;
+    font-size:13px;opacity:0;transition:opacity .25s;pointer-events:none;z-index:40;box-shadow:var(--shadow)}
+  .toast.show{opacity:1}
 </style>
 </head>
 <body>
-  <h1>轮盘数据分析与偏差检测器</h1>
-  <div class="sub">堆历史数据 → 频率/扇区统计 → 卡方+扇区检验找出"偏差/被动手脚的轮盘"。基于真实统计学。</div>
-
-  <div class="warn">
-    ⚠️ <b>必读。</b> 唯一靠"堆数据"真能算出东西的,是<b>物理轮盘的偏差</b>(松隔片、倾斜、磨损,甚至被动手脚的扇区)。
-    要可靠判断通常需 <b>≥ 几千局同一台轮盘</b>。<b>电子盘/网上盘用认证 RNG,无物理偏差,堆数据无效。</b>
-    样本不足时下面的"热门号/热门扇区"只是<b>随机噪声</b>。
-  </div>
-
-  <!-- 现场模式 -->
-  <div class="live">
-    <h2>🎰 现场模式 · 下一注建议</h2>
-    <div class="steps">
-      <span>① 拍开奖板</span><span>② 每局点开出的数字</span><span>③ 看下方建议下注</span>
-    </div>
-    <div class="reccards">
-      <div class="reccard">
-        <div class="lbl">建议颜色</div>
-        <div class="val" id="recColor">—</div>
-        <div class="pctv" id="recColorPct"></div>
+  <header class="app-header">
+    <div class="row">
+      <div>
+        <button class="table-name" onclick="go('more')">
+          <span id="hdrName">My Table</span><span class="chev">▾</span>
+        </button>
+        <div class="table-meta"><span id="hdrWheel">European</span> · <span id="hdrCount">0</span> spins logged</div>
       </div>
-      <div class="reccard">
-        <div class="lbl">建议单/双</div>
-        <div class="val" id="recParity">—</div>
-        <div class="pctv" id="recParityPct"></div>
+      <span class="pill-sm" id="hdrStatus">No data</span>
+    </div>
+  </header>
+
+  <!-- ============ PLAY ============ -->
+  <section class="view active" id="view-play">
+    <div class="hero">
+      <div class="eyebrow">Next bet suggestion</div>
+      <div class="rec-row">
+        <div class="rec">
+          <div class="k">Colour</div>
+          <div class="v" id="recColor">—</div>
+          <div class="p" id="recColorP"></div>
+        </div>
+        <div class="rec">
+          <div class="k">Odd / Even</div>
+          <div class="v" id="recParity">—</div>
+          <div class="p" id="recParityP"></div>
+        </div>
+      </div>
+      <div class="badge none" id="recBadge"><span class="ic">○</span><span id="recBadgeTxt">Log some spins to get a read on this table.</span></div>
+    </div>
+
+    <div class="card flush">
+      <h3>Tap the number that just hit</h3>
+      <div class="zero-row" id="zeroRow"></div>
+      <div class="pad" id="pad"></div>
+      <div class="actions">
+        <button class="btn ghost" onclick="undo()">↩ Undo</button>
+        <button class="btn ghost" onclick="document.getElementById('photo').click()">📷 Scan board</button>
+      </div>
+      <input type="file" id="photo" accept="image/*" capture="environment" style="display:none" onchange="runOCR(event)" />
+      <div class="ocr-status" id="ocrStatus"></div>
+      <img id="ocrImg" class="ocr-img" alt="scanned board" />
+    </div>
+
+    <div class="card">
+      <h3>Recent spins</h3>
+      <div class="strip" id="recent"></div>
+    </div>
+  </section>
+
+  <!-- ============ STATS ============ -->
+  <section class="view" id="view-stats">
+    <div class="card">
+      <h3>Sample size</h3>
+      <div class="meter-label"><span class="meter-note" id="suffNote" style="margin:0"></span></div>
+      <div class="meter"><div class="fill" id="suffFill" style="width:0%"></div></div>
+    </div>
+
+    <div class="card">
+      <h3>Even-money bets</h3>
+      <div id="evenBets"></div>
+    </div>
+
+    <div class="card">
+      <h3>Dozens &amp; Columns</h3>
+      <div id="groupBets"></div>
+    </div>
+  </section>
+
+  <!-- ============ ANALYSIS ============ -->
+  <section class="view" id="view-analysis">
+    <div class="card">
+      <h3>Wheel heatmap</h3>
+      <canvas id="wheelCanvas" width="300" height="300"></canvas>
+      <div class="meter-note" style="text-align:center">Brighter = hit more often. European layout.</div>
+    </div>
+
+    <div class="card">
+      <h3>Overall randomness (chi-square)</h3>
+      <div class="stat" style="margin-bottom:8px">
+        <div class="top"><span class="lab">χ² statistic</span><span class="num-v" id="chi">—</span></div>
+        <div class="top"><span class="lab">Verdict</span><span class="verdict" id="chiVerdict">—</span></div>
       </div>
     </div>
-    <div class="recbadge none" id="recBadge">先记录数据(本桌至少几百局)才能给建议</div>
-    <button class="bigphoto" onclick="document.getElementById('photo').click()">📷 拍/上传开奖板照片(自动识别)</button>
-    <div style="font-size:11px;color:var(--muted);margin-top:8px;line-height:1.5">
-      你专注同一台幸运桌就把数据都记在当前档案里。建议只在<b>本桌测出可信偏差</b>时才有意义,否则红黑/单双永远约 50/50。
-    </div>
-  </div>
 
-  <!-- 档案管理 -->
-  <div class="panel">
-    <h2>轮盘档案(每台机器分开存)</h2>
-    <select id="profile" onchange="switchProfile()"></select>
-    <div class="smbtns">
-      <button class="smbtn" onclick="newProfile()">＋ 新建</button>
-      <button class="smbtn" onclick="renameProfile()">✎ 改名</button>
-      <button class="smbtn danger" onclick="deleteProfile()">🗑 删除</button>
+    <div class="card">
+      <h3>Sector bias (physical neighbours)</h3>
+      <div class="field" style="margin-bottom:12px">
+        <select id="sector" onchange="render()">
+          <option value="3">3-pocket sector</option>
+          <option value="5" selected>5-pocket sector</option>
+          <option value="7">7-pocket sector</option>
+          <option value="9">9-pocket sector</option>
+        </select>
+      </div>
+      <div id="sectorOut"></div>
     </div>
-    <div class="smbtns">
-      <button class="smbtn" onclick="exportData()">⬇ 导出全部</button>
-      <button class="smbtn" onclick="document.getElementById('importFile').click()">⬆ 导入</button>
+
+    <div class="card">
+      <h3>Hottest numbers</h3>
+      <table id="biasTable">
+        <thead><tr><th>No.</th><th>Hits</th><th>Actual</th><th>Exp.</th><th>z</th><th></th></tr></thead>
+        <tbody></tbody>
+      </table>
+      <div class="meter-note" style="margin-top:10px">A number is only meaningfully "hot" once |z| ≥ 3 <i>and</i> you have thousands of spins.</div>
+    </div>
+  </section>
+
+  <!-- ============ MORE ============ -->
+  <section class="view" id="view-more">
+    <div class="card">
+      <h3>Table</h3>
+      <div class="field">
+        <label class="fld">Active table</label>
+        <select id="profile" onchange="switchProfile()"></select>
+      </div>
+      <div class="actions" style="margin-bottom:10px">
+        <button class="btn ghost" onclick="newProfile()">＋ New</button>
+        <button class="btn ghost" onclick="renameProfile()">✎ Rename</button>
+        <button class="btn ghost danger" onclick="deleteProfile()">🗑 Delete</button>
+      </div>
+      <div class="field" style="margin-bottom:0">
+        <label class="fld">Wheel type</label>
+        <select id="wheel" onchange="setWheel()">
+          <option value="eu">European — single zero (0–36)</option>
+          <option value="us">American — double zero (0, 00, 1–36)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Data</h3>
+      <div class="actions" style="margin-bottom:10px">
+        <button class="btn ghost" onclick="exportData()">⬇ Export</button>
+        <button class="btn ghost" onclick="document.getElementById('importFile').click()">⬆ Import</button>
+      </div>
       <input type="file" id="importFile" accept="application/json" style="display:none" onchange="importData(event)" />
+      <div class="actions">
+        <button class="btn ghost" onclick="genTest()">🎲 Demo: fair</button>
+        <button class="btn ghost" onclick="genBiased()">🎯 Demo: biased</button>
+      </div>
+      <button class="btn ghost danger full" style="margin-top:10px" onclick="clearAll()">Clear this table's history</button>
     </div>
-    <label class="fld" style="margin-top:10px">轮盘类型</label>
-    <select id="wheel" onchange="setWheel()">
-      <option value="eu">欧式单零盘 (0–36,共 37 格) — 瑞士最常见</option>
-      <option value="us">美式双零盘 (0,00,1–36,共 38 格)</option>
-    </select>
-  </div>
 
-  <!-- 输入 -->
-  <div class="panel">
-    <h2>点开出的数字</h2>
-    <div class="gridwrap"><div class="grid" id="numgrid"></div></div>
-    <div class="smbtns">
-      <button class="smbtn" onclick="undo()">↩ 撤销</button>
-      <button class="smbtn" onclick="clearAll()">🗑 清空本档</button>
-      <button class="smbtn" onclick="genTest()">🎲 模拟200局</button>
-      <button class="smbtn" onclick="genBiased()">🎯 模拟偏差盘</button>
+    <div class="card">
+      <h3>How this works &amp; the honest truth</h3>
+      <details open>
+        <summary>Can it predict the next spin? <span class="arrow">›</span></summary>
+        <div class="prose">
+          Not on a fair wheel. Every spin is <b>independent</b> — past results don't change the next one
+          (that belief is the <b>gambler's fallacy</b>). The only real, data-driven edge is detecting a
+          <b>physically biased wheel</b>, and that needs <b>thousands of spins</b> on the same machine.
+          The colour/odd-even suggestion only means something when this app shows <b>"Bias detected"</b>.
+        </div>
+      </details>
+      <details>
+        <summary>Magnets &amp; rigging (Switzerland) <span class="arrow">›</span></summary>
+        <div class="prose">
+          <ul>
+            <li>Licensed casinos (Swiss <b>ESBK</b>, tested by eCOGRA/TST) essentially never use magnets — getting caught means losing the licence, and the house edge already wins long-term.</li>
+            <li>Magnet cheating shows up in <b>unlicensed</b> venues, or from <b>players</b> with magnetic balls.</li>
+            <li>What you can actually catch is <b>mechanical bias</b> — loose frets, tilt, wear — which makes one <b>sector</b> run hot. The Analysis tab is built for exactly this.</li>
+            <li>Whether the cause is wear or tampering, if the ball favours a physical zone, the <b>sector test will surface it</b>.</li>
+          </ul>
+        </div>
+      </details>
+      <details>
+        <summary>Casino design psychology <span class="arrow">›</span></summary>
+        <div class="prose">
+          <ul>
+            <li>Maze layouts, no clocks or windows, warm light — you lose track of time.</li>
+            <li><b>Near-miss</b> effect and win jingles trigger the reward system and FOMO.</li>
+            <li>The results board is shown <b>on purpose</b> to make you hunt for patterns that don't exist on a fair wheel.</li>
+            <li>The green zero(s) make the long-run expectation negative — the longer you play, the closer you get to that loss.</li>
+          </ul>
+        </div>
+      </details>
+      <div class="src">
+        Sources:
+        <a href="https://www.casino.org/news/vegas-myths-busted-gonzalo-garcia-pelayo-invented-the-only-technique-to-beat-roulette-without-cheating/">García-Pelayo</a> ·
+        <a href="https://www.roulettephysics.com/roulette-wheel-bias/">wheel bias</a> ·
+        <a href="https://www.roulettephysics.com/casino-roulette-wheel-magnets/">magnets myth</a> ·
+        <a href="https://www.gespa.ch/en/regulation-and-licensing/operators">Swiss regulation</a> ·
+        <a href="https://culture.org/gambling/casino-tricks/">casino psychology</a>
+      </div>
     </div>
-    <div style="margin-top:12px">
-      <label class="fld">粘贴历史数字(空格/逗号分隔,00 写作 00)</label>
-      <textarea id="paste" placeholder="例:17 0 32 15 4 21 2 25 00 ..."></textarea>
-      <div class="smbtns"><button class="smbtn" onclick="importPaste()">导入文本</button></div>
+
+    <div class="disclaimer">
+      Educational &amp; record-keeping tool — not a way to beat the house.<br/>
+      Data stays on your device. Set a budget and play responsibly.
     </div>
-    <div style="margin-top:12px">
-      <label class="fld">📷 拍/传历史开奖板照片(自动 OCR 识别数字,需联网,务必核对)</label>
-      <input type="file" id="photo" accept="image/*" capture="environment" onchange="runOCR(event)" />
-      <div id="ocrStatus" style="font-size:12px;color:var(--muted);margin-top:6px"></div>
-      <img id="ocrImg" class="ocrimg" />
-    </div>
-  </div>
+  </section>
 
-  <!-- 历史 -->
-  <div class="panel">
-    <h2>历史 (<span id="count">0</span> 局,最近显示 80)</h2>
-    <div class="history" id="history"></div>
-  </div>
-
-  <!-- 充分度 -->
-  <div class="panel">
-    <h2>数据是否够判断偏差?</h2>
-    <div id="suff" class="suff bad">还没有数据。</div>
-  </div>
-
-  <!-- 单号偏差 -->
-  <div class="panel">
-    <h2>单号偏差检测(卡方 + z 值)</h2>
-    <div class="row"><span>卡方统计量 χ²</span><span class="v" id="chi">—</span></div>
-    <div class="row"><span>自由度</span><span class="v" id="df">—</span></div>
-    <div class="row"><span>整体偏差判断</span><span class="v" id="chiVerdict">—</span></div>
-    <div style="margin:10px 0 6px;font-size:12px;color:var(--muted)">单号偏热排名(|z|≥3 才有统计意义):</div>
-    <table id="biasTable"><thead><tr><th>数字</th><th>出现</th><th>实际%</th><th>期望%</th><th>z</th><th>判定</th></tr></thead><tbody></tbody></table>
-  </div>
-
-  <!-- 扇区偏差(物理盘核心) -->
-  <div class="panel">
-    <h2>扇区偏差检测(按轮盘物理排列)</h2>
-    <div style="font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:8px">
-      松隔片、倾斜、磨损、甚至做手脚,都会让球偏向轮盘上<b>相邻的一片格子</b>。
-      这比单格偏差更常见、更早出现。下面按欧式盘真实物理顺序,滑动统计相邻扇区。
-    </div>
-    <label class="fld">扇区宽度(相邻格数)</label>
-    <select id="sector" onchange="render()">
-      <option value="3">3 格</option>
-      <option value="5" selected>5 格</option>
-      <option value="7">7 格</option>
-      <option value="9">9 格(约四分之一盘)</option>
-    </select>
-    <div id="sectorOut" style="margin-top:10px"></div>
-    <div id="wheelCanvasWrap"><canvas id="wheelCanvas" width="300" height="300"></canvas></div>
-    <div style="font-size:11px;color:var(--muted);text-align:center">轮盘热力图:越橙=出现越多。扇区偏差检测仅对欧式盘提供。</div>
-  </div>
-
-  <!-- 估计 -->
-  <div class="panel">
-    <h2>下一局概率估计(诚实版)</h2>
-    <div id="estimate" style="font-size:13px;line-height:1.7"></div>
-  </div>
-
-  <!-- 等额投注 -->
-  <div class="panel">
-    <h2>等额投注区频率</h2>
-    <div id="evenBets"></div>
-  </div>
-
-  <!-- 磁铁/做手脚真相 -->
-  <div class="panel">
-    <h2>磁铁 / 做手脚?真相(瑞士适用)</h2>
-    <ul class="psych">
-      <li><b>正规持牌赌场基本不会用磁铁。</b>瑞士由 <b>ESBK</b> 监管,eCOGRA/TST 检测公平性。作弊=吊照+重罚,而庄家优势本来就稳赚,没必要冒险。盘体用木头/非磁性金属,磁铁也影响不了。</li>
-      <li><b>磁铁作弊真实出现在</b>:无牌照/地下赌场,或作弊玩家自带磁化球。瑞士持牌场风险极低。</li>
-      <li><b>你真正该防的不是磁铁,是机械问题</b>:松隔片、轮盘倾斜/摆动、减速不均——它们造成<b>扇区偏差</b>,上面那个面板就是抓这个的。</li>
-      <li><b>关键</b>:不论原因是磨损还是有人做手脚,只要球偏向某物理区域,<b>扇区检测都会显出来</b>。所以盯数据 + 盯扇区,比猜"有没有磁铁"实在得多。</li>
-      <li><b>动态偏差</b>(只持续几百局)和<b>发牌手习惯</b>(同一荷官出球力度相近→落点成区)也会造成短期偏区,但需要更细的计时观察,本工具暂不计算。</li>
-    </ul>
-    <div class="src" style="margin-top:10px">来源:
-      <a href="https://www.roulettephysics.com/casino-roulette-wheel-magnets/">roulettephysics·磁铁</a> ·
-      <a href="https://www.dreamjackpot.com/blog/do-casinos-use-magnets-or-rigged-wheels-in-roulette/">dreamjackpot</a> ·
-      <a href="https://www.gespa.ch/en/regulation-and-licensing/operators">瑞士监管 gespa</a> ·
-      <a href="https://www.roulettephysics.com/roulette-wheel-bias/">扇区/隔片偏差</a> ·
-      <a href="https://www.casino.org/news/vegas-myths-busted-gonzalo-garcia-pelayo-invented-the-only-technique-to-beat-roulette-without-cheating/">García-Pelayo</a>
-    </div>
-  </div>
-
-  <!-- 心理学 -->
-  <div class="panel">
-    <h2>赌场设计心理学(真实资料)</h2>
-    <ul class="psych">
-      <li><b>迷宫布局、无时钟无窗、暖光</b>:让你失去时间感、降低戒心。</li>
-      <li><b>近失效应</b>:"差一点就中"激活奖赏系统,即使没赢也让你想继续。</li>
-      <li><b>中奖音效 / FOMO</b>:别人中奖的声音催你下注。</li>
-      <li><b>历史开奖板</b>:放给你看、诱导你"找规律"——在无偏差的盘上规律并不存在。</li>
-      <li><b>庄家优势</b>:0(及 00)使长期期望对玩家为负,玩越久越接近这个负值。</li>
-    </ul>
-    <div class="src" style="margin-top:10px">来源:
-      <a href="https://culture.org/gambling/casino-tricks/">culture.org</a> ·
-      <a href="https://www.archdaily.com/935448/the-psychology-of-casinos-in-las-vegas-spaces-designed-to-make-you-gamble-more-and-win-less">archdaily</a>
-    </div>
-  </div>
-
-  <div class="footer">数据只存在你自己的浏览器本地,不上传服务器(OCR 在你设备上运行)。<br/>教育/记录工具,非盈利工具。请设好预算、理性娱乐。</div>
+  <nav class="nav">
+    <button class="active" id="nav-play" onclick="go('play')"><span class="ic">🎰</span>Play</button>
+    <button id="nav-stats" onclick="go('stats')"><span class="ic">📊</span>Stats</button>
+    <button id="nav-analysis" onclick="go('analysis')"><span class="ic">🔬</span>Analysis</button>
+    <button id="nav-more" onclick="go('more')"><span class="ic">⚙️</span>More</button>
+  </nav>
+  <div class="toast" id="toast"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
 <script>
   const RED=new Set([1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36]);
-  // European single-zero wheel physical order (clockwise)
   const EU_ORDER=[0,32,15,19,4,21,2,25,17,34,6,27,13,36,11,30,8,23,10,5,24,16,33,1,20,14,31,9,22,18,29,7,28,12,35,3,26];
+
+  // ---------- navigation ----------
+  function go(tab){
+    document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+    document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));
+    document.getElementById('view-'+tab).classList.add('active');
+    document.getElementById('nav-'+tab).classList.add('active');
+    window.scrollTo(0,0);
+  }
+  let toastTimer;
+  function toast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show');
+    clearTimeout(toastTimer); toastTimer=setTimeout(()=>t.classList.remove('show'),1800); }
 
   // ---------- profiles ----------
   function loadProfiles(){
     let p=JSON.parse(localStorage.getItem('rprofiles')||'null');
-    if(!p){
-      // migrate old single-store if present
-      const oldH=JSON.parse(localStorage.getItem('rhist')||'[]');
-      const oldW=localStorage.getItem('rwheel')||'eu';
-      p={profiles:{'默认':{wheel:oldW,hist:oldH}},current:'默认'};
-      saveProfiles(p);
-    }
+    if(!p){ const oldH=JSON.parse(localStorage.getItem('rhist')||'[]'); const oldW=localStorage.getItem('rwheel')||'eu';
+      p={profiles:{'My Table':{wheel:oldW,hist:oldH}},current:'My Table'}; saveProfiles(p); }
     return p;
   }
   function saveProfiles(p){ localStorage.setItem('rprofiles',JSON.stringify(p)); }
@@ -296,27 +394,29 @@
   syncFromDB();
 
   function refreshProfileSelect(){
-    const sel=document.getElementById('profile');
-    sel.innerHTML=Object.keys(DB.profiles).map(n=>`<option ${n===DB.current?'selected':''}>${n}</option>`).join('');
+    document.getElementById('profile').innerHTML=Object.keys(DB.profiles)
+      .map(n=>`<option ${n===DB.current?'selected':''}>${n}</option>`).join('');
     document.getElementById('wheel').value=wheelType;
   }
-  function switchProfile(){ DB.current=document.getElementById('profile').value; saveProfiles(DB); syncFromDB(); buildGrid(); render(); }
-  function newProfile(){ const n=prompt('新轮盘档案名(例:Casino Bern 3号桌)'); if(!n) return;
-    if(DB.profiles[n]){ alert('已存在'); return; } DB.profiles[n]={wheel:'eu',hist:[]}; DB.current=n; saveProfiles(DB); syncFromDB(); refreshProfileSelect(); buildGrid(); render(); }
-  function renameProfile(){ const n=prompt('改名为:',DB.current); if(!n||n===DB.current) return; if(DB.profiles[n]){alert('已存在');return;}
-    DB.profiles[n]=DB.profiles[DB.current]; delete DB.profiles[DB.current]; DB.current=n; saveProfiles(DB); refreshProfileSelect(); }
-  function deleteProfile(){ if(Object.keys(DB.profiles).length<=1){ alert('至少保留一个档案'); return; }
-    if(!confirm('删除档案「'+DB.current+'」及其全部数据?')) return; delete DB.profiles[DB.current]; DB.current=Object.keys(DB.profiles)[0]; saveProfiles(DB); syncFromDB(); refreshProfileSelect(); buildGrid(); render(); }
+  function switchProfile(){ DB.current=document.getElementById('profile').value; saveProfiles(DB); syncFromDB(); buildPad(); render(); toast('Switched to '+DB.current); }
+  function newProfile(){ const n=prompt('New table name (e.g. Casino Bern · Table 3)'); if(!n) return;
+    if(DB.profiles[n]){ toast('That name exists'); return; } DB.profiles[n]={wheel:wheelType,hist:[]}; DB.current=n;
+    saveProfiles(DB); syncFromDB(); refreshProfileSelect(); buildPad(); render(); toast('Created '+n); }
+  function renameProfile(){ const n=prompt('Rename table:',DB.current); if(!n||n===DB.current) return;
+    if(DB.profiles[n]){ toast('That name exists'); return; }
+    DB.profiles[n]=DB.profiles[DB.current]; delete DB.profiles[DB.current]; DB.current=n; saveProfiles(DB); refreshProfileSelect(); render(); }
+  function deleteProfile(){ if(Object.keys(DB.profiles).length<=1){ toast('Keep at least one table'); return; }
+    if(!confirm('Delete "'+DB.current+'" and all its data?')) return; delete DB.profiles[DB.current];
+    DB.current=Object.keys(DB.profiles)[0]; saveProfiles(DB); syncFromDB(); refreshProfileSelect(); buildPad(); render(); }
 
-  function exportData(){
-    const blob=new Blob([JSON.stringify(DB,null,2)],{type:'application/json'});
+  function exportData(){ const blob=new Blob([JSON.stringify(DB,null,2)],{type:'application/json'});
     const a=document.createElement('a'); a.href=URL.createObjectURL(blob);
-    a.download='roulette-data-'+new Date().toISOString().slice(0,10)+'.json'; a.click();
-  }
-  function importData(e){ const f=e.target.files[0]; if(!f) return;
-    const r=new FileReader(); r.onload=()=>{ try{ const obj=JSON.parse(r.result);
-      if(obj.profiles&&obj.current){ if(confirm('导入将覆盖现有全部档案,确定?')){ DB=obj; saveProfiles(DB); syncFromDB(); refreshProfileSelect(); buildGrid(); render(); } }
-      else alert('文件格式不对'); }catch(err){ alert('解析失败:'+err.message); } };
+    a.download='wheel-lab-'+new Date().toISOString().slice(0,10)+'.json'; a.click(); toast('Exported'); }
+  function importData(e){ const f=e.target.files[0]; if(!f) return; const r=new FileReader();
+    r.onload=()=>{ try{ const obj=JSON.parse(r.result);
+      if(obj.profiles&&obj.current){ if(confirm('Import will replace all current tables. Continue?')){
+        DB=obj; saveProfiles(DB); syncFromDB(); refreshProfileSelect(); buildPad(); render(); toast('Imported'); } }
+      else toast('Unrecognised file'); }catch(err){ toast('Import failed'); } };
     r.readAsText(f); e.target.value=''; }
 
   // ---------- wheel helpers ----------
@@ -325,222 +425,194 @@
   function colorOf(v){ if(v==='0'||v==='00') return 'g'; return RED.has(Number(v))?'r':'b'; }
   function save(){ saveProfiles(DB); }
   function add(v){ hist.push(v); save(); render(); }
-  function undo(){ hist.pop(); save(); render(); }
-  function clearAll(){ if(confirm('清空当前档案「'+DB.current+'」全部历史?')){ hist.length=0; save(); render(); } }
+  function undo(){ if(!hist.length) return; hist.pop(); save(); render(); toast('Removed last spin'); }
+  function clearAll(){ if(confirm('Clear all history for "'+DB.current+'"?')){ hist.length=0; save(); render(); toast('Cleared'); } }
   function setWheel(){ const w=document.getElementById('wheel').value;
-    if(hist.length && w!==wheelType && !confirm('切换轮盘类型建议清空本档数据,是否清空?')){ document.getElementById('wheel').value=wheelType; return; }
-    if(hist.length && w!==wheelType) hist.length=0; cur().wheel=w; wheelType=w; save(); buildGrid(); render(); }
+    if(hist.length && w!==wheelType && !confirm('Changing wheel type clears this table. Continue?')){ document.getElementById('wheel').value=wheelType; return; }
+    if(hist.length && w!==wheelType) hist.length=0; cur().wheel=w; wheelType=w; save(); buildPad(); render(); }
 
-  function genTest(){ const ks=allKeys(); for(let i=0;i<200;i++) hist.push(ks[Math.floor(Math.random()*ks.length)]); save(); render(); }
-  function genBiased(){ // simulate a sector-biased EU wheel for demo
-    if(wheelType!=='eu'){ alert('演示偏差盘请先选欧式盘'); return; }
-    const hotCenter=EU_ORDER.indexOf(17); // bias around pocket 17 region
-    for(let i=0;i<800;i++){
-      if(Math.random()<0.30){ const off=Math.round((Math.random()-0.5)*5); hist.push(String(EU_ORDER[((hotCenter+off)%37+37)%37])); }
-      else hist.push(String(EU_ORDER[Math.floor(Math.random()*37)]));
-    }
-    save(); render();
-  }
-
-  function importPaste(){ const t=document.getElementById('paste').value; const toks=t.split(/[\s,;]+/).filter(Boolean);
-    let ok=0; for(let tok of toks){ if(tok==='00'){ if(wheelType==='us'){hist.push('00');ok++} }
-      else{ const n=parseInt(tok,10); if(!isNaN(n)&&n>=0&&n<=36){hist.push(String(n));ok++} } }
-    if(ok){ save(); document.getElementById('paste').value=''; render(); } else alert('没识别到有效数字'); }
+  function genTest(){ const ks=allKeys(); for(let i=0;i<300;i++) hist.push(ks[Math.floor(Math.random()*ks.length)]); save(); render(); go('analysis'); toast('Added 300 fair spins'); }
+  function genBiased(){ if(wheelType!=='eu'){ toast('Switch to European first'); return; }
+    const c=EU_ORDER.indexOf(17);
+    for(let i=0;i<900;i++){ if(Math.random()<0.30){ const o=Math.round((Math.random()-0.5)*5); hist.push(String(EU_ORDER[((c+o)%37+37)%37])); }
+      else hist.push(String(EU_ORDER[Math.floor(Math.random()*37)])); }
+    save(); render(); go('analysis'); toast('Added 900 biased spins'); }
 
   // ---------- OCR ----------
   async function runOCR(e){ const f=e.target.files[0]; if(!f) return;
-    const img=document.getElementById('ocrImg'); const st=document.getElementById('ocrStatus');
+    const img=document.getElementById('ocrImg'), st=document.getElementById('ocrStatus');
     img.src=URL.createObjectURL(f); img.style.display='block';
-    if(typeof Tesseract==='undefined'){ st.textContent='⚠️ OCR 库未加载(可能离线)。请对照图片手动输入,或用上面的粘贴框。'; return; }
-    st.textContent='识别中…(首次需下载语言包,请稍候)';
-    try{
-      const {data}=await Tesseract.recognize(f,'eng',{ tessedit_char_whitelist:'0123456789' });
+    if(typeof Tesseract==='undefined'){ st.textContent='⚠️ OCR needs an internet connection. Tap the numbers manually instead.'; return; }
+    st.textContent='Reading… (first run downloads the language pack)';
+    try{ const {data}=await Tesseract.recognize(f,'eng',{tessedit_char_whitelist:'0123456789'});
       const toks=(data.text.match(/\d{1,2}/g)||[]).filter(t=>{const n=+t;return n>=0&&n<=36;});
-      if(toks.length){ const box=document.getElementById('paste');
-        box.value=(box.value?box.value+' ':'')+toks.join(' ');
-        st.innerHTML='✅ 识别到 <b>'+toks.length+'</b> 个数字,已填入下方粘贴框,<b>请务必核对</b>后点「导入文本」。OCR 常出错,尤其 6/8/0/00。'; }
-      else st.textContent='没识别出有效数字,请手动输入。';
-    }catch(err){ st.textContent='识别失败:'+err.message+'。请手动输入。'; }
+      if(toks.length){ toks.forEach(t=>hist.push(t)); save(); render();
+        st.innerHTML='✅ Added <b>'+toks.length+'</b> numbers. OCR is error-prone (6/8/0) — review Recent spins and Undo any mistakes.'; }
+      else st.textContent='No numbers detected. Please tap them in manually.';
+    }catch(err){ st.textContent='Scan failed — enter the numbers manually.'; }
   }
 
-  // ---------- stats helpers ----------
-  function chiSqUpperP(x,k){ if(x<=0) return 1; const t=Math.pow(x/k,1/3); const m=1-2/(9*k); const s=Math.sqrt(2/(9*k));
+  // ---------- stats math ----------
+  function chiSqUpperP(x,k){ if(x<=0) return 1; const t=Math.pow(x/k,1/3),m=1-2/(9*k),s=Math.sqrt(2/(9*k));
     return 0.5*erfc(((t-m)/s)/Math.SQRT2); }
-  function erfc(x){ const z=Math.abs(x); const t=1/(1+0.5*z);
+  function erfc(x){ const z=Math.abs(x),t=1/(1+0.5*z);
     const r=t*Math.exp(-z*z-1.26551223+t*(1.00002368+t*(.37409196+t*(.09678418+t*(-.18628806+t*(.27886807+
       t*(-1.13520398+t*(1.48851587+t*(-.82215223+t*.17087277))))))))); return x>=0?r:2-r; }
 
   function drawWheel(cnt){
-    const cv=document.getElementById('wheelCanvas'); const ctx=cv.getContext('2d');
-    ctx.clearRect(0,0,300,300);
-    if(wheelType!=='eu'){ ctx.fillStyle='#5a606e'; ctx.font='13px sans-serif'; ctx.textAlign='center';
-      ctx.fillText('扇区热力图仅支持欧式盘',150,150); return; }
-    const cx=150,cy=150,rOut=140,rIn=80; const N=37; const max=Math.max(1,...EU_ORDER.map(k=>cnt[String(k)]||0));
-    for(let i=0;i<N;i++){ const a0=i/N*2*Math.PI-Math.PI/2-Math.PI/N, a1=a0+2*Math.PI/N;
-      const k=EU_ORDER[i]; const c=cnt[String(k)]||0; const heat=c/max;
-      const col=colorOf(String(k));
-      let base = col==='g'?'#2e9e63':(col==='r'?'#7a2222':'#2a2d34');
-      // overlay heat as orange tint
-      ctx.beginPath(); ctx.moveTo(cx,cy);
-      ctx.arc(cx,cy,rOut,a0,a1); ctx.closePath();
-      ctx.fillStyle=base; ctx.fill();
-      if(heat>0){ ctx.globalAlpha=0.15+0.85*heat; ctx.fillStyle='#ff8c42'; ctx.fill(); ctx.globalAlpha=1; }
-      ctx.strokeStyle='#0f1115'; ctx.lineWidth=1; ctx.stroke();
-      // label
-      const am=(a0+a1)/2; const lr=(rOut+rIn)/2;
-      ctx.fillStyle='#fff'; ctx.font='10px sans-serif'; ctx.textAlign='center'; ctx.textBaseline='middle';
-      ctx.fillText(k, cx+Math.cos(am)*lr, cy+Math.sin(am)*lr);
-    }
-    ctx.beginPath(); ctx.arc(cx,cy,rIn,0,2*Math.PI); ctx.fillStyle='#1a1d24'; ctx.fill();
+    const cv=document.getElementById('wheelCanvas'),ctx=cv.getContext('2d');
+    const DPR=window.devicePixelRatio||1, S=300; cv.width=S*DPR; cv.height=S*DPR; cv.style.width=S+'px'; cv.style.height=S+'px';
+    ctx.setTransform(DPR,0,0,DPR,0,0); ctx.clearRect(0,0,S,S);
+    if(wheelType!=='eu'){ ctx.fillStyle='#5b626e'; ctx.font='13px sans-serif'; ctx.textAlign='center';
+      ctx.fillText('Heatmap is European-only',S/2,S/2); return; }
+    const cx=S/2,cy=S/2,rOut=138,rIn=78,N=37,max=Math.max(1,...EU_ORDER.map(k=>cnt[String(k)]||0));
+    for(let i=0;i<N;i++){ const a0=i/N*2*Math.PI-Math.PI/2-Math.PI/N,a1=a0+2*Math.PI/N,k=EU_ORDER[i];
+      const c=cnt[String(k)]||0,heat=c/max,col=colorOf(String(k));
+      ctx.beginPath(); ctx.moveTo(cx,cy); ctx.arc(cx,cy,rOut,a0,a1); ctx.closePath();
+      ctx.fillStyle = col==='g'?'#176b46':(col==='r'?'#6e2326':'#21262e'); ctx.fill();
+      if(heat>0){ ctx.globalAlpha=0.12+0.88*heat; ctx.fillStyle='#e8a13a'; ctx.fill(); ctx.globalAlpha=1; }
+      ctx.strokeStyle='#0b0d10'; ctx.lineWidth=1; ctx.stroke();
+      const am=(a0+a1)/2,lr=(rOut+rIn)/2; ctx.fillStyle='#fff'; ctx.font='600 10px sans-serif';
+      ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.fillText(k,cx+Math.cos(am)*lr,cy+Math.sin(am)*lr); }
+    ctx.beginPath(); ctx.arc(cx,cy,rIn,0,2*Math.PI); ctx.fillStyle='#14171c'; ctx.fill();
+    ctx.strokeStyle='#272d36'; ctx.stroke();
   }
 
   function sectorAnalysis(cnt,n){
     const out=document.getElementById('sectorOut');
-    if(wheelType!=='eu'){ out.innerHTML='<span style="color:var(--muted);font-size:12px">扇区检测仅支持欧式盘。</span>'; return; }
-    if(n<200){ out.innerHTML='<span style="color:#f08c8c;font-size:12px">数据太少,扇区结果无意义(需几千局)。</span>'; return; }
-    const W=+document.getElementById('sector').value; const N=37;
-    const p=W/N; const expC=n*p; const sd=Math.sqrt(n*p*(1-p));
-    let best={z:-99}, worst={z:99};
-    for(let i=0;i<N;i++){ let s=0, nums=[];
-      for(let j=0;j<W;j++){ const idx=(i+j)%N; const k=EU_ORDER[idx]; s+=cnt[String(k)]||0; nums.push(k); }
-      const z=(s-expC)/sd; if(z>best.z) best={z,s,nums:nums.slice()}; if(z<worst.z) worst={z,s,nums:nums.slice()};
-    }
-    const sig=best.z>=3?'<span class="tag hot">显著偏热*</span>':(best.z>=2?'<span class="tag" style="background:#a8772a">轻度</span>':'<span class="tag norm">正常</span>');
+    if(wheelType!=='eu'){ out.innerHTML='<div class="meter-note">Sector test is available for European wheels only.</div>'; return; }
+    if(n<200){ out.innerHTML='<div class="meter-note" style="color:#f3989b">Too little data — sector results are meaningless until you have thousands of spins.</div>'; return; }
+    const W=+document.getElementById('sector').value,N=37,p=W/N,expC=n*p,sd=Math.sqrt(n*p*(1-p));
+    let best={z:-99},worst={z:99};
+    for(let i=0;i<N;i++){ let s=0,nums=[]; for(let j=0;j<W;j++){ const k=EU_ORDER[(i+j)%N]; s+=cnt[String(k)]||0; nums.push(k); }
+      const z=(s-expC)/sd; if(z>best.z) best={z,s,nums:nums.slice()}; if(z<worst.z) worst={z}; }
+    const tag=best.z>=3?'<span class="tag hot">significant</span>':(best.z>=2?'<span class="tag" style="background:rgba(232,161,58,.18);color:var(--gold)">mild</span>':'<span class="tag norm">normal</span>');
     out.innerHTML=
-      `<div class="row"><span>最热扇区(${W}格)</span><span class="v">${sig}</span></div>`+
-      `<div style="font-size:13px;margin:4px 0 8px">物理相邻格 <b style="color:var(--hot)">${best.nums.join(' · ')}</b><br>`+
-      `<span style="color:var(--muted)">命中 ${best.s} 次,期望 ${expC.toFixed(0)} 次,z = <b>${best.z.toFixed(2)}</b></span></div>`+
-      `<div style="font-size:12px;color:var(--muted)">最冷扇区 z = ${worst.z.toFixed(2)}(${worst.nums.join(' ')})</div>`+
-      (best.z>=3?`<div style="font-size:12px;color:#7fe0a8;margin-top:6px">⚠️ 这片扇区显著偏热,可能是松隔片/倾斜/做手脚。但仍建议累积更多数据复核——单次 z≥3 也可能是 37 个扇区里的偶然。</div>`:'');
+      `<div class="stat" style="margin-bottom:8px"><div class="top"><span class="lab">Hottest ${W}-pocket sector</span>${tag}</div></div>`+
+      `<div style="font-size:15px;font-weight:700;color:var(--gold);margin:2px 0 6px">${best.nums.join(' · ')}</div>`+
+      `<div class="meter-note" style="margin:0">Hit ${best.s}× vs ${expC.toFixed(0)} expected · z = <b style="color:var(--text)">${best.z.toFixed(2)}</b> · coldest z = ${worst.z.toFixed(2)}</div>`+
+      (best.z>=3?`<div class="badge strong" style="margin-top:10px"><span class="ic">⚑</span>This sector runs significantly hot — possibly a loose fret, tilt, or tampering. Keep logging to confirm; a single z≥3 can still be one of 37 sectors hitting by chance.</div>`:'');
   }
 
   function render(){
-    const n=hist.length, P=pockets(), ks=allKeys();
-    document.getElementById('count').textContent=n;
-    const h=document.getElementById('history'); const show=hist.slice(-80);
-    h.innerHTML=show.length? show.map(v=>`<div class="hdot ${colorOf(v)}">${v}</div>`).join('')
-      : '<span style="color:var(--muted);font-size:13px">还没记录,点上面数字盘开始</span>';
+    const n=hist.length,P=pockets(),ks=allKeys();
+    // header
+    document.getElementById('hdrName').textContent=DB.current;
+    document.getElementById('hdrWheel').textContent=wheelType==='us'?'American':'European';
+    document.getElementById('hdrCount').textContent=n;
 
+    // recent
+    const rec=document.getElementById('recent'),show=hist.slice(-40).reverse();
+    rec.innerHTML=show.length? show.map(v=>`<div class="chip ${colorOf(v)}">${v}</div>`).join('')
+      : '<span class="empty">No spins yet — tap a number above.</span>';
+
+    // counts
     const cnt={}; ks.forEach(k=>cnt[k]=0); hist.forEach(v=>{ if(cnt[v]!==undefined) cnt[v]++; });
     const exp=n/P;
 
-    const suff=document.getElementById('suff'); const need=3700;
-    if(n<200){ suff.className='suff bad'; suff.textContent=`只有 ${n} 局 —— 远远不够。任何"热门"100% 是随机噪声。判断偏差通常要几千局。`; }
-    else if(n<need){ suff.className='suff mid'; suff.textContent=`${n} 局 —— 还不够(目标约 ${need}+)。可看趋势,但别据此下注。`; }
-    else { suff.className='suff ok'; suff.textContent=`${n} 局 —— 样本较充分。若 χ² 显著且某号/某扇区 z≥3,才值得怀疑真有偏差。`; }
+    // sufficiency
+    const need=3700, pctSuff=Math.min(100,n/need*100);
+    const fill=document.getElementById('suffFill'),note=document.getElementById('suffNote'),hs=document.getElementById('hdrStatus');
+    if(n<200){ fill.style.width=pctSuff+'%'; fill.style.background='var(--danger)';
+      note.textContent=`${n} spins — far too few. Any "hot" number is just noise. Bias usually needs thousands.`;
+      hs.textContent='No edge'; hs.style.color='#f3989b'; }
+    else if(n<need){ fill.style.width=pctSuff+'%'; fill.style.background='var(--amber)';
+      note.textContent=`${n} spins — not enough yet (aim for ~${need}+). Watch trends, don't bet on them.`;
+      hs.textContent='Gathering'; hs.style.color='var(--amber)'; }
+    else { fill.style.width='100%'; fill.style.background='var(--accent)';
+      note.textContent=`${n} spins — solid sample. Trust a read only if χ² is significant and a number/sector shows z ≥ 3.`;
+      hs.textContent='Ready'; hs.style.color='var(--accent)'; }
 
-    let chi=0; ks.forEach(k=>{ const d=cnt[k]-exp; chi+= exp>0? d*d/exp : 0; });
-    const df=P-1;
-    document.getElementById('chi').textContent=n?chi.toFixed(1):'—';
-    document.getElementById('df').textContent=df;
+    // chi-square
+    let chi=0; ks.forEach(k=>{ const d=cnt[k]-exp; chi+= exp>0? d*d/exp:0; });
+    document.getElementById('chi').textContent=n?chi.toFixed(1)+` (df ${P-1})`:'—';
     const cv=document.getElementById('chiVerdict');
-    if(n<200){ cv.textContent='数据太少,无意义'; cv.style.color='var(--muted)'; }
-    else{ const pp=chiSqUpperP(chi,df);
-      if(pp<0.01){ cv.textContent=`χ² 显著 (p≈${pp.toFixed(3)}) — 偏离随机`; cv.style.color='#7fe0a8'; }
-      else if(pp<0.05){ cv.textContent=`轻度显著 (p≈${pp.toFixed(3)})`; cv.style.color='var(--warn)'; }
-      else{ cv.textContent=`不显著 (p≈${pp.toFixed(2)}) — 看起来随机`; cv.style.color='var(--muted)'; } }
+    if(n<200){ cv.textContent='Not enough data'; cv.style.color='var(--muted)'; }
+    else{ const pp=chiSqUpperP(chi,P-1);
+      if(pp<0.01){ cv.textContent='Significant — off random'; cv.style.color='var(--accent)'; }
+      else if(pp<0.05){ cv.textContent='Mildly significant'; cv.style.color='var(--amber)'; }
+      else{ cv.textContent='Looks random'; cv.style.color='var(--muted)'; } }
 
+    // hot numbers
     const sd=Math.sqrt(exp*(1-1/P))||1;
-    const rows=ks.map(k=>({k,c:cnt[k],pct:n?cnt[k]/n*100:0,z:n?(cnt[k]-exp)/sd:0}));
-    rows.sort((a,b)=>b.z-a.z);
-    document.querySelector('#biasTable tbody').innerHTML=rows.slice(0,10).map(r=>{
-      let tag='<span class="tag norm">普通</span>';
-      if(n>=200&&r.z>=3) tag='<span class="tag hot">偏热*</span>';
-      else if(n>=200&&r.z<=-3) tag='<span class="tag cold">偏冷*</span>';
-      const col={r:'#ff7b7b',b:'#cfd3da',g:'#7fe0a8'}[colorOf(r.k)];
-      return `<tr><td><b style="color:${col}">${r.k}</b></td><td>${r.c}</td><td>${r.pct.toFixed(1)}%</td><td>${(100/P).toFixed(1)}%</td><td>${r.z.toFixed(2)}</td><td>${tag}</td></tr>`;
+    const rows=ks.map(k=>({k,c:cnt[k],pct:n?cnt[k]/n*100:0,z:n?(cnt[k]-exp)/sd:0})).sort((a,b)=>b.z-a.z);
+    document.querySelector('#biasTable tbody').innerHTML=rows.slice(0,8).map(r=>{
+      let tag='<span class="tag norm">—</span>';
+      if(n>=200&&r.z>=3) tag='<span class="tag hot">hot</span>';
+      else if(n>=200&&r.z<=-3) tag='<span class="tag cold">cold</span>';
+      const dot={r:'var(--red)',b:'#aeb6c2',g:'var(--green)'}[colorOf(r.k)];
+      return `<tr><td><b style="color:${dot}">${r.k}</b></td><td>${r.c}</td><td>${r.pct.toFixed(1)}%</td><td>${(100/P).toFixed(1)}%</td><td>${r.z.toFixed(2)}</td><td>${tag}</td></tr>`;
     }).join('');
-
-    const maxC=Math.max(1,...ks.map(k=>cnt[k]));
-    ks.forEach(k=>{ const el=document.getElementById('hf-'+k); if(el) el.style.width=(cnt[k]/maxC*100)+'%'; });
 
     sectorAnalysis(cnt,n);
     drawWheel(cnt);
 
-    const est=document.getElementById('estimate');
-    if(n<200){ est.innerHTML=`数据不足,无法做有依据的估计。每个数字概率 ≈ <b>1/${P} = ${(100/P).toFixed(1)}%</b>。下一局最诚实的答案:<b>无法预测</b>。`; }
-    else{ const top=rows.filter(r=>r.z>=3).slice(0,5); const pp=chiSqUpperP(chi,df);
-      if(top.length&&pp<0.05){ est.innerHTML=`基于 ${n} 局,这些号出现显著偏多(可能偏差,仍需更多数据确认):<br><b style="font-size:16px">${top.map(r=>r.k+` (${r.pct.toFixed(1)}%, z=${r.z.toFixed(1)})`).join('、')}</b><br><span style="color:var(--muted)">即便真有偏差,也只是把胜率从随机略抬高,不是必中。电子盘则纯噪声。</span>`; }
-      else est.innerHTML=`基于 ${n} 局,<b>未发现统计上可信的偏差</b>。每号仍约 1/${P},下一局<b>无法可靠预测</b>。`; }
-
-    let r=0,b=0,gr=0,odd=0,even=0,low=0,high=0,d1=0,d2=0,d3=0,c1=0,c2=0,c3=0;
-    hist.forEach(v=>{ const col=colorOf(v); if(col==='r')r++;else if(col==='b')b++;else gr++;
+    // grouped counts
+    let red=0,black=0,green=0,odd=0,even=0,low=0,high=0,d1=0,d2=0,d3=0,c1=0,c2=0,c3=0;
+    hist.forEach(v=>{ const col=colorOf(v); if(col==='r')red++;else if(col==='b')black++;else green++;
       const num=v==='00'?-1:Number(v);
       if(num>=1){ if(num%2)odd++;else even++; if(num<=18)low++;else high++;
         if(num<=12)d1++;else if(num<=24)d2++;else d3++; if(num%3===1)c1++;else if(num%3===2)c2++;else c3++; } });
-    const pct=x=>n?(x/n*100).toFixed(1)+'%':'0%';
-    const barRow=(lbl,a,bb)=>{ const t=a+bb,wa=t?a/t*100:50;
-      return `<div class="barwrap"><div class="barlabel"><span>${lbl}</span><span>${a} : ${bb}</span></div><div class="bar"><div class="fill" style="width:${wa}%"></div></div></div>`; };
+    const pc=x=>n?(x/n*100).toFixed(0)+'%':'0%';
+    const split2=(lab,a,b,ca,cb)=>{ const t=a+b||1;
+      return `<div class="stat"><div class="top"><span class="lab">${lab}</span><span class="num-v">${a} : ${b}</span></div>
+        <div class="split"><i style="width:${a/t*100}%;background:${ca}"></i><i style="width:${b/t*100}%;background:${cb}"></i></div></div>`; };
+    const split3=(lab,a,b,c)=>{ const t=a+b+c||1;
+      return `<div class="stat"><div class="top"><span class="lab">${lab}</span><span class="num-v">${a} / ${b} / ${c}</span></div>
+        <div class="split"><i style="width:${a/t*100}%;background:#3a7bd5"></i><i style="width:${b/t*100}%;background:#21c08a"></i><i style="width:${c/t*100}%;background:#e8a13a"></i></div></div>`; };
     document.getElementById('evenBets').innerHTML=
-      `<div class="row"><span>红/黑/绿</span><span class="v">${r} (${pct(r)}) / ${b} (${pct(b)}) / ${gr}</span></div>`+
-      barRow('红 vs 黑',r,b)+
-      `<div class="row"><span>单/双</span><span class="v">${odd} / ${even}</span></div>`+barRow('单 vs 双',odd,even)+
-      `<div class="row"><span>小(1-18)/大(19-36)</span><span class="v">${low} / ${high}</span></div>`+barRow('小 vs 大',low,high)+
-      `<div class="row"><span>打 1/2/3</span><span class="v">${d1} / ${d2} / ${d3}</span></div>`+
-      `<div class="row"><span>列 1/2/3</span><span class="v">${c1} / ${c2} / ${c3}</span></div>`;
+      split2('Red vs Black',red,black,'var(--red)','#aeb6c2')+
+      split2('Odd vs Even',odd,even,'#7a93b8','#c9a227')+
+      split2('Low 1–18 vs High 19–36',low,high,'#3a7bd5','#21c08a')+
+      (green?`<div class="meter-note" style="margin-top:4px">Green (0/00): ${green} (${pc(green)})</div>`:'');
+    document.getElementById('groupBets').innerHTML=
+      split3('Dozens (1–12 / 13–24 / 25–36)',d1,d2,d3)+
+      split3('Columns (1 / 2 / 3)',c1,c2,c3);
 
-    renderRecommendation(r,b,odd,even,n);
+    renderRecommendation(red,black,odd,even,n);
+    refreshProfileSelect();
   }
 
-  // 现场建议:基于本桌已记录数据,算红/黑、单/双的偏向与可信度(诚实标注)
   function renderRecommendation(red,black,odd,even,n){
-    const elC=document.getElementById('recColor'), elCP=document.getElementById('recColorPct');
-    const elP=document.getElementById('recParity'), elPP=document.getElementById('recParityPct');
-    const badge=document.getElementById('recBadge');
+    const elC=document.getElementById('recColor'),elCP=document.getElementById('recColorP');
+    const elP=document.getElementById('recParity'),elPP=document.getElementById('recParityP');
+    const badge=document.getElementById('recBadge'),btxt=document.getElementById('recBadgeTxt');
+    const setBadge=(cls,ic,txt)=>{ badge.className='badge '+cls; badge.querySelector('.ic').textContent=ic; btxt.innerHTML=txt; };
 
-    // 二项 z:在公平盘上 红=黑=18 格,p=0.5(绿不计)
-    function lean(a,bb){ const m=a+bb; if(m===0) return {side:null,pct:50,z:0,m:0};
-      const z=(a-m*0.5)/Math.sqrt(m*0.25); // a 的偏离;>0 偏向 a
-      return {side: a===bb?null:(a>bb?'A':'B'), pct:a/m*100, z, m}; }
+    const lean=(a,b)=>{ const m=a+b; if(!m) return {side:0,z:0}; return {side:a===b?0:(a>b?1:-1),z:(a-m*0.5)/Math.sqrt(m*0.25)}; };
+    const cL=lean(red,black), cP=lean(odd,even), bestZ=Math.max(Math.abs(cL.z),Math.abs(cP.z));
 
-    const cL=lean(red,black);   // A=红 B=黑
-    const cP=lean(odd,even);    // A=单 B=双
-    const bestZ=Math.max(Math.abs(cL.z),Math.abs(cP.z));
+    if(n<200){ elC.textContent='—'; elP.textContent='—'; elC.style.color='var(--text)'; elP.style.color='var(--text)';
+      elCP.textContent=''; elPP.textContent='';
+      setBadge('none','○',`Only ${n} spins. Until there's enough data, colour and odd/even are ~50/50 — <b>don't bet a read</b>.`); return; }
 
-    if(n<200){
-      elC.textContent='—'; elP.textContent='—'; elCP.textContent=''; elPP.textContent='';
-      badge.className='recbadge none';
-      badge.innerHTML='数据不足('+n+' 局)。再多记一些;不足时红黑/单双就是约 50/50,<b>不建议下注</b>。';
-      return;
-    }
+    if(cL.side===0){ elC.textContent='Even'; elC.style.color='var(--text)'; }
+    else{ const isRed=cL.side>0; elC.textContent=isRed?'Red':'Black'; elC.style.color=isRed?'var(--red)':'#aeb6c2'; }
+    const cm=red+black||1; elCP.textContent=`R ${(red/cm*100).toFixed(0)}% · B ${(black/cm*100).toFixed(0)}% (z ${cL.z.toFixed(1)})`;
 
-    // 颜色建议
-    if(cL.side==null){ elC.textContent='红=黑'; }
-    else { const isRed=cL.side==='A'; elC.textContent=isRed?'🔴 红':'⚫ 黑';
-      elC.style.color=isRed?'#ff7b7b':'#cfd3da'; }
-    elCP.textContent=`红 ${(red/(red+black||1)*100).toFixed(1)}% · 黑 ${(black/(red+black||1)*100).toFixed(1)}% (z=${cL.z.toFixed(1)})`;
+    if(cP.side===0){ elP.textContent='Even'; }
+    else{ elP.textContent=cP.side>0?'Odd':'Even'; } elP.style.color='var(--text)';
+    const pm=odd+even||1; elPP.textContent=`O ${(odd/pm*100).toFixed(0)}% · E ${(even/pm*100).toFixed(0)}% (z ${cP.z.toFixed(1)})`;
 
-    // 单双建议
-    if(cP.side==null){ elP.textContent='单=双'; }
-    else { const isOdd=cP.side==='A'; elP.textContent=isOdd?'单 Odd':'双 Even'; elP.style.color='#e8eaed'; }
-    elPP.textContent=`单 ${(odd/(odd+even||1)*100).toFixed(1)}% · 双 ${(even/(odd+even||1)*100).toFixed(1)}% (z=${cP.z.toFixed(1)})`;
-
-    // 可信度徽章(诚实)
-    if(bestZ>=3){
-      badge.className='recbadge strong';
-      badge.innerHTML='✅ 本桌测到<b>统计上可信的偏向</b>(|z|≥3)。可小注试探,但绿色 0 仍吃你期望,且偏向随时可能消失。';
-    } else if(bestZ>=2){
-      badge.className='recbadge weak';
-      badge.innerHTML='⚠️ 只有<b>微弱信号</b>(2≤|z|<3),很可能是随机波动。建议继续累积数据,先别当真。';
-    } else {
-      badge.className='recbadge none';
-      badge.innerHTML='这一桌目前<b>看不出任何优势</b>,红黑/单双约 50/50。诚实结论:<b>下一注无法预测</b>,上面的偏向只是噪声。';
-    }
+    if(bestZ>=3) setBadge('strong','✓',`<b>Bias detected</b> (|z|≥3) on this table. Worth a small test bet — but the green zero still taxes you and the lean can vanish.`);
+    else if(bestZ>=2) setBadge('weak','!',`<b>Weak signal</b> (2≤|z|<3) — most likely random noise. Keep logging before trusting it.`);
+    else setBadge('none','○',`<b>No edge here</b> — colour & odd/even are ~50/50. Honest answer: the next spin is <b>unpredictable</b>.`);
   }
 
-  function buildGrid(){ const g=document.getElementById('numgrid'); g.innerHTML='';
-    allKeys().forEach(k=>{ const btn=document.createElement('button'); btn.className='cell '+colorOf(k);
-      btn.innerHTML=`<span>${k}</span><div class="hb"><div class="hf" id="hf-${k}" style="width:0%"></div></div>`;
-      btn.onclick=()=>add(k); g.appendChild(btn); }); }
+  function buildPad(){
+    const zr=document.getElementById('zeroRow'),pad=document.getElementById('pad');
+    zr.className='zero-row'+(wheelType==='us'?' two':'');
+    const zeros=wheelType==='us'?['0','00']:['0'];
+    zr.innerHTML=zeros.map(z=>`<button class="num g wide" onclick="add('${z}')">${z}</button>`).join('');
+    let html=''; for(let i=1;i<=36;i++) html+=`<button class="num ${colorOf(String(i))}" onclick="add('${i}')">${i}</button>`;
+    pad.innerHTML=html;
+  }
 
   refreshProfileSelect();
-  buildGrid();
+  buildPad();
   render();
 
-  // PWA: 离线可用 + 可加到主屏
-  if('serviceWorker' in navigator){
-    window.addEventListener('load',()=>{ navigator.serviceWorker.register('sw.js').catch(()=>{}); });
-  }
+  if('serviceWorker' in navigator){ window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{})); }
 </script>
 </body>
 </html>
