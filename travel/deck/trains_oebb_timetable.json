@@ -1,0 +1,2123 @@
+{
+ "vie_out": [
+  {
+   "dep": "0501",
+   "arr": "1632",
+   "arrDayOffset": "",
+   "dur": "113100",
+   "chg": 3,
+   "legs": [
+    {
+     "train": "IC 956",
+     "from": "Interlaken West",
+     "dep": "0501",
+     "to": "Bern (Haupt-) Bahnhof",
+     "arr": "0553",
+     "arrDate": "055300"
+    },
+    {
+     "train": "IC 805",
+     "from": "Bern (Haupt-) Bahnhof",
+     "dep": "0602",
+     "to": "Zürich HB",
+     "arr": "0701",
+     "arrDate": "070100"
+    },
+    {
+     "train": "EC 97",
+     "from": "Zürich HB",
+     "dep": "0732",
+     "to": "Bregenz Bahnhof",
+     "arr": "0900",
+     "arrDate": "090000"
+    },
+    {
+     "train": "RJX19977",
+     "from": "Bregenz Bahnhof",
+     "dep": "0911",
+     "to": "Wien Hbf (Bahnsteige 3-12)",
+     "arr": "1632",
+     "arrDate": "163200"
+    }
+   ],
+   "fares": []
+  },
+  {
+   "dep": "0501",
+   "arr": "1647",
+   "arrDayOffset": "",
+   "dur": "114600",
+   "chg": 3,
+   "legs": [
+    {
+     "train": "IC 956",
+     "from": "Interlaken West",
+     "dep": "0501",
+     "to": "Bern (Haupt-) Bahnhof",
+     "arr": "0553",
+     "arrDate": "055300"
+    },
+    {
+     "train": "IC 805",
+     "from": "Bern (Haupt-) Bahnhof",
+     "dep": "0602",
+     "to": "Zürich HB",
+     "arr": "0701",
+     "arrDate": "070100"
+    },
+    {
+     "train": "EC 97",
+     "from": "Zürich HB",
+     "dep": "0732",
+     "to": "München Hbf Gl.27-36",
+     "arr": "1116",
+     "arrDate": "111600"
+    },
+    {
+     "train": "ICE 1215",
+     "from": "München Hbf",
+     "dep": "1209",
+     "to": "Wien Hbf (Bahnsteige 3-12)",
+     "arr": "1647",
+     "arrDate": "164700"
+    }
+   ],
+   "fares": []
+  },
+  {
+   "dep": "0534",
+   "arr": "1632",
+   "arrDayOffset": "",
+   "dur": "105800",
+   "chg": 4,
+   "legs": [
+    {
+     "train": "RE 9 (Zug-Nr. 4207)",
+     "from": "Interlaken West",
+     "dep": "0534",
+     "to": "Spiez",
+     "arr": "0549",
+     "arrDate": "054900"
+    },
+    {
+     "train": "IC 606",
+     "from": "Spiez",
+     "dep": "0554",
+     "to": "Bern (Haupt-) Bahnhof",
+     "arr": "0625",
+     "arrDate": "062500"
+    },
+    {
+     "train": "IC 705",
+     "from": "Bern (Haupt-) Bahnhof",
+     "dep": "0631",
+     "to": "Zürich HB",
+     "arr": "0728",
+     "arrDate": "072800"
+    },
+    {
+     "train": "EC 97",
+     "from": "Zürich HB",
+     "dep": "0732",
+     "to": "Bregenz Bahnhof",
+     "arr": "0900",
+     "arrDate": "090000"
+    },
+    {
+     "train": "RJX19977",
+     "from": "Bregenz Bahnhof",
+     "dep": "0911",
+     "to": "Wien Hbf (Bahnsteige 3-12)",
+     "arr": "1632",
+     "arrDate": "163200"
+    }
+   ],
+   "fares": []
+  },
+  {
+   "dep": "0534",
+   "arr": "1647",
+   "arrDayOffset": "",
+   "dur": "111300",
+   "chg": 4,
+   "legs": [
+    {
+     "train": "RE 9 (Zug-Nr. 4207)",
+     "from": "Interlaken West",
+     "dep": "0534",
+     "to": "Spiez",
+     "arr": "0549",
+     "arrDate": "054900"
+    },
+    {
+     "train": "IC 606",
+     "from": "Spiez",
+     "dep": "0554",
+     "to": "Bern (Haupt-) Bahnhof",
+     "arr": "0625",
+     "arrDate": "062500"
+    },
+    {
+     "train": "IC 705",
+     "from": "Bern (Haupt-) Bahnhof",
+     "dep": "0631",
+     "to": "Zürich HB",
+     "arr": "0728",
+     "arrDate": "072800"
+    },
+    {
+     "train": "EC 97",
+     "from": "Zürich HB",
+     "dep": "0732",
+     "to": "München Hbf Gl.27-36",
+     "arr": "1116",
+     "arrDate": "111600"
+    },
+    {
+     "train": "ICE 1215",
+     "from": "München Hbf",
+     "dep": "1209",
+     "to": "Wien Hbf (Bahnsteige 3-12)",
+     "arr": "1647",
+     "arrDate": "164700"
+    }
+   ],
+   "fares": []
+  },
+  {
+   "dep": "0634",
+   "arr": "1732",
+   "arrDayOffset": "",
+   "dur": "105800",
+   "chg": 2,
+   "legs": [
+    {
+     "train": "IC 608",
+     "from": "Interlaken West",
+     "dep": "0634",
+     "to": "Bern (Haupt-) Bahnhof",
+     "arr": "0725",
+     "arrDate": "072500"
+    },
+    {
+     "train": "IC 707",
+     "from": "Bern (Haupt-) Bahnhof",
+     "dep": "0731",
+     "to": "Zürich HB",
+     "arr": "0828",
+     "arrDate": "082800"
+    },
+    {
+     "train": "RJX13477",
+     "from": "Zürich HB",
+     "dep": "0832",
+     "to": "Wien Hbf (Bahnsteige 3-12)",
+     "arr": "1732",
+     "arrDate": "173200"
+    }
+   ],
+   "fares": []
+  },
+  {
+   "dep": "0634",
+   "arr": "1803",
+   "arrDayOffset": "",
+   "dur": "112900",
+   "chg": 3,
+   "legs": [
+    {
+     "train": "IC 608",
+     "from": "Interlaken West",
+     "dep": "0634",
+     "to": "Bern (Haupt-) Bahnhof",
+     "arr": "0725",
+     "arrDate": "072500"
+    },
+    {
+     "train": "IC 707",
+     "from": "Bern (Haupt-) Bahnhof",
+     "dep": "0731",
+     "to": "Zürich HB",
+     "arr": "0828",
+     "arrDate": "082800"
+    },
+    {
+     "train": "RJX13477",
+     "from": "Zürich HB",
+     "dep": "0832",
+     "to": "Salzburg Hbf",
+     "arr": "1502",
+     "arrDate": "150200"
+    },
+    {
+     "train": "IC 741",
+     "from": "Salzburg Hbf",
+     "dep": "1511",
+     "to": "Wien Hbf (Bahnsteige 3-12)",
+     "arr": "1803",
+     "arrDate": "180300"
+    }
+   ],
+   "fares": []
+  }
+ ],
+ "muc_out": [
+  {
+   "dep": "0501",
+   "arr": "1116",
+   "arrDayOffset": "",
+   "dur": "061500",
+   "chg": 2,
+   "legs": [
+    {
+     "train": "IC 956",
+     "from": "Interlaken West",
+     "dep": "0501",
+     "to": "Bern (Haupt-) Bahnhof",
+     "arr": "0553",
+     "arrDate": "055300"
+    },
+    {
+     "train": "IC 805",
+     "from": "Bern (Haupt-) Bahnhof",
+     "dep": "0602",
+     "to": "Zürich HB",
+     "arr": "0701",
+     "arrDate": "070100"
+    },
+    {
+     "train": "EC 97",
+     "from": "Zürich HB",
+     "dep": "0732",
+     "to": "München Hbf Gl.27-36",
+     "arr": "1116",
+     "arrDate": "111600"
+    }
+   ],
+   "fares": []
+  },
+  {
+   "dep": "0534",
+   "arr": "1116",
+   "arrDayOffset": "",
+   "dur": "054200",
+   "chg": 3,
+   "legs": [
+    {
+     "train": "RE 9 (Zug-Nr. 4207)",
+     "from": "Interlaken West",
+     "dep": "0534",
+     "to": "Spiez",
+     "arr": "0549",
+     "arrDate": "054900"
+    },
+    {
+     "train": "IC 606",
+     "from": "Spiez",
+     "dep": "0554",
+     "to": "Bern (Haupt-) Bahnhof",
+     "arr": "0625",
+     "arrDate": "062500"
+    },
+    {
+     "train": "IC 705",
+     "from": "Bern (Haupt-) Bahnhof",
+     "dep": "0631",
+     "to": "Zürich HB",
+     "arr": "0728",
+     "arrDate": "072800"
+    },
+    {
+     "train": "EC 97",
+     "from": "Zürich HB",
+     "dep": "0732",
+     "to": "München Hbf Gl.27-36",
+     "arr": "1116",
+     "arrDate": "111600"
+    }
+   ],
+   "fares": []
+  },
+  {
+   "dep": "0604",
+   "arr": "1315",
+   "arrDayOffset": "",
+   "dur": "071100",
+   "chg": 1,
+   "legs": [
+    {
+     "train": "ICE 374",
+     "from": "Interlaken West",
+     "dep": "0604",
+     "to": "Mannheim Hbf",
+     "arr": "1022",
+     "arrDate": "102200"
+    },
+    {
+     "train": "ICE 593",
+     "from": "Mannheim Hbf",
+     "dep": "1033",
+     "to": "München Hbf",
+     "arr": "1315",
+     "arrDate": "131500"
+    }
+   ],
+   "fares": []
+  },
+  {
+   "dep": "0704",
+   "arr": "1316",
+   "arrDayOffset": "",
+   "dur": "061200",
+   "chg": 1,
+   "legs": [
+    {
+     "train": "IC 809",
+     "from": "Interlaken West",
+     "dep": "0704",
+     "to": "Zürich HB",
+     "arr": "0858",
+     "arrDate": "085800"
+    },
+    {
+     "train": "EC 99",
+     "from": "Zürich HB",
+     "dep": "0932",
+     "to": "München Hbf Gl.27-36",
+     "arr": "1316",
+     "arrDate": "131600"
+    }
+   ],
+   "fares": []
+  },
+  {
+   "dep": "0733",
+   "arr": "1316",
+   "arrDayOffset": "",
+   "dur": "054300",
+   "chg": 3,
+   "legs": [
+    {
+     "train": "RE 9 (Zug-Nr. 4211)",
+     "from": "Interlaken West",
+     "dep": "0733",
+     "to": "Spiez",
+     "arr": "0748",
+     "arrDate": "074800"
+    },
+    {
+     "train": "IC 610",
+     "from": "Spiez",
+     "dep": "0754",
+     "to": "Bern (Haupt-) Bahnhof",
+     "arr": "0825",
+     "arrDate": "082500"
+    },
+    {
+     "train": "IC 709",
+     "from": "Bern (Haupt-) Bahnhof",
+     "dep": "0831",
+     "to": "Zürich HB",
+     "arr": "0928",
+     "arrDate": "092800"
+    },
+    {
+     "train": "EC 99",
+     "from": "Zürich HB",
+     "dep": "0932",
+     "to": "München Hbf Gl.27-36",
+     "arr": "1316",
+     "arrDate": "131600"
+    }
+   ],
+   "fares": []
+  },
+  {
+   "dep": "0804",
+   "arr": "1514",
+   "arrDayOffset": "",
+   "dur": "071000",
+   "chg": 2,
+   "legs": [
+    {
+     "train": "IC 811",
+     "from": "Interlaken West",
+     "dep": "0804",
+     "to": "Bern (Haupt-) Bahnhof",
+     "arr": "0856",
+     "arrDate": "085600"
+    },
+    {
+     "train": "ICE 372",
+     "from": "Bern (Haupt-) Bahnhof",
+     "dep": "0904",
+     "to": "Mannheim Hbf",
+     "arr": "1222",
+     "arrDate": "122200"
+    },
+    {
+     "train": "ICE 595",
+     "from": "Mannheim Hbf",
+     "dep": "1233",
+     "to": "München Hbf",
+     "arr": "1514",
+     "arrDate": "151400"
+    }
+   ],
+   "fares": []
+  },
+  {
+   "dep": "0804",
+   "arr": "1516",
+   "arrDayOffset": "",
+   "dur": "071200",
+   "chg": 1,
+   "legs": [
+    {
+     "train": "IC 811",
+     "from": "Interlaken West",
+     "dep": "0804",
+     "to": "Zürich HB",
+     "arr": "0958",
+     "arrDate": "095800"
+    },
+    {
+     "train": "EC 191",
+     "from": "Zürich HB",
+     "dep": "1132",
+     "to": "München Hbf Gl.27-36",
+     "arr": "1516",
+     "arrDate": "151600"
+    }
+   ],
+   "fares": []
+  }
+ ],
+ "vie_ret": [
+  {
+   "dep": "1028",
+   "arr": "2053",
+   "arrDayOffset": "",
+   "dur": "102500",
+   "chg": 4,
+   "legs": [
+    {
+     "train": "RJX13470",
+     "from": "Wien Hbf (Bahnsteige 3-12)",
+     "dep": "1028",
+     "to": "Feldkirch Bahnhof",
+     "arr": "1712",
+     "arrDate": "171200"
+    },
+    {
+     "train": "BusSV430",
+     "from": "Feldkirch Bahnhof (Vorplatz)",
+     "dep": "1717",
+     "to": "Buchs SG, Bahnhof",
+     "arr": "1741",
+     "arrDate": "174100"
+    },
+    {
+     "train": "IR 2223",
+     "from": "Buchs SG",
+     "dep": "1745",
+     "to": "Sargans",
+     "arr": "1754",
+     "arrDate": "175400"
+    },
+    {
+     "train": "ICE 272",
+     "from": "Sargans",
+     "dep": "1757",
+     "to": "Zürich HB",
+     "arr": "1853",
+     "arrDate": "185300"
+    },
+    {
+     "train": "IC 830",
+     "from": "Zürich HB",
+     "dep": "1902",
+     "to": "Interlaken West",
+     "arr": "2053",
+     "arrDate": "205300"
+    }
+   ],
+   "fares": []
+  },
+  {
+   "dep": "1028",
+   "arr": "2154",
+   "arrDayOffset": "",
+   "dur": "112600",
+   "chg": 2,
+   "legs": [
+    {
+     "train": "RJX13470",
+     "from": "Wien Hbf (Bahnsteige 3-12)",
+     "dep": "1028",
+     "to": "Zürich HB",
+     "arr": "1928",
+     "arrDate": "192800"
+    },
+    {
+     "train": "IC 832",
+     "from": "Zürich HB",
+     "dep": "2002",
+     "to": "Bern (Haupt-) Bahnhof",
+     "arr": "2058",
+     "arrDate": "205800"
+    },
+    {
+     "train": "ICE 375",
+     "from": "Bern (Haupt-) Bahnhof",
+     "dep": "2107",
+     "to": "Interlaken West",
+     "arr": "2154",
+     "arrDate": "215400"
+    }
+   ],
+   "fares": []
+  },
+  {
+   "dep": "1028",
+   "arr": "2254",
+   "arrDayOffset": "",
+   "dur": "122600",
+   "chg": 2,
+   "legs": [
+    {
+     "train": "RJX13470",
+     "from": "Wien Hbf (Bahnsteige 3-12)",
+     "dep": "1028",
+     "to": "Zürich HB",
+     "arr": "1928",
+     "arrDate": "192800"
+    },
+    {
+     "train": "IC 60409",
+     "from": "Zürich HB",
+     "dep": "1959",
+     "to": "Basel SBB",
+     "arr": "2052",
+     "arrDate": "205200"
+    },
+    {
+     "train": "IC 987",
+     "from": "Basel SBB",
+     "dep": "2058",
+     "to": "Interlaken West",
+     "arr": "2254",
+     "arrDate": "225400"
+    }
+   ],
+   "fares": []
+  },
+  {
+   "dep": "1057",
+   "arr": "2154",
+   "arrDayOffset": "",
+   "dur": "105700",
+   "chg": 6,
+   "legs": [
+    {
+     "train": "IC 640",
+     "from": "Wien Hbf (Bahnsteige 3-12)",
+     "dep": "1057",
+     "to": "Salzburg Hbf",
+     "arr": "1349",
+     "arrDate": "134900"
+    },
+    {
+     "train": "RJX19976",
+     "from": "Salzburg Hbf",
+     "dep": "1356",
+     "to": "Feldkirch Bahnhof",
+     "arr": "1812",
+     "arrDate": "181200"
+    },
+    {
+     "train": "BusSV430",
+     "from": "Feldkirch Bahnhof (Vorplatz)",
+     "dep": "1817",
+     "to": "Buchs SG, Bahnhof",
+     "arr": "1841",
+     "arrDate": "184100"
+    },
+    {
+     "train": "IR 2225",
+     "from": "Buchs SG",
+     "dep": "1845",
+     "to": "Sargans",
+     "arr": "1854",
+     "arrDate": "185400"
+    },
+    {
+     "train": "IC 786",
+     "from": "Sargans",
+     "dep": "1857",
+     "to": "Zürich HB",
+     "arr": "1953",
+     "arrDate": "195300"
+    },
+    {
+     "train": "IC 832",
+     "from": "Zürich HB",
+     "dep": "2002",
+     "to": "Bern (Haupt-) Bahnhof",
+     "arr": "2058",
+     "arrDate": "205800"
+    },
+    {
+     "train": "ICE 375",
+     "from": "Bern (Haupt-) Bahnhof",
+     "dep": "2107",
+     "to": "Interlaken West",
+     "arr": "2154",
+     "arrDate": "215400"
+    }
+   ],
+   "fares": []
+  },
+  {
+   "dep": "1113",
+   "arr": "2232",
+   "arrDayOffset": "",
+   "dur": "111900",
+   "chg": 4,
+   "legs": [
+    {
+     "train": "ICE 1214",
+     "from": "Wien Hbf (Bahnsteige 3-12)",
+     "dep": "1113",
+     "to": "München Hbf",
+     "arr": "1554",
+     "arrDate": "155400"
+    },
+    {
+     "train": "EC 98",
+     "from": "München Hbf Gl.27-36",
+     "dep": "1631",
+     "to": "Zürich HB",
+     "arr": "2028",
+     "arrDate": "202800"
+    },
+    {
+     "train": "IC 734",
+     "from": "Zürich HB",
+     "dep": "2032",
+     "to": "Bern (Haupt-) Bahnhof",
+     "arr": "2128",
+     "arrDate": "212800"
+    },
+    {
+     "train": "IC 637",
+     "from": "Bern (Haupt-) Bahnhof",
+     "dep": "2134",
+     "to": "Spiez",
+     "arr": "2203",
+     "arrDate": "220300"
+    },
+    {
+     "train": "Bus 60",
+     "from": "Spiez, Bahnhof",
+     "dep": "2210",
+     "to": "Interlaken, Rugenparkstrasse",
+     "arr": "2232",
+     "arrDate": "223200"
+    }
+   ],
+   "fares": []
+  },
+  {
+   "dep": "1113",
+   "arr": "2254",
+   "arrDayOffset": "",
+   "dur": "114100",
+   "chg": 3,
+   "legs": [
+    {
+     "train": "ICE 1214",
+     "from": "Wien Hbf (Bahnsteige 3-12)",
+     "dep": "1113",
+     "to": "München Hbf",
+     "arr": "1554",
+     "arrDate": "155400"
+    },
+    {
+     "train": "EC 98",
+     "from": "München Hbf Gl.27-36",
+     "dep": "1631",
+     "to": "Zürich HB",
+     "arr": "2028",
+     "arrDate": "202800"
+    },
+    {
+     "train": "IC 834",
+     "from": "Zürich HB",
+     "dep": "2102",
+     "to": "Bern (Haupt-) Bahnhof",
+     "arr": "2158",
+     "arrDate": "215800"
+    },
+    {
+     "train": "IC 987",
+     "from": "Bern (Haupt-) Bahnhof",
+     "dep": "2207",
+     "to": "Interlaken West",
+     "arr": "2254",
+     "arrDate": "225400"
+    }
+   ],
+   "fares": []
+  },
+  {
+   "dep": "1128",
+   "arr": "2154",
+   "arrDayOffset": "",
+   "dur": "102600",
+   "chg": 5,
+   "legs": [
+    {
+     "train": "RJX19976",
+     "from": "Wien Hbf (Bahnsteige 3-12)",
+     "dep": "1128",
+     "to": "Feldkirch Bahnhof",
+     "arr": "1812",
+     "arrDate": "181200"
+    },
+    {
+     "train": "BusSV430",
+     "from": "Feldkirch Bahnhof (Vorplatz)",
+     "dep": "1817",
+     "to": "Buchs SG, Bahnhof",
+     "arr": "1841",
+     "arrDate": "184100"
+    },
+    {
+     "train": "IR 2225",
+     "from": "Buchs SG",
+     "dep": "1845",
+     "to": "Sargans",
+     "arr": "1854",
+     "arrDate": "185400"
+    },
+    {
+     "train": "IC 786",
+     "from": "Sargans",
+     "dep": "1857",
+     "to": "Zürich HB",
+     "arr": "1953",
+     "arrDate": "195300"
+    },
+    {
+     "train": "IC 832",
+     "from": "Zürich HB",
+     "dep": "2002",
+     "to": "Bern (Haupt-) Bahnhof",
+     "arr": "2058",
+     "arrDate": "205800"
+    },
+    {
+     "train": "ICE 375",
+     "from": "Bern (Haupt-) Bahnhof",
+     "dep": "2107",
+     "to": "Interlaken West",
+     "arr": "2154",
+     "arrDate": "215400"
+    }
+   ],
+   "fares": []
+  },
+  {
+   "dep": "1128",
+   "arr": "2254",
+   "arrDayOffset": "",
+   "dur": "112600",
+   "chg": 3,
+   "legs": [
+    {
+     "train": "RJX19976",
+     "from": "Wien Hbf (Bahnsteige 3-12)",
+     "dep": "1128",
+     "to": "Bregenz Bahnhof",
+     "arr": "1847",
+     "arrDate": "184700"
+    },
+    {
+     "train": "EC 98",
+     "from": "Bregenz Bahnhof",
+     "dep": "1900",
+     "to": "Zürich HB",
+     "arr": "2028",
+     "arrDate": "202800"
+    },
+    {
+     "train": "IC 834",
+     "from": "Zürich HB",
+     "dep": "2102",
+     "to": "Bern (Haupt-) Bahnhof",
+     "arr": "2158",
+     "arrDate": "215800"
+    },
+    {
+     "train": "IC 987",
+     "from": "Bern (Haupt-) Bahnhof",
+     "dep": "2207",
+     "to": "Interlaken West",
+     "arr": "2254",
+     "arrDate": "225400"
+    }
+   ],
+   "fares": []
+  }
+ ],
+ "muc_ret": [
+  {
+   "dep": "1232",
+   "arr": "1832",
+   "arrDayOffset": "",
+   "dur": "060000",
+   "chg": 3,
+   "legs": [
+    {
+     "train": "EC 192",
+     "from": "München Hbf Gl.27-36",
+     "dep": "1232",
+     "to": "Zürich HB",
+     "arr": "1628",
+     "arrDate": "162800"
+    },
+    {
+     "train": "IC 726",
+     "from": "Zürich HB",
+     "dep": "1632",
+     "to": "Bern (Haupt-) Bahnhof",
+     "arr": "1728",
+     "arrDate": "172800"
+    },
+    {
+     "train": "IC 629",
+     "from": "Bern (Haupt-) Bahnhof",
+     "dep": "1734",
+     "to": "Spiez",
+     "arr": "1803",
+     "arrDate": "180300"
+    },
+    {
+     "train": "Bus 60",
+     "from": "Spiez, Bahnhof",
+     "dep": "1808",
+     "to": "Interlaken, Rugenparkstrasse",
+     "arr": "1832",
+     "arrDate": "183200"
+    }
+   ],
+   "fares": []
+  },
+  {
+   "dep": "1232",
+   "arr": "1853",
+   "arrDayOffset": "",
+   "dur": "062100",
+   "chg": 1,
+   "legs": [
+    {
+     "train": "EC 192",
+     "from": "München Hbf Gl.27-36",
+     "dep": "1232",
+     "to": "Zürich HB",
+     "arr": "1628",
+     "arrDate": "162800"
+    },
+    {
+     "train": "IC 826",
+     "from": "Zürich HB",
+     "dep": "1702",
+     "to": "Interlaken West",
+     "arr": "1853",
+     "arrDate": "185300"
+    }
+   ],
+   "fares": []
+  },
+  {
+   "dep": "1245",
+   "arr": "1953",
+   "arrDayOffset": "",
+   "dur": "070800",
+   "chg": 2,
+   "legs": [
+    {
+     "train": "ICE 596",
+     "from": "München Hbf",
+     "dep": "1245",
+     "to": "Mannheim Hbf",
+     "arr": "1526",
+     "arrDate": "152600"
+    },
+    {
+     "train": "ICE 373",
+     "from": "Mannheim Hbf",
+     "dep": "1537",
+     "to": "Basel SBB",
+     "arr": "1748",
+     "arrDate": "174800"
+    },
+    {
+     "train": "IC 981",
+     "from": "Basel SBB",
+     "dep": "1758",
+     "to": "Interlaken West",
+     "arr": "1953",
+     "arrDate": "195300"
+    }
+   ],
+   "fares": []
+  },
+  {
+   "dep": "1432",
+   "arr": "2022",
+   "arrDayOffset": "",
+   "dur": "055000",
+   "chg": 2,
+   "legs": [
+    {
+     "train": "EC 190",
+     "from": "München Hbf Gl.27-36",
+     "dep": "1432",
+     "to": "Zürich HB",
+     "arr": "1828",
+     "arrDate": "182800"
+    },
+    {
+     "train": "IC 730",
+     "from": "Zürich HB",
+     "dep": "1832",
+     "to": "Bern (Haupt-) Bahnhof",
+     "arr": "1928",
+     "arrDate": "192800"
+    },
+    {
+     "train": "IC 633",
+     "from": "Bern (Haupt-) Bahnhof",
+     "dep": "1934",
+     "to": "Interlaken West",
+     "arr": "2022",
+     "arrDate": "202200"
+    }
+   ],
+   "fares": []
+  },
+  {
+   "dep": "1432",
+   "arr": "2053",
+   "arrDayOffset": "",
+   "dur": "062100",
+   "chg": 1,
+   "legs": [
+    {
+     "train": "EC 190",
+     "from": "München Hbf Gl.27-36",
+     "dep": "1432",
+     "to": "Zürich HB",
+     "arr": "1828",
+     "arrDate": "182800"
+    },
+    {
+     "train": "IC 830",
+     "from": "Zürich HB",
+     "dep": "1902",
+     "to": "Interlaken West",
+     "arr": "2053",
+     "arrDate": "205300"
+    }
+   ],
+   "fares": []
+  },
+  {
+   "dep": "1445",
+   "arr": "2154",
+   "arrDayOffset": "",
+   "dur": "070900",
+   "chg": 1,
+   "legs": [
+    {
+     "train": "ICE 594",
+     "from": "München Hbf",
+     "dep": "1445",
+     "to": "Mannheim Hbf",
+     "arr": "1726",
+     "arrDate": "172600"
+    },
+    {
+     "train": "ICE 375",
+     "from": "Mannheim Hbf",
+     "dep": "1736",
+     "to": "Interlaken West",
+     "arr": "2154",
+     "arrDate": "215400"
+    }
+   ],
+   "fares": []
+  }
+ ],
+ "vie_ret_early": [
+  {
+   "dep": "0628",
+   "arr": "1722",
+   "dur": "105400",
+   "chg": 4,
+   "legs": [
+    {
+     "train": "RJX19960",
+     "from": "Wien Hbf (Bahnsteige 3-12)",
+     "dep": "0628",
+     "to": "Feldkirch Bahnhof",
+     "arr": "1312"
+    },
+    {
+     "train": "BusSV430",
+     "from": "Feldkirch Bahnhof (Vorplatz)",
+     "dep": "1325",
+     "to": "Sargans, Bahnhof",
+     "arr": "1415"
+    },
+    {
+     "train": "IC 574",
+     "from": "Sargans",
+     "dep": "1427",
+     "to": "Zürich HB",
+     "arr": "1522"
+    },
+    {
+     "train": "IC 724",
+     "from": "Zürich HB",
+     "dep": "1532",
+     "to": "Bern (Haupt-) Bahnhof",
+     "arr": "1628"
+    },
+    {
+     "train": "IC 627",
+     "from": "Bern (Haupt-) Bahnhof",
+     "dep": "1634",
+     "to": "Interlaken West",
+     "arr": "1722"
+    }
+   ]
+  },
+  {
+   "dep": "0713",
+   "arr": "1832",
+   "dur": "111900",
+   "chg": 4,
+   "legs": [
+    {
+     "train": "EC 1218",
+     "from": "Wien Hbf (Bahnsteige 3-12)",
+     "dep": "0713",
+     "to": "München Hbf Gl.5-10",
+     "arr": "1201"
+    },
+    {
+     "train": "EC 192",
+     "from": "München Hbf Gl.27-36",
+     "dep": "1232",
+     "to": "Zürich HB",
+     "arr": "1628"
+    },
+    {
+     "train": "IC 726",
+     "from": "Zürich HB",
+     "dep": "1632",
+     "to": "Bern (Haupt-) Bahnhof",
+     "arr": "1728"
+    },
+    {
+     "train": "IC 629",
+     "from": "Bern (Haupt-) Bahnhof",
+     "dep": "1734",
+     "to": "Spiez",
+     "arr": "1803"
+    },
+    {
+     "train": "Bus 60",
+     "from": "Spiez, Bahnhof",
+     "dep": "1808",
+     "to": "Interlaken, Rugenparkstrasse",
+     "arr": "1832"
+    }
+   ]
+  },
+  {
+   "dep": "0713",
+   "arr": "1853",
+   "dur": "114000",
+   "chg": 2,
+   "legs": [
+    {
+     "train": "EC 1218",
+     "from": "Wien Hbf (Bahnsteige 3-12)",
+     "dep": "0713",
+     "to": "München Hbf Gl.5-10",
+     "arr": "1201"
+    },
+    {
+     "train": "EC 192",
+     "from": "München Hbf Gl.27-36",
+     "dep": "1232",
+     "to": "Zürich HB",
+     "arr": "1628"
+    },
+    {
+     "train": "IC 826",
+     "from": "Zürich HB",
+     "dep": "1702",
+     "to": "Interlaken West",
+     "arr": "1853"
+    }
+   ]
+  },
+  {
+   "dep": "0728",
+   "arr": "1832",
+   "dur": "110400",
+   "chg": 5,
+   "legs": [
+    {
+     "train": "RJX19910",
+     "from": "Wien Hbf (Bahnsteige 3-12)",
+     "dep": "0728",
+     "to": "Feldkirch Bahnhof",
+     "arr": "1412"
+    },
+    {
+     "train": "REX 1 (Zug-Nr. 25930)",
+     "from": "Feldkirch Bahnhof",
+     "dep": "1417",
+     "to": "Bregenz Bahnhof",
+     "arr": "1452"
+    },
+    {
+     "train": "EC 192",
+     "from": "Bregenz Bahnhof",
+     "dep": "1500",
+     "to": "Zürich HB",
+     "arr": "1628"
+    },
+    {
+     "train": "IC 726",
+     "from": "Zürich HB",
+     "dep": "1632",
+     "to": "Bern (Haupt-) Bahnhof",
+     "arr": "1728"
+    },
+    {
+     "train": "IC 629",
+     "from": "Bern (Haupt-) Bahnhof",
+     "dep": "1734",
+     "to": "Spiez",
+     "arr": "1803"
+    },
+    {
+     "train": "Bus 60",
+     "from": "Spiez, Bahnhof",
+     "dep": "1808",
+     "to": "Interlaken, Rugenparkstrasse",
+     "arr": "1832"
+    }
+   ]
+  },
+  {
+   "dep": "0728",
+   "arr": "1853",
+   "dur": "112500",
+   "chg": 3,
+   "legs": [
+    {
+     "train": "RJX19910",
+     "from": "Wien Hbf (Bahnsteige 3-12)",
+     "dep": "0728",
+     "to": "Feldkirch Bahnhof",
+     "arr": "1412"
+    },
+    {
+     "train": "Bus 11",
+     "from": "Feldkirch Bahnhof (Vorplatz)",
+     "dep": "1424",
+     "to": "Sargans, Bahnhof",
+     "arr": "1542"
+    },
+    {
+     "train": "IC 780",
+     "from": "Sargans",
+     "dep": "1557",
+     "to": "Zürich HB",
+     "arr": "1653"
+    },
+    {
+     "train": "IC 826",
+     "from": "Zürich HB",
+     "dep": "1702",
+     "to": "Interlaken West",
+     "arr": "1853"
+    }
+   ]
+  },
+  {
+   "dep": "0728",
+   "arr": "1853",
+   "dur": "112500",
+   "chg": 3,
+   "legs": [
+    {
+     "train": "RJX19910",
+     "from": "Wien Hbf (Bahnsteige 3-12)",
+     "dep": "0728",
+     "to": "Feldkirch Bahnhof",
+     "arr": "1412"
+    },
+    {
+     "train": "REX 1 (Zug-Nr. 25930)",
+     "from": "Feldkirch Bahnhof",
+     "dep": "1417",
+     "to": "Bregenz Bahnhof",
+     "arr": "1452"
+    },
+    {
+     "train": "EC 192",
+     "from": "Bregenz Bahnhof",
+     "dep": "1500",
+     "to": "Zürich HB",
+     "arr": "1628"
+    },
+    {
+     "train": "IC 826",
+     "from": "Zürich HB",
+     "dep": "1702",
+     "to": "Interlaken West",
+     "arr": "1853"
+    }
+   ]
+  }
+ ],
+ "muc_ret_early": [
+  {
+   "dep": "0832",
+   "arr": "1421",
+   "dur": "054900",
+   "chg": 3,
+   "legs": [
+    {
+     "train": "EC 196",
+     "from": "München Hbf Gl.27-36",
+     "dep": "0832",
+     "to": "Zürich HB",
+     "arr": "1228"
+    },
+    {
+     "train": "IC 718",
+     "from": "Zürich HB",
+     "dep": "1232",
+     "to": "Bern (Haupt-) Bahnhof",
+     "arr": "1328"
+    },
+    {
+     "train": "EC 65",
+     "from": "Bern (Haupt-) Bahnhof",
+     "dep": "1334",
+     "to": "Spiez",
+     "arr": "1403"
+    },
+    {
+     "train": "RE 9 (Zug-Nr. 4224)",
+     "from": "Spiez",
+     "dep": "1406",
+     "to": "Interlaken West",
+     "arr": "1421"
+    }
+   ]
+  },
+  {
+   "dep": "0832",
+   "arr": "1453",
+   "dur": "062100",
+   "chg": 1,
+   "legs": [
+    {
+     "train": "EC 196",
+     "from": "München Hbf Gl.27-36",
+     "dep": "0832",
+     "to": "Zürich HB",
+     "arr": "1228"
+    },
+    {
+     "train": "IC 818",
+     "from": "Zürich HB",
+     "dep": "1302",
+     "to": "Interlaken West",
+     "arr": "1453"
+    }
+   ]
+  },
+  {
+   "dep": "0845",
+   "arr": "1553",
+   "dur": "070800",
+   "chg": 1,
+   "legs": [
+    {
+     "train": "ICE 690",
+     "from": "München Hbf",
+     "dep": "0845",
+     "to": "Mannheim Hbf",
+     "arr": "1126"
+    },
+    {
+     "train": "ICE 279",
+     "from": "Mannheim Hbf",
+     "dep": "1137",
+     "to": "Interlaken West",
+     "arr": "1553"
+    }
+   ]
+  },
+  {
+   "dep": "1031",
+   "arr": "1650",
+   "dur": "061900",
+   "chg": 3,
+   "legs": [
+    {
+     "train": "EC 194",
+     "from": "München Hbf Gl.27-36",
+     "dep": "1031",
+     "to": "Zürich HB",
+     "arr": "1428"
+    },
+    {
+     "train": "IC 722",
+     "from": "Zürich HB",
+     "dep": "1432",
+     "to": "Bern (Haupt-) Bahnhof",
+     "arr": "1528"
+    },
+    {
+     "train": "IC 625",
+     "from": "Bern (Haupt-) Bahnhof",
+     "dep": "1534",
+     "to": "Thun",
+     "arr": "1553"
+    },
+    {
+     "train": "Bus 21",
+     "from": "Thun, Bahnhof",
+     "dep": "1602",
+     "to": "Interlaken West, Bahnhof",
+     "arr": "1650"
+    }
+   ]
+  },
+  {
+   "dep": "1031",
+   "arr": "1653",
+   "dur": "062200",
+   "chg": 1,
+   "legs": [
+    {
+     "train": "EC 194",
+     "from": "München Hbf Gl.27-36",
+     "dep": "1031",
+     "to": "Zürich HB",
+     "arr": "1428"
+    },
+    {
+     "train": "IC 822",
+     "from": "Zürich HB",
+     "dep": "1502",
+     "to": "Interlaken West",
+     "arr": "1653"
+    }
+   ]
+  },
+  {
+   "dep": "1045",
+   "arr": "1753",
+   "dur": "070800",
+   "chg": 2,
+   "legs": [
+    {
+     "train": "ICE 598",
+     "from": "München Hbf",
+     "dep": "1045",
+     "to": "Mannheim Hbf",
+     "arr": "1326"
+    },
+    {
+     "train": "ICE 371",
+     "from": "Mannheim Hbf",
+     "dep": "1337",
+     "to": "Basel SBB",
+     "arr": "1548"
+    },
+    {
+     "train": "IC 977",
+     "from": "Basel SBB",
+     "dep": "1558",
+     "to": "Interlaken West",
+     "arr": "1753"
+    }
+   ]
+  }
+ ],
+ "vie_out_late": [
+  {
+   "dep": "0704",
+   "arr": "1832",
+   "dur": "112800",
+   "chg": 2,
+   "legs": [
+    {
+     "train": "IC 809",
+     "from": "Interlaken West",
+     "dep": "0704",
+     "to": "Zürich HB",
+     "arr": "0858"
+    },
+    {
+     "train": "EC 99",
+     "from": "Zürich HB",
+     "dep": "0932",
+     "to": "Bregenz Bahnhof",
+     "arr": "1100"
+    },
+    {
+     "train": "RJX19915",
+     "from": "Bregenz Bahnhof",
+     "dep": "1111",
+     "to": "Wien Hbf (Bahnsteige 3-12)",
+     "arr": "1832"
+    }
+   ]
+  },
+  {
+   "dep": "0704",
+   "arr": "1847",
+   "dur": "114300",
+   "chg": 2,
+   "legs": [
+    {
+     "train": "IC 809",
+     "from": "Interlaken West",
+     "dep": "0704",
+     "to": "Zürich HB",
+     "arr": "0858"
+    },
+    {
+     "train": "EC 99",
+     "from": "Zürich HB",
+     "dep": "0932",
+     "to": "München Hbf Gl.27-36",
+     "arr": "1316"
+    },
+    {
+     "train": "EC 1217",
+     "from": "München Hbf Gl.5-10",
+     "dep": "1421",
+     "to": "Wien Hbf (Bahnsteige 3-12)",
+     "arr": "1847"
+    }
+   ]
+  },
+  {
+   "dep": "0733",
+   "arr": "1832",
+   "dur": "105900",
+   "chg": 4,
+   "legs": [
+    {
+     "train": "RE 9 (Zug-Nr. 4211)",
+     "from": "Interlaken West",
+     "dep": "0733",
+     "to": "Spiez",
+     "arr": "0748"
+    },
+    {
+     "train": "IC 610",
+     "from": "Spiez",
+     "dep": "0754",
+     "to": "Bern (Haupt-) Bahnhof",
+     "arr": "0825"
+    },
+    {
+     "train": "IC 709",
+     "from": "Bern (Haupt-) Bahnhof",
+     "dep": "0831",
+     "to": "Zürich HB",
+     "arr": "0928"
+    },
+    {
+     "train": "EC 99",
+     "from": "Zürich HB",
+     "dep": "0932",
+     "to": "Bregenz Bahnhof",
+     "arr": "1100"
+    },
+    {
+     "train": "RJX19915",
+     "from": "Bregenz Bahnhof",
+     "dep": "1111",
+     "to": "Wien Hbf (Bahnsteige 3-12)",
+     "arr": "1832"
+    }
+   ]
+  },
+  {
+   "dep": "0733",
+   "arr": "1847",
+   "dur": "111400",
+   "chg": 4,
+   "legs": [
+    {
+     "train": "RE 9 (Zug-Nr. 4211)",
+     "from": "Interlaken West",
+     "dep": "0733",
+     "to": "Spiez",
+     "arr": "0748"
+    },
+    {
+     "train": "IC 610",
+     "from": "Spiez",
+     "dep": "0754",
+     "to": "Bern (Haupt-) Bahnhof",
+     "arr": "0825"
+    },
+    {
+     "train": "IC 709",
+     "from": "Bern (Haupt-) Bahnhof",
+     "dep": "0831",
+     "to": "Zürich HB",
+     "arr": "0928"
+    },
+    {
+     "train": "EC 99",
+     "from": "Zürich HB",
+     "dep": "0932",
+     "to": "München Hbf Gl.27-36",
+     "arr": "1316"
+    },
+    {
+     "train": "EC 1217",
+     "from": "München Hbf Gl.5-10",
+     "dep": "1421",
+     "to": "Wien Hbf (Bahnsteige 3-12)",
+     "arr": "1847"
+    }
+   ]
+  },
+  {
+   "dep": "0804",
+   "arr": "1932",
+   "dur": "112800",
+   "chg": 1,
+   "legs": [
+    {
+     "train": "IC 811",
+     "from": "Interlaken West",
+     "dep": "0804",
+     "to": "Zürich HB",
+     "arr": "0958"
+    },
+    {
+     "train": "RJX13479",
+     "from": "Zürich HB",
+     "dep": "1032",
+     "to": "Wien Hbf (Bahnsteige 3-12)",
+     "arr": "1932"
+    }
+   ]
+  },
+  {
+   "dep": "0804",
+   "arr": "2003",
+   "dur": "115900",
+   "chg": 2,
+   "legs": [
+    {
+     "train": "IC 811",
+     "from": "Interlaken West",
+     "dep": "0804",
+     "to": "Zürich HB",
+     "arr": "0958"
+    },
+    {
+     "train": "RJX13479",
+     "from": "Zürich HB",
+     "dep": "1032",
+     "to": "Salzburg Hbf",
+     "arr": "1702"
+    },
+    {
+     "train": "IC 745",
+     "from": "Salzburg Hbf",
+     "dep": "1711",
+     "to": "Wien Hbf (Bahnsteige 3-12)",
+     "arr": "2003"
+    }
+   ]
+  },
+  {
+   "dep": "0834",
+   "arr": "1932",
+   "dur": "105800",
+   "chg": 2,
+   "legs": [
+    {
+     "train": "IC 612",
+     "from": "Interlaken West",
+     "dep": "0834",
+     "to": "Bern (Haupt-) Bahnhof",
+     "arr": "0925"
+    },
+    {
+     "train": "IC 711",
+     "from": "Bern (Haupt-) Bahnhof",
+     "dep": "0931",
+     "to": "Zürich HB",
+     "arr": "1028"
+    },
+    {
+     "train": "RJX13479",
+     "from": "Zürich HB",
+     "dep": "1032",
+     "to": "Wien Hbf (Bahnsteige 3-12)",
+     "arr": "1932"
+    }
+   ]
+  },
+  {
+   "dep": "0834",
+   "arr": "2003",
+   "dur": "112900",
+   "chg": 3,
+   "legs": [
+    {
+     "train": "IC 612",
+     "from": "Interlaken West",
+     "dep": "0834",
+     "to": "Bern (Haupt-) Bahnhof",
+     "arr": "0925"
+    },
+    {
+     "train": "IC 711",
+     "from": "Bern (Haupt-) Bahnhof",
+     "dep": "0931",
+     "to": "Zürich HB",
+     "arr": "1028"
+    },
+    {
+     "train": "RJX13479",
+     "from": "Zürich HB",
+     "dep": "1032",
+     "to": "Salzburg Hbf",
+     "arr": "1702"
+    },
+    {
+     "train": "IC 745",
+     "from": "Salzburg Hbf",
+     "dep": "1711",
+     "to": "Wien Hbf (Bahnsteige 3-12)",
+     "arr": "2003"
+    }
+   ]
+  }
+ ],
+ "vie_night": [
+  {
+   "dep": "2139",
+   "arr": "0110",
+   "dur": "130400",
+   "chg": 6,
+   "legs": [
+    {
+     "train": "NJ 13486",
+     "from": "Wien Hbf (Bahnsteige 3-12)",
+     "dep": "2139",
+     "to": "Feldkirch Bahnhof",
+     "arr": "0106"
+    },
+    {
+     "train": "BusSV430",
+     "from": "Feldkirch Bahnhof (Vorplatz)",
+     "dep": "0106",
+     "to": "Buchs SG, Bahnhof",
+     "arr": "0107"
+    },
+    {
+     "train": "IR 3253",
+     "from": "Buchs SG",
+     "dep": "0107",
+     "to": "Sargans",
+     "arr": "0107"
+    },
+    {
+     "train": "IC 560",
+     "from": "Sargans",
+     "dep": "0107",
+     "to": "Zürich HB",
+     "arr": "0108"
+    },
+    {
+     "train": "IC 710",
+     "from": "Zürich HB",
+     "dep": "0108",
+     "to": "Bern (Haupt-) Bahnhof",
+     "arr": "0109"
+    },
+    {
+     "train": "IC 613",
+     "from": "Bern (Haupt-) Bahnhof",
+     "dep": "0109",
+     "to": "Spiez",
+     "arr": "0110"
+    },
+    {
+     "train": "PE GPX",
+     "from": "Spiez",
+     "dep": "0110",
+     "to": "Interlaken West",
+     "arr": "0110"
+    }
+   ]
+  },
+  {
+   "dep": "2139",
+   "arr": "0110",
+   "dur": "131400",
+   "chg": 4,
+   "legs": [
+    {
+     "train": "NJ 13486",
+     "from": "Wien Hbf (Bahnsteige 3-12)",
+     "dep": "2139",
+     "to": "Feldkirch Bahnhof",
+     "arr": "0106"
+    },
+    {
+     "train": "BusSV430",
+     "from": "Feldkirch Bahnhof (Vorplatz)",
+     "dep": "0106",
+     "to": "Buchs SG, Bahnhof",
+     "arr": "0107"
+    },
+    {
+     "train": "IR 2203",
+     "from": "Buchs SG",
+     "dep": "0107",
+     "to": "Sargans",
+     "arr": "0107"
+    },
+    {
+     "train": "IC 764",
+     "from": "Sargans",
+     "dep": "0107",
+     "to": "Zürich HB",
+     "arr": "0108"
+    },
+    {
+     "train": "IC 810",
+     "from": "Zürich HB",
+     "dep": "0109",
+     "to": "Interlaken West",
+     "arr": "0110"
+    }
+   ]
+  },
+  {
+   "dep": "2139",
+   "arr": "0112",
+   "dur": "151400",
+   "chg": 1,
+   "legs": [
+    {
+     "train": "NJ 13486",
+     "from": "Wien Hbf (Bahnsteige 3-12)",
+     "dep": "2139",
+     "to": "Zürich HB",
+     "arr": "0110"
+    },
+    {
+     "train": "IC 814",
+     "from": "Zürich HB",
+     "dep": "0111",
+     "to": "Interlaken West",
+     "arr": "0112"
+    }
+   ]
+  },
+  {
+   "dep": "2328",
+   "arr": "0110",
+   "dur": "111500",
+   "chg": 6,
+   "legs": [
+    {
+     "train": "EN 40462",
+     "from": "Wien Hbf (Bahnsteige 3-12)",
+     "dep": "2328",
+     "to": "Feldkirch Bahnhof",
+     "arr": "0106"
+    },
+    {
+     "train": "BusSV430",
+     "from": "Feldkirch Bahnhof (Vorplatz)",
+     "dep": "0106",
+     "to": "Buchs SG, Bahnhof",
+     "arr": "0107"
+    },
+    {
+     "train": "IR 3253",
+     "from": "Buchs SG",
+     "dep": "0107",
+     "to": "Sargans",
+     "arr": "0107"
+    },
+    {
+     "train": "IC 560",
+     "from": "Sargans",
+     "dep": "0107",
+     "to": "Zürich HB",
+     "arr": "0108"
+    },
+    {
+     "train": "IC 710",
+     "from": "Zürich HB",
+     "dep": "0108",
+     "to": "Bern (Haupt-) Bahnhof",
+     "arr": "0109"
+    },
+    {
+     "train": "IC 613",
+     "from": "Bern (Haupt-) Bahnhof",
+     "dep": "0109",
+     "to": "Spiez",
+     "arr": "0110"
+    },
+    {
+     "train": "PE GPX",
+     "from": "Spiez",
+     "dep": "0110",
+     "to": "Interlaken West",
+     "arr": "0110"
+    }
+   ]
+  },
+  {
+   "dep": "2328",
+   "arr": "0110",
+   "dur": "111500",
+   "chg": 7,
+   "legs": [
+    {
+     "train": "EC 462",
+     "from": "Wien Hbf (Bahnsteige 3-12)",
+     "dep": "2328",
+     "to": "Salzburg Hbf",
+     "arr": "0102"
+    },
+    {
+     "train": "NJ 13486",
+     "from": "Salzburg Hbf",
+     "dep": "0102",
+     "to": "Feldkirch Bahnhof",
+     "arr": "0106"
+    },
+    {
+     "train": "BusSV430",
+     "from": "Feldkirch Bahnhof (Vorplatz)",
+     "dep": "0106",
+     "to": "Buchs SG, Bahnhof",
+     "arr": "0107"
+    },
+    {
+     "train": "IR 3253",
+     "from": "Buchs SG",
+     "dep": "0107",
+     "to": "Sargans",
+     "arr": "0107"
+    },
+    {
+     "train": "IC 560",
+     "from": "Sargans",
+     "dep": "0107",
+     "to": "Zürich HB",
+     "arr": "0108"
+    },
+    {
+     "train": "IC 710",
+     "from": "Zürich HB",
+     "dep": "0108",
+     "to": "Bern (Haupt-) Bahnhof",
+     "arr": "0109"
+    },
+    {
+     "train": "IC 613",
+     "from": "Bern (Haupt-) Bahnhof",
+     "dep": "0109",
+     "to": "Spiez",
+     "arr": "0110"
+    },
+    {
+     "train": "PE GPX",
+     "from": "Spiez",
+     "dep": "0110",
+     "to": "Interlaken West",
+     "arr": "0110"
+    }
+   ]
+  },
+  {
+   "dep": "2328",
+   "arr": "0110",
+   "dur": "112500",
+   "chg": 4,
+   "legs": [
+    {
+     "train": "EN 40462",
+     "from": "Wien Hbf (Bahnsteige 3-12)",
+     "dep": "2328",
+     "to": "Feldkirch Bahnhof",
+     "arr": "0106"
+    },
+    {
+     "train": "BusSV430",
+     "from": "Feldkirch Bahnhof (Vorplatz)",
+     "dep": "0106",
+     "to": "Buchs SG, Bahnhof",
+     "arr": "0107"
+    },
+    {
+     "train": "IR 2203",
+     "from": "Buchs SG",
+     "dep": "0107",
+     "to": "Sargans",
+     "arr": "0107"
+    },
+    {
+     "train": "IC 764",
+     "from": "Sargans",
+     "dep": "0107",
+     "to": "Zürich HB",
+     "arr": "0108"
+    },
+    {
+     "train": "IC 810",
+     "from": "Zürich HB",
+     "dep": "0109",
+     "to": "Interlaken West",
+     "arr": "0110"
+    }
+   ]
+  },
+  {
+   "dep": "2328",
+   "arr": "0110",
+   "dur": "112500",
+   "chg": 5,
+   "legs": [
+    {
+     "train": "EC 462",
+     "from": "Wien Hbf (Bahnsteige 3-12)",
+     "dep": "2328",
+     "to": "Salzburg Hbf",
+     "arr": "0102"
+    },
+    {
+     "train": "NJ 13486",
+     "from": "Salzburg Hbf",
+     "dep": "0102",
+     "to": "Feldkirch Bahnhof",
+     "arr": "0106"
+    },
+    {
+     "train": "BusSV430",
+     "from": "Feldkirch Bahnhof (Vorplatz)",
+     "dep": "0106",
+     "to": "Buchs SG, Bahnhof",
+     "arr": "0107"
+    },
+    {
+     "train": "IR 2203",
+     "from": "Buchs SG",
+     "dep": "0107",
+     "to": "Sargans",
+     "arr": "0107"
+    },
+    {
+     "train": "IC 764",
+     "from": "Sargans",
+     "dep": "0107",
+     "to": "Zürich HB",
+     "arr": "0108"
+    },
+    {
+     "train": "IC 810",
+     "from": "Zürich HB",
+     "dep": "0109",
+     "to": "Interlaken West",
+     "arr": "0110"
+    }
+   ]
+  },
+  {
+   "dep": "2328",
+   "arr": "0112",
+   "dur": "132500",
+   "chg": 1,
+   "legs": [
+    {
+     "train": "EN 40462",
+     "from": "Wien Hbf (Bahnsteige 3-12)",
+     "dep": "2328",
+     "to": "Zürich HB",
+     "arr": "0110"
+    },
+    {
+     "train": "IC 814",
+     "from": "Zürich HB",
+     "dep": "0111",
+     "to": "Interlaken West",
+     "arr": "0112"
+    }
+   ]
+  },
+  {
+   "dep": "2328",
+   "arr": "0112",
+   "dur": "132500",
+   "chg": 2,
+   "legs": [
+    {
+     "train": "EC 462",
+     "from": "Wien Hbf (Bahnsteige 3-12)",
+     "dep": "2328",
+     "to": "Salzburg Hbf",
+     "arr": "0102"
+    },
+    {
+     "train": "NJ 13486",
+     "from": "Salzburg Hbf",
+     "dep": "0102",
+     "to": "Zürich HB",
+     "arr": "0110"
+    },
+    {
+     "train": "IC 814",
+     "from": "Zürich HB",
+     "dep": "0111",
+     "to": "Interlaken West",
+     "arr": "0112"
+    }
+   ]
+  }
+ ]
+}

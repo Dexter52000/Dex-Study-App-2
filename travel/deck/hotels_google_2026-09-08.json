@@ -1,0 +1,619 @@
+{
+ "gh_25hmuc.html": {
+  "title": "25hours Hotel The Royal Bavarian Munich",
+  "min": 644,
+  "n_offers": 12,
+  "rating": [],
+  "reviews": [
+   "(1.9K)"
+  ],
+  "stars": [],
+  "offers": [
+   [
+    644,
+    "Official Site"
+   ],
+   [
+    756,
+    "Extra Large"
+   ],
+   [
+    756,
+    "Priceline"
+   ],
+   [
+    756,
+    "Skyscanner"
+   ]
+  ]
+ },
+ "gh_25hvie.html": {
+  "title": "25hours Hotel Vienna at MuseumsQuartier",
+  "min": 210,
+  "n_offers": 15,
+  "rating": [],
+  "reviews": [
+   "(4.9K)"
+  ],
+  "stars": [],
+  "offers": [
+   [
+    210,
+    "Free cancellation until Oct 13"
+   ],
+   [
+    280,
+    "Priceline"
+   ],
+   [
+    280,
+    "· Suite"
+   ],
+   [
+    310,
+    "· Suite"
+   ],
+   [
+    331,
+    "Extra Large Room"
+   ]
+  ]
+ },
+ "gh_altstadt.html": {
+  "title": "Hotel Altstadt Vienna",
+  "min": 547,
+  "n_offers": 6,
+  "rating": [],
+  "reviews": [
+   "(715)"
+  ],
+  "stars": [],
+  "offers": [
+   [
+    547,
+    "Skyscanner"
+   ],
+   [
+    571,
+    "Priceline"
+   ]
+  ]
+ },
+ "gh_andaz.html": {
+  "title": "Andaz Munich Schwabinger Tor",
+  "min": null,
+  "n_offers": 0,
+  "rating": [],
+  "reviews": [
+   "(2.0K)"
+  ],
+  "stars": [],
+  "offers": []
+ },
+ "gh_bayhof.html": {
+  "title": "Hotel Bayerischer Hof Munich",
+  "min": 400,
+  "n_offers": 15,
+  "rating": [],
+  "reviews": [
+   "(4.6K)"
+  ],
+  "stars": [],
+  "offers": [
+   [
+    400,
+    "Priceline"
+   ],
+   [
+    400,
+    "Standard Double Room"
+   ],
+   [
+    423,
+    "· Suite"
+   ],
+   [
+    510,
+    "Standard Double Room"
+   ],
+   [
+    533,
+    "· Suite"
+   ]
+  ]
+ },
+ "gh_beethoven.html": {
+  "title": "Hotel Beethoven Wien",
+  "min": 104,
+  "n_offers": 15,
+  "rating": [],
+  "reviews": [
+   "(785)"
+  ],
+  "stars": [],
+  "offers": [
+   [
+    104,
+    "Priceline"
+   ],
+   [
+    104,
+    "Superior Double Room"
+   ],
+   [
+    115,
+    "Free cancellation until Oct 30"
+   ],
+   [
+    182,
+    "Deluxe Double Room"
+   ],
+   [
+    194,
+    "Free cancellation until Oct 30"
+   ]
+  ]
+ },
+ "gh_blauerbock.html": {
+  "title": "Hotel Blauer Bock Munich",
+  "min": null,
+  "n_offers": 0,
+  "rating": [],
+  "reviews": [
+   "(439)"
+  ],
+  "stars": [],
+  "offers": []
+ },
+ "gh_cocoon.html": {
+  "title": "Cocoon Stachus Munich",
+  "min": null,
+  "n_offers": 0,
+  "rating": [],
+  "reviews": [
+   "(1.1K)"
+  ],
+  "stars": [],
+  "offers": []
+ },
+ "gh_deutscheeiche.html": {
+  "title": "Hotel Deutsche Eiche Munich",
+  "min": null,
+  "n_offers": 0,
+  "rating": [],
+  "reviews": [
+   "(2.7K)"
+  ],
+  "stars": [],
+  "offers": []
+ },
+ "gh_grandferdinand.html": {
+  "title": "Grand Ferdinand Vienna",
+  "min": 213,
+  "n_offers": 12,
+  "rating": [],
+  "reviews": [
+   "(2.6K)"
+  ],
+  "stars": [],
+  "offers": [
+   [
+    213,
+    "Priceline"
+   ],
+   [
+    213,
+    "Suite · Suite"
+   ],
+   [
+    237,
+    "· Suite"
+   ],
+   [
+    947,
+    "Grande Suite"
+   ]
+  ]
+ },
+ "gh_imperial.html": {
+  "title": "Hotel Imperial Vienna",
+  "min": 495,
+  "n_offers": 30,
+  "rating": [],
+  "reviews": [
+   "(1.9K)"
+  ],
+  "stars": [],
+  "offers": [
+   [
+    495,
+    "Free cancellation until Oct 9"
+   ],
+   [
+    495,
+    "Official Site"
+   ],
+   [
+    623,
+    "Priceline"
+   ],
+   [
+    638,
+    "Classic Room, Guest room, 2 Twin"
+   ],
+   [
+    703,
+    "Deluxe Room, Guest room, 1 King"
+   ],
+   [
+    803,
+    "Deluxe Room, Guest room, 1 King"
+   ],
+   [
+    850,
+    "Free cancellation until Oct 9"
+   ],
+   [
+    873,
+    "Imperial Junior Suite, Smaller Suite, 1 King"
+   ],
+   [
+    888,
+    null
+   ],
+   [
+    890,
+    "Free cancellation until Oct 9"
+   ]
+  ]
+ },
+ "gh_kaiserhof.html": {
+  "title": "Hotel Kaiserhof Wien",
+  "min": 234,
+  "n_offers": 9,
+  "rating": [],
+  "reviews": [
+   "(1.4K)"
+  ],
+  "stars": [],
+  "offers": [
+   [
+    234,
+    "Priceline"
+   ],
+   [
+    234,
+    "Superior Double Room"
+   ],
+   [
+    259,
+    "· breakfast · Suite"
+   ]
+  ]
+ },
+ "gh_konzerthaus.html": {
+  "title": "Hotel Am Konzerthaus Vienna MGallery",
+  "min": 330,
+  "n_offers": 40,
+  "rating": [],
+  "reviews": [
+   "(2.4K)"
+  ],
+  "stars": [],
+  "offers": [
+   [
+    330,
+    "Deluxe room with king-size bed"
+   ],
+   [
+    330,
+    "Free breakfast"
+   ],
+   [
+    536,
+    "Free Wi-Fi"
+   ],
+   [
+    536,
+    "Superior room with king-size bed"
+   ],
+   [
+    536,
+    "Superior room with twin bed"
+   ],
+   [
+    573,
+    "· Suite"
+   ],
+   [
+    600,
+    "· breakfast · Suite"
+   ],
+   [
+    650,
+    "· Suite"
+   ],
+   [
+    660,
+    "Deluxe room with king-size bed"
+   ],
+   [
+    660,
+    "Free breakfast"
+   ]
+  ]
+ },
+ "gh_louis.html": {
+  "title": "Louis Hotel Munich",
+  "min": 294,
+  "n_offers": 9,
+  "rating": [],
+  "reviews": [
+   "(609)"
+  ],
+  "stars": [],
+  "offers": [
+   [
+    294,
+    "Courtyard Superior"
+   ],
+   [
+    294,
+    "Priceline"
+   ],
+   [
+    317,
+    "Free cancellation until Oct 25"
+   ]
+  ]
+ },
+ "gh_mandarin.html": {
+  "title": "Mandarin Oriental Munich",
+  "min": null,
+  "n_offers": 0,
+  "rating": [],
+  "reviews": [
+   "(1.7K)"
+  ],
+  "stars": [],
+  "offers": []
+ },
+ "gh_motelone.html": {
+  "title": "Motel One Muenchen Sendlinger Tor",
+  "min": null,
+  "n_offers": 0,
+  "rating": [],
+  "reviews": [
+   "(2.3K)"
+  ],
+  "stars": [],
+  "offers": []
+ },
+ "gh_motelone2.html": {
+  "title": "Motel One Sendlinger Tor Munich",
+  "min": null,
+  "n_offers": 0,
+  "rating": [],
+  "reviews": [
+   "(2.3K)"
+  ],
+  "stars": [],
+  "offers": []
+ },
+ "gh_motelone_vie.html": {
+  "title": "Motel One Wien Staatsoper",
+  "min": null,
+  "n_offers": 0,
+  "rating": [],
+  "reviews": [],
+  "stars": [],
+  "offers": []
+ },
+ "gh_motto.html": {
+  "title": "Hotel Motto Vienna",
+  "min": null,
+  "n_offers": 0,
+  "rating": [],
+  "reviews": [
+   "(1.2K)"
+  ],
+  "stars": [],
+  "offers": []
+ },
+ "gh_motto2.html": {
+  "title": "Hotel Motto Wien Mariahilfer",
+  "min": null,
+  "n_offers": 0,
+  "rating": [],
+  "reviews": [
+   "(1.2K)"
+  ],
+  "stars": [],
+  "offers": []
+ },
+ "gh_motto3.html": {
+  "title": "Hotel Motto Vienna Austria",
+  "min": null,
+  "n_offers": 0,
+  "rating": [],
+  "reviews": [
+   "(1.2K)"
+  ],
+  "stars": [],
+  "offers": []
+ },
+ "gh_platzl.html": {
+  "title": "Platzl Hotel Munich",
+  "min": 210,
+  "n_offers": 9,
+  "rating": [],
+  "reviews": [
+   "(1.5K)"
+  ],
+  "stars": [],
+  "offers": [
+   [
+    210,
+    "Classic Queen Room"
+   ],
+   [
+    210,
+    "Priceline"
+   ],
+   [
+    230,
+    "Free cancellation until Nov 5"
+   ]
+  ]
+ },
+ "gh_rubylilly.html": {
+  "title": "Ruby Lilly Hotel Munich",
+  "min": 229,
+  "n_offers": 9,
+  "rating": [],
+  "reviews": [
+   "(2.7K)"
+  ],
+  "stars": [],
+  "offers": [
+   [
+    229,
+    "Free cancellation until Dec 1"
+   ],
+   [
+    229,
+    "Priceline"
+   ],
+   [
+    231,
+    "breakfast"
+   ]
+  ]
+ },
+ "gh_rubylissi.html": {
+  "title": "Ruby Lissi Hotel Vienna",
+  "min": null,
+  "n_offers": 0,
+  "rating": [],
+  "reviews": [
+   "(1.6K)"
+  ],
+  "stars": [],
+  "offers": []
+ },
+ "gh_rubymarie.html": {
+  "title": "Ruby Marie Hotel Vienna",
+  "min": 92,
+  "n_offers": 9,
+  "rating": [],
+  "reviews": [
+   "(3.6K)"
+  ],
+  "stars": [],
+  "offers": [
+   [
+    92,
+    "Cozy Room"
+   ],
+   [
+    92,
+    "Priceline"
+   ],
+   [
+    98,
+    "Free cancellation until Sep 12"
+   ]
+  ]
+ },
+ "gh_sacher.html": {
+  "title": "Hotel Sacher Wien",
+  "min": 646,
+  "n_offers": 15,
+  "rating": [],
+  "reviews": [
+   "(14.1K)"
+  ],
+  "stars": [],
+  "offers": [
+   [
+    646,
+    "Priceline"
+   ],
+   [
+    646,
+    "Skyscanner"
+   ],
+   [
+    646,
+    "Suite · Suite"
+   ],
+   [
+    760,
+    "· Suite"
+   ],
+   [
+    960,
+    "Suite · 3 guests · Suite"
+   ]
+  ]
+ },
+ "gh_schani.html": {
+  "title": "Hotel Schani Wien",
+  "min": null,
+  "n_offers": 0,
+  "rating": [],
+  "reviews": [
+   "(1.7K)"
+  ],
+  "stars": [],
+  "offers": []
+ },
+ "gh_schwanlocke.html": {
+  "title": "Schwan Locke Munich",
+  "min": 89,
+  "n_offers": 12,
+  "rating": [],
+  "reviews": [
+   "(762)"
+  ],
+  "stars": [],
+  "offers": [
+   [
+    89,
+    "Locke Studio"
+   ],
+   [
+    89,
+    "Priceline"
+   ],
+   [
+    89,
+    "Skyscanner"
+   ],
+   [
+    191,
+    "Suite · 3 guests · Suite"
+   ]
+  ]
+ },
+ "gh_torbraeu.html": {
+  "title": "Hotel Torbraeu Munich",
+  "min": null,
+  "n_offers": 0,
+  "rating": [],
+  "reviews": [
+   "(712)"
+  ],
+  "stars": [],
+  "offers": []
+ },
+ "gh_torbraeu2.html": {
+  "title": "Error 400 (Bad Request)!!1",
+  "min": null,
+  "n_offers": 0,
+  "rating": [],
+  "reviews": [],
+  "stars": [],
+  "offers": []
+ }
+}

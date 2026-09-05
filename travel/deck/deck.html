@@ -1,0 +1,687 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Vienna or Munich · 8–10 September 2026</title>
+<style>
+@font-face{font-family:'Playfair Display';src:url('fonts/PlayfairDisplay-400-normal.woff2') format('woff2');font-weight:400;font-style:normal}
+@font-face{font-family:'Playfair Display';src:url('fonts/PlayfairDisplay-400-italic.woff2') format('woff2');font-weight:400;font-style:italic}
+@font-face{font-family:'Playfair Display';src:url('fonts/PlayfairDisplay-600-normal.woff2') format('woff2');font-weight:600;font-style:normal}
+@font-face{font-family:'Playfair Display';src:url('fonts/PlayfairDisplay-700-normal.woff2') format('woff2');font-weight:700;font-style:normal}
+@font-face{font-family:'Inter';src:url('fonts/Inter-400-normal.woff2') format('woff2');font-weight:400}
+@font-face{font-family:'Inter';src:url('fonts/Inter-500-normal.woff2') format('woff2');font-weight:500}
+@font-face{font-family:'Inter';src:url('fonts/Inter-600-normal.woff2') format('woff2');font-weight:600}
+@font-face{font-family:'Inter';src:url('fonts/Inter-700-normal.woff2') format('woff2');font-weight:700}
+@font-face{font-family:'DM Serif Display';src:url('fonts/DMSerifDisplay-400-normal.woff2') format('woff2');font-weight:400}
+
+:root{
+  --paper:#F5F0E7; --paper2:#ECE5D6; --card:#FFFDF8; --ink:#17161A; --muted:#6F6963; --line:rgba(23,22,26,.13);
+  --vie:#7A1F2B; --vie-soft:#F1E0DC; --gold:#B8912B;
+  --muc:#1E4B8A; --muc-soft:#DCE6F3;
+  --ok:#2E7D5B; --warn:#B45309; --rain:#2F6FB3; --storm:#4B3F8F; --sun:#D99A1E;
+}
+@page{size:1600px 900px;margin:0}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--paper);color:var(--ink);font-family:Inter,system-ui,-apple-system,sans-serif;font-size:16px;line-height:1.45;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+img{display:block}
+.page{width:1600px;height:900px;position:relative;overflow:hidden;page-break-after:always;break-after:page;background:var(--paper)}
+.page:last-child{page-break-after:auto;break-after:auto}
+.pad{position:absolute;inset:0;padding:56px 64px 64px}
+.foot{position:absolute;left:64px;right:64px;bottom:26px;display:flex;justify-content:space-between;font-size:12px;color:var(--muted);letter-spacing:.02em}
+.foot.light{color:rgba(255,255,255,.75)}
+.kicker{font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;color:var(--muted)}
+.kicker.vie{color:var(--vie)} .kicker.muc{color:var(--muc)}
+h1,h2,h3{font-family:'Playfair Display',Georgia,serif;font-weight:600;margin:0;line-height:1.05;letter-spacing:-.01em}
+h2{font-size:52px;margin:10px 0 18px}
+h3{font-size:24px}
+em{font-style:italic;font-weight:400}
+p{margin:0 0 12px}
+.muted{color:var(--muted)}
+.small{font-size:13px}
+.num{font-family:'DM Serif Display','Playfair Display',serif;font-weight:400;letter-spacing:-.01em}
+.chip{display:inline-block;padding:4px 10px;border-radius:999px;font-size:12px;font-weight:600;letter-spacing:.02em;background:var(--paper2);color:var(--ink);white-space:nowrap}
+.chip.vie{background:var(--vie-soft);color:var(--vie)} .chip.muc{background:var(--muc-soft);color:var(--muc)}
+.chip.ok{background:#DDEFE6;color:var(--ok)} .chip.warn{background:#FBE9D6;color:var(--warn)} .chip.est{background:#F1E9D2;color:#7A5A12}
+.rule{height:1px;background:var(--line);margin:18px 0}
+
+/* cover */
+.cover .half{position:absolute;top:0;height:100%;width:50%;object-fit:cover}
+.cover .half.l{left:0} .cover .half.r{left:50%}
+.cover .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05) 0%,rgba(0,0,0,.0) 40%,rgba(0,0,0,.55) 100%)}
+.cover .seam{position:absolute;left:50%;top:0;width:2px;height:100%;background:rgba(245,240,231,.6)}
+.cover .card{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:780px;background:rgba(245,240,231,.96);padding:48px 56px 44px;text-align:center;box-shadow:0 30px 80px rgba(0,0,0,.35)}
+.cover h1{font-size:96px;line-height:1;margin:14px 0 18px}
+.cover .sub{font-size:20px;margin:0 0 8px}
+.cover .lbl{position:absolute;bottom:44px;font-family:'Playfair Display',serif;font-size:30px;color:#fff;text-shadow:0 2px 14px rgba(0,0,0,.5)}
+.cover .lbl.l{left:64px} .cover .lbl.r{right:64px}
+.cover .lbl small{display:block;font-family:Inter;font-size:12px;letter-spacing:.2em;text-transform:uppercase;opacity:.9}
+
+/* two-col */
+.cols{display:flex;gap:56px;height:100%}
+.col{flex:1;min-width:0}
+
+/* scorecard */
+table.score{width:100%;border-collapse:collapse;font-size:15px}
+table.score th{font-family:'Playfair Display',serif;font-weight:600;font-size:22px;text-align:left;padding:0 14px 14px;border-bottom:2px solid var(--ink)}
+table.score th.vie{color:var(--vie)} table.score th.muc{color:var(--muc)}
+table.score td{padding:13px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+table.score td.lab{font-weight:600;width:190px;color:var(--muted);font-size:13px;letter-spacing:.04em;text-transform:uppercase;padding-top:16px}
+table.score td.win{background:#EEF6F1;position:relative}
+table.score td.win::after{content:"●";position:absolute;right:12px;top:12px;color:var(--ok);font-size:10px}
+table.score td b{font-weight:600}
+
+/* verdict */
+.verdict h2{font-size:56px}
+.why{display:flex;flex-direction:column;gap:14px;margin-top:8px}
+.why div{display:flex;gap:16px;align-items:flex-start}
+.why .n{font-family:'DM Serif Display',serif;font-size:34px;line-height:1;color:var(--gold);min-width:34px}
+.why p{margin:0}
+
+/* route cards */
+.routes{display:flex;gap:40px;margin-top:12px}
+.route{flex:1;background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.route .head{padding:20px 28px 16px;color:#fff;display:flex;justify-content:space-between;align-items:baseline}
+.route .head h3{color:#fff;font-size:30px}
+.route .head span{font-size:13px;opacity:.9}
+.route.vie .head{background:var(--vie)} .route.muc .head{background:var(--muc)}
+.route .body{padding:18px 28px 22px}
+.leg-title{font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:var(--muted);margin:6px 0 8px}
+.legs{margin:0 0 8px;padding:0;list-style:none}
+.legs li{display:grid;grid-template-columns:118px 1fr 86px;gap:10px;font-size:14.5px;padding:5px 0;border-bottom:1px dashed var(--line)}
+.legs li:last-child{border-bottom:0}
+.legs .t{font-weight:600;font-variant-numeric:tabular-nums}
+.legs .tr{color:var(--muted);text-align:right;font-size:12.5px;white-space:nowrap}
+.alt{font-size:13px;color:var(--muted);margin:2px 0 12px}
+.fare{display:flex;gap:18px;align-items:flex-start;background:var(--paper);border-radius:12px;padding:14px 18px;margin-top:6px}
+.fare .big{font-family:'DM Serif Display',serif;font-size:40px;line-height:1;white-space:nowrap}
+.fare .big small{font-family:Inter;font-size:13px;font-weight:600;color:var(--muted);display:block;margin-top:6px;letter-spacing:.04em}
+.fare p{font-size:13px;margin:0;color:var(--ink)}
+
+/* weather */
+table.wx{width:100%;border-collapse:separate;border-spacing:0 10px}
+table.wx th{text-align:left;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);padding:0 14px 2px;font-weight:600}
+table.wx td{background:var(--card);border:1px solid var(--line);padding:14px 16px;vertical-align:top}
+table.wx td:first-child{border-radius:14px 0 0 14px;width:150px} table.wx td:last-child{border-radius:0 14px 14px 0}
+table.wx td+td{border-left:0}
+.wx .dname{font-family:'Playfair Display',serif;font-size:22px;font-weight:600}
+.wx .date{font-size:12.5px;color:var(--muted)}
+.wx .temp{font-family:'DM Serif Display',serif;font-size:34px;line-height:1}
+.wx .temp small{font-size:18px;color:var(--muted);font-family:'DM Serif Display',serif}
+.wx .cond{display:flex;align-items:center;gap:8px;font-size:13.5px;margin-top:6px;font-weight:500}
+.dot{width:10px;height:10px;border-radius:50%;display:inline-block}
+.dot.sun{background:var(--sun)} .dot.cloud{background:#8C8A86} .dot.rain{background:var(--rain)} .dot.storm{background:var(--storm)}
+.wx .rain{font-size:12.5px;color:var(--muted)}
+.events{display:flex;flex-direction:column;gap:12px}
+.ev{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 18px;display:flex;gap:16px;align-items:flex-start}
+.ev .d{font-family:'DM Serif Display',serif;font-size:26px;line-height:1;min-width:70px}
+.ev .d small{display:block;font-family:Inter;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+.ev h4{margin:0 0 3px;font-size:16px;font-weight:600}
+.ev p{margin:0;font-size:13.5px;color:var(--muted)}
+
+/* hero pages */
+.hero .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero .shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,.25) 45%,rgba(0,0,0,0) 70%)}
+.hero .shade.r{background:linear-gradient(270deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,.25) 45%,rgba(0,0,0,0) 70%)}
+.hero .panel{position:absolute;top:64px;bottom:64px;width:620px;background:rgba(245,240,231,.95);padding:44px 48px;border-radius:20px;display:flex;flex-direction:column}
+.hero .panel.l{left:64px} .hero .panel.r{right:64px}
+.hero h1{font-size:88px;margin:8px 0 12px;line-height:.98}
+.hero .lede{font-family:'Playfair Display',serif;font-style:italic;font-size:22px;line-height:1.35;margin:0 0 18px}
+.hero .why{gap:10px}
+.hero .why p{font-size:15px}
+.facts{margin-top:auto;padding-top:16px;border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr;gap:8px 20px;font-size:13px}
+.facts b{display:block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.hero .cap{position:absolute;right:72px;bottom:30px;font-size:11px;color:rgba(255,255,255,.85);text-shadow:0 1px 6px rgba(0,0,0,.8)}
+.hero .cap.l{left:72px;right:auto}
+
+/* grid of sights */
+.grid6{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:10px}
+.sight{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;height:328px;display:flex;flex-direction:column}
+.sight img{width:100%;height:214px;object-fit:cover}
+.sight .cap{padding:12px 16px 12px;display:flex;flex-direction:column;gap:3px}
+.sight .cap .row{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.sight h3{font-size:20px}
+.sight p{font-size:13px;color:var(--muted);margin:0;line-height:1.4}
+.more{margin-top:16px;font-size:13.5px;color:var(--muted)}
+.more b{color:var(--ink);font-weight:600}
+
+/* hotels */
+.hotels{display:grid;grid-template-columns:1fr 1fr;gap:20px 24px;margin-top:8px}
+.hotel{display:flex;background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;height:300px;box-shadow:0 8px 24px rgba(23,22,26,.06)}
+.hotel img{width:330px;height:100%;object-fit:cover;flex:none}
+.hotel .txt{padding:18px 22px 16px;display:flex;flex-direction:column;flex:1;min-width:0}
+.hotel .top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.hotel h3{font-size:22px;line-height:1.1}
+.hotel .rate{font-size:12.5px;font-weight:600;white-space:nowrap;padding-top:4px}
+.hotel .rate span{color:var(--gold)}
+.hotel .area{font-size:12.5px;color:var(--muted);margin:3px 0 8px}
+.hotel p{font-size:13.5px;margin:0 0 8px;line-height:1.42}
+.hotel .tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}
+.hotel .price{margin-top:auto;display:flex;align-items:flex-end;justify-content:space-between;gap:12px;border-top:1px solid var(--line);padding-top:10px}
+.hotel .price .p{font-family:'DM Serif Display',serif;font-size:34px;line-height:1;white-space:nowrap;flex:none}
+.hotel .price .p small{font-family:Inter;font-size:12px;color:var(--muted);font-weight:500;margin-left:4px}
+.hotel .price .tot{font-size:11.5px;color:var(--muted);text-align:right;line-height:1.35;flex:1;min-width:0}
+.also{margin-top:14px;font-size:13px;color:var(--muted)}
+.also b{color:var(--ink);font-weight:600}
+
+/* itinerary */
+.days{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:8px}
+.day{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;height:660px;display:flex;flex-direction:column}
+.day img{width:100%;height:170px;object-fit:cover}
+.day .hd{padding:14px 20px 8px;display:flex;justify-content:space-between;align-items:baseline}
+.day .hd h3{font-size:22px}
+.day .hd h3 small{display:block;font-family:Inter;font-size:12px;color:var(--muted);font-weight:500;letter-spacing:.04em;margin-top:2px}
+.day ul{list-style:none;margin:0;padding:6px 20px 16px;display:flex;flex-direction:column;gap:9px}
+.day li{display:grid;grid-template-columns:52px 1fr;gap:10px;font-size:13.5px;line-height:1.38}
+.day li .t{font-weight:700;font-variant-numeric:tabular-nums;color:var(--ink)}
+.day li b{font-weight:600}
+.day li span.m{color:var(--muted)}
+
+/* budget */
+.bud{display:flex;gap:48px;margin-top:8px;height:600px;padding-top:56px}
+.bud .chart{flex:1;display:flex;gap:40px;align-items:flex-end;padding:0 10px 0 0;border-bottom:2px solid var(--ink);height:420px;position:relative}
+.bar{flex:1;display:flex;flex-direction:column-reverse;align-items:stretch;height:100%;justify-content:flex-start}
+.seg{border-top:2px solid var(--paper);display:flex;align-items:center;justify-content:center;font-size:12.5px;font-weight:600;color:#fff}
+.seg.train{background:#3A3A45} .seg.s-hotel{background:var(--gold)} .seg.food{background:#8C6A4A} .seg.sights{background:#5E8F6E} .seg.local{background:#9FA6B2}
+.bar .lbl{position:absolute;bottom:-56px;font-family:'Playfair Display',serif;font-size:20px;font-weight:600;width:100%;text-align:center}
+.bar .tot{position:absolute;top:-44px;width:100%;text-align:center;font-family:'DM Serif Display',serif;font-size:28px}
+.barwrap{flex:1;position:relative;height:100%;display:flex;align-items:flex-end}
+.bud table{width:420px;border-collapse:collapse;font-size:14px;align-self:flex-start}
+.bud table th{text-align:left;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);padding:0 10px 8px;border-bottom:1px solid var(--ink)}
+.bud table td{padding:9px 10px;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums}
+.bud table td.r{text-align:right}
+.bud table tr.total td{font-weight:700;border-bottom:0;padding-top:12px;font-size:16px}
+.legend{display:flex;gap:16px;font-size:12.5px;color:var(--muted);margin-top:14px}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+
+/* checklist + sources */
+.check{list-style:none;margin:10px 0 0;padding:0;display:flex;flex-direction:column;gap:10px}
+.check li{display:grid;grid-template-columns:28px 1fr;gap:12px;font-size:15px;line-height:1.4}
+.check li::before{content:"";width:18px;height:18px;border:2px solid var(--ink);border-radius:5px;margin-top:3px}
+.src{font-size:12px;color:var(--muted);line-height:1.5;columns:2;column-gap:32px}
+.src b{color:var(--ink);font-weight:600}
+</style>
+</head>
+<body>
+
+<!-- 1 · COVER -->
+<section class="page cover">
+  <img class="half l" src="img/schoenbrunn_1.jpg" alt="">
+  <img class="half r" src="img/marienplatz_2.jpg" alt="">
+  <div class="shade"></div>
+  <div class="seam"></div>
+  <div class="lbl l"><small>Option A</small>Vienna</div>
+  <div class="lbl r"><small>Option B</small>Munich</div>
+  <div class="card">
+    <div class="kicker">A three-day escape from Interlaken, by train</div>
+    <h1>Vienna <em>or</em> Munich?</h1>
+    <p class="sub">Tuesday 8 – Thursday 10 September 2026 · one traveller</p>
+    <p class="small muted" style="margin:0">Timetables, hotel rates and forecasts checked 5 September 2026 · Munich fare anchored on your SBB quote (CHF 107)</p>
+  </div>
+</section>
+
+<!-- 2 · VERDICT + SCORECARD -->
+<section class="page">
+  <div class="pad">
+    <div class="cols">
+      <div class="col verdict" style="flex:0 0 600px">
+        <div class="kicker">The short answer</div>
+        <h2>Munich for <em>this</em> window.<br>Vienna when you can give it four days.</h2>
+        <p style="font-size:17px;line-height:1.5">Both cities are wonderful in early September. The difference is arithmetic: Munich is six hours from Interlaken West with one change; Vienna is eleven. On a Tuesday-to-Thursday trip that is the difference between two full days on the ground and one.</p>
+        <div class="why">
+          <div><span class="n">1</span><p><b>Time.</b> Munich: arrive 11:16 Tuesday, leave 12:32 or 14:32 Thursday. Vienna: arrive 17:32 at the earliest, leave 10:28 Thursday.</p></div>
+          <div><span class="n">2</span><p><b>Money.</b> Munich’s fare is verified at CHF 107 one-way. Vienna will run roughly CHF 130–185 each way. Hotels cost about the same in both at every tier.</p></div>
+          <div><span class="n">3</span><p><b>Weather.</b> Wednesday is wet everywhere (Munich gets thunderstorms, Vienna showers). Either city needs one museum day, and both have great ones.</p></div>
+        </div>
+        <p class="small muted" style="margin-top:18px">If the Staatsoper is the point, Vienna still wins: <em>Adriana Lecouvreur</em> on Tuesday night is reachable on the 06:34 train. See page 4.</p>
+      </div>
+      <div class="col">
+        <table class="score">
+          <tr><th></th><th class="vie">Vienna</th><th class="muc">Munich</th></tr>
+          <tr><td class="lab">Door to door</td><td><b>10 h 58</b> · 2 changes<br><span class="muted small">or 11 h 28 with 1 change</span></td><td class="win"><b>6 h 12</b> · 1 change<br><span class="muted small">5 h 42 with 3 changes</span></td></tr>
+          <tr><td class="lab">Train fare, one-way</td><td><b>≈ CHF 130–185</b> <span class="chip est">estimate</span><br><span class="muted small">Swiss leg + ÖBB Sparschiene / Standard</span></td><td class="win"><b>CHF 107</b> <span class="chip ok">SBB, verified</span><br><span class="muted small">05:30 departure, 2nd class</span></td></tr>
+          <tr><td class="lab">Time on the ground</td><td>Tue evening · Wed · Thu morning<br><span class="muted small">≈ 1 full day + 2 half days</span></td><td class="win">Tue afternoon · Wed · Thu morning<br><span class="muted small">≈ 2 full days</span></td></tr>
+          <tr><td class="lab">Hotels, per night</td><td>€92 – €646 checked<br><span class="muted small">sweet spot €210 (Grand Ferdinand, 25hours)</span></td><td>€89 – €400 checked<br><span class="muted small">sweet spot €144 – €210 (Ruby Lilly, Platzl)</span></td></tr>
+          <tr><td class="lab">Forecast 8 → 10 Sept</td><td class="win">32° sun → showers → 20° cloud<br><span class="muted small">Wed ≈ 9 mm</span></td><td>30° warm → thunderstorms → 17°<br><span class="muted small">Wed ≈ 27 mm</span></td></tr>
+          <tr><td class="lab">On these dates</td><td class="win">Staatsoper: <i>Adriana Lecouvreur</i> Tue, <i>Figaro</i> Wed<br><span class="muted small">Kino am Dach open-air cinema to 11 Sept</span></td><td>The Black Keys at Zenith, Wed<br><span class="muted small">Wiesn tents going up; no trade fair</span></td></tr>
+          <tr><td class="lab">Vibe</td><td>Imperial boulevards, coffee houses, Klimt</td><td>Beer gardens, river surfing, Alps on the horizon</td></tr>
+        </table>
+        <p class="small muted" style="margin-top:12px">● = edge. Fares: SBB quote for Munich supplied by you; Vienna estimated from ÖBB fare tiers because live fare lookups were blocked (see page 3).</p>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>Vienna or Munich · 8–10 September 2026</span><span>2</span></div>
+</section>
+
+<!-- 3 · GETTING THERE -->
+<section class="page">
+  <div class="pad">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:40px">
+      <div>
+        <div class="kicker">Getting there</div>
+        <h2 style="margin-bottom:6px">Two rails out of the Oberland</h2>
+        <p class="muted" style="margin:0;max-width:900px">Departures below are the actual timetable for 8 and 10 September 2026 (ÖBB Scotty data). Both routes run through Zürich HB; the Vienna Railjet is one seat for nine hours.</p>
+      </div>
+      <img src="img/railjet_1.jpg" alt="" style="width:300px;height:120px;object-fit:cover;border-radius:14px">
+    </div>
+    <div class="routes">
+      <div class="route muc">
+        <div class="head"><h3>Munich Hbf</h3><span>6 h 12 · 1 change · EC via Zürich</span></div>
+        <div class="body">
+          <div class="leg-title">Out · Tuesday 8 September</div>
+          <ul class="legs">
+            <li><span class="t">07:04 → 08:58</span><span>Interlaken West → Zürich HB</span><span class="tr">IC 809</span></li>
+            <li><span class="t">09:32 → 13:16</span><span>Zürich HB → München Hbf</span><span class="tr">EC 99</span></li>
+          </ul>
+          <p class="alt">Earlier: 05:34 via Spiez–Bern–Zürich, EC 97, arrives <b>11:16</b> (the “05:30” SBB shows). 05:01 IC 956 → same EC 97, 2 changes.</p>
+          <div class="leg-title">Back · Thursday 10 September</div>
+          <ul class="legs">
+            <li><span class="t">12:32 → 16:28</span><span>München Hbf → Zürich HB</span><span class="tr">EC 192</span></li>
+            <li><span class="t">17:02 → 18:53</span><span>Zürich HB → Interlaken West</span><span class="tr">IC 826</span></li>
+          </ul>
+          <p class="alt">Later: EC 190 14:32 → home 20:53. Earlier: EC 196 08:32 → home 14:53.</p>
+          <div class="fare">
+            <div class="big">CHF 107<small>ONE-WAY · 2ND CLASS</small></div>
+            <p><b>Verified on SBB</b> for the 05:30 departure on 8 Sept (your lookup). The 07:04 sits on the same fare basis; expect the same price unless the saver quota sells out. Budget the return at the same level: <b>≈ CHF 214 round trip</b>. Book both legs on sbb.ch as one basket.</p>
+          </div>
+        </div>
+      </div>
+      <div class="route vie">
+        <div class="head"><h3>Wien Hbf</h3><span>10 h 58 · 2 changes · Railjet from Zürich</span></div>
+        <div class="body">
+          <div class="leg-title">Out · Tuesday 8 September</div>
+          <ul class="legs">
+            <li><span class="t">06:34 → 07:25</span><span>Interlaken West → Bern</span><span class="tr">IC 608</span></li>
+            <li><span class="t">07:31 → 08:28</span><span>Bern → Zürich HB <span class="muted">(4-min hop)</span></span><span class="tr">IC 707</span></li>
+            <li><span class="t">08:32 → 17:32</span><span>Zürich HB → Wien Hbf</span><span class="tr">RJX 13477</span></li>
+          </ul>
+          <p class="alt">Safer connection: IC 811 08:04 → Zürich 09:58, RJX 13479 10:32 → Wien <b>19:32</b> (1 change, 34-min buffer).</p>
+          <div class="leg-title">Back · Thursday 10 September</div>
+          <ul class="legs">
+            <li><span class="t">10:28 → 19:28</span><span>Wien Hbf → Zürich HB</span><span class="tr">RJX 13470</span></li>
+            <li><span class="t">20:02 → 21:54</span><span>Zürich HB → Bern → Interlaken West</span><span class="tr">IC 832 · ICE 375</span></li>
+          </ul>
+          <p class="alt">Earlier: EC 1218 07:13 via München, home 18:53. Night: NJ 21:39 → Zürich ~08:20 Fri (turns Thursday into a full day).</p>
+          <div class="fare">
+            <div class="big">≈ CHF 130–185<small>ONE-WAY · ESTIMATE</small></div>
+            <p><b>Not a live quote.</b> Interlaken West–Zürich ≈ CHF 70 full fare (≈ 35 with Halbtax) plus the Railjet: ÖBB Sparschiene tiers of €59.90–99.90 typically remain three days out; the flexible Standard fare is ≈ €120. To confirm: sbb.ch → <b>Interlaken West → Wien Hbf, 08.09.2026, 06:34</b>. ÖBB, DB and SBB fare services blocked automated lookups from this session.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>Times: ÖBB Scotty timetable for the exact dates · Fares: SBB (Munich, verified) · ÖBB tariff structure (Vienna, estimate)</span><span>3</span></div>
+</section>
+
+<!-- 4 · WEATHER + WHAT'S ON -->
+<section class="page">
+  <div class="pad">
+    <div class="cols">
+      <div class="col" style="flex:0 0 820px">
+        <div class="kicker">Forecast · issued 5 September</div>
+        <h2>Hot Tuesday, wet Wednesday</h2>
+        <table class="wx">
+          <tr><th></th><th style="color:var(--vie)">Vienna</th><th style="color:var(--muc)">Munich</th><th>Interlaken (home)</th></tr>
+          <tr>
+            <td><div class="dname">Tuesday</div><div class="date">8 September · travel day</div></td>
+            <td><div class="temp">32° <small>/ 18°</small></div><div class="cond"><i class="dot sun"></i>Mostly sunny</div><div class="rain">5% chance of rain</div></td>
+            <td><div class="temp">30° <small>/ 17°</small></div><div class="cond"><i class="dot cloud"></i>Warm, partly cloudy</div><div class="rain">52% chance of a shower</div></td>
+            <td><div class="temp">29° <small>/ 19°</small></div><div class="cond"><i class="dot cloud"></i>Muggy</div><div class="rain">75% · 2 mm</div></td>
+          </tr>
+          <tr>
+            <td><div class="dname">Wednesday</div><div class="date">9 September · full day</div></td>
+            <td><div class="temp">24° <small>/ 17°</small></div><div class="cond"><i class="dot rain"></i>Rain showers</div><div class="rain">83% · ≈ 9 mm</div></td>
+            <td><div class="temp">21° <small>/ 14°</small></div><div class="cond"><i class="dot storm"></i>Thunderstorms</div><div class="rain">97% · ≈ 27 mm</div></td>
+            <td><div class="temp">18° <small>/ 14°</small></div><div class="cond"><i class="dot rain"></i>Rain</div><div class="rain">92% · ≈ 17 mm</div></td>
+          </tr>
+          <tr>
+            <td><div class="dname">Thursday</div><div class="date">10 September · travel day</div></td>
+            <td><div class="temp">20° <small>/ 16°</small></div><div class="cond"><i class="dot cloud"></i>Overcast</div><div class="rain">66% chance, little rain</div></td>
+            <td><div class="temp">17° <small>/ 12°</small></div><div class="cond"><i class="dot cloud"></i>Cloudy, cool</div><div class="rain">41% chance</div></td>
+            <td><div class="temp">17° <small>/ 12°</small></div><div class="cond"><i class="dot cloud"></i>Cloudy</div><div class="rain">43% chance</div></td>
+          </tr>
+        </table>
+        <p class="small muted" style="margin-top:10px">Open-Meteo model run of 5 Sept 2026; a five-day outlook is directionally reliable, not exact. Sunset: Vienna 19:22, Munich 19:41. Pack for 30° on Tuesday and a rain jacket for Wednesday either way.</p>
+      </div>
+      <div class="col">
+        <div class="kicker">What’s on, 8–10 September</div>
+        <h2 style="font-size:40px">The calendar</h2>
+        <div class="events">
+          <div class="ev"><div class="d">Tue<small>Vienna</small></div><div><h4>Wiener Staatsoper · <i>Adriana Lecouvreur</i>, 19:00</h4><p>Cilea, with Ermonela Jaho and Elīna Garanča. Seats €88–145 still on sale. Reachable from the 06:34 train (Hbf → Karlsplatz is 10 minutes).</p></div></div>
+          <div class="ev"><div class="d">Wed<small>Vienna</small></div><div><h4>Staatsoper · <i>Le nozze di Figaro</i>, 19:00</h4><p>Sold out; standing-room tickets are released on the day. Also: Kino am Dach, open-air films on the city library roof, nightly to 11 Sept.</p></div></div>
+          <div class="ev"><div class="d">Thu<small>Vienna</small></div><div><h4>Staatsoper · <i>Don Carlo</i>, 19:00</h4><p>€88–253. Only reachable if you take the Nightjet home instead of the 10:28 Railjet.</p></div></div>
+          <div class="ev"><div class="d">Wed<small>Munich</small></div><div><h4>The Black Keys · Zenith, 20:00</h4><p>Indoor venue in Freimann, U6 to Freimann. A good answer to a stormy evening.</p></div></div>
+          <div class="ev"><div class="d">All<small>Munich</small></div><div><h4>Oktoberfest build-up</h4><p>The Wiesn opens 19 Sept (to 4 Oct). On 8–10 Sept the Theresienwiese is a construction site and hotel rates are still pre-festival. No trade fair in this window; Intergeo follows on 15–17 Sept.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>Sources: Open-Meteo · wiener-staatsoper.at · munich.travel · oktoberfest.de</span><span>4</span></div>
+</section>
+
+<!-- 5 · VIENNA HERO -->
+<section class="page hero">
+  <img class="bg" src="img/hofburg_4.jpg" alt="">
+  <div class="shade"></div>
+  <div class="panel l">
+    <div class="kicker vie">Option A</div>
+    <h1>Vienna</h1>
+    <p class="lede">The grandest city in German-speaking Europe, built for an empire of fifty million and now inhabited by two. Nowhere else does a Tuesday night at the opera feel this normal.</p>
+    <div class="why">
+      <div><span class="n">1</span><p><b>Density of masterpieces.</b> Klimt at the Belvedere, Bruegel and Vermeer at the Kunsthistorisches, Schönbrunn’s 1,441 rooms, all inside a 20-minute tram ride.</p></div>
+      <div><span class="n">2</span><p><b>Coffee-house life.</b> A melange and a newspaper at Café Central is a legitimate two-hour plan. Sachertorte is not a cliché, it is lunch.</p></div>
+      <div><span class="n">3</span><p><b>The Staatsoper.</b> A different opera every night of your stay, seats from €88, and it is 500 metres from the Sacher.</p></div>
+    </div>
+    <div class="facts">
+      <div><b>Arrive</b>Wien Hbf · U1 to Stephansplatz, 6 min</div>
+      <div><b>Get around</b>Wiener Linien 48-h pass ≈ €14</div>
+      <div><b>Spend</b>Euro · cards everywhere · tipping 5–10%</div>
+      <div><b>Watch out</b>Wednesday showers · museums close 18:00</div>
+    </div>
+  </div>
+  <div class="cap">Vienna’s rooftops at dusk · photo Carrie Borden, Unsplash</div>
+  <div class="foot light" style="left:auto"><span></span><span>5</span></div>
+</section>
+
+<!-- 6 · VIENNA SIGHTS -->
+<section class="page">
+  <div class="pad">
+    <div class="kicker vie">Vienna · the shortlist</div>
+    <h2 style="margin-bottom:6px">Six things worth the eleven hours</h2>
+    <div class="grid6">
+      <div class="sight"><img src="img/schoenbrunn_3.jpg" alt=""><div class="cap"><div class="row"><h3>Schönbrunn</h3><span class="chip">≈ €30 grand tour</span></div><p>Habsburg summer palace. Go at 08:30 opening, then climb to the Gloriette for the view. Gardens are free.</p></div></div>
+      <div class="sight"><img src="img/w_belvedere.jpg" alt=""><div class="cap"><div class="row"><h3>Belvedere</h3><span class="chip">≈ €18</span></div><p>Klimt’s <i>The Kiss</i> in the Upper Belvedere, Schiele and Kokoschka next door. The rainy-Wednesday move.</p></div></div>
+      <div class="sight"><img src="img/stephansdom_1.jpg" alt=""><div class="cap"><div class="row"><h3>Stephansdom</h3><span class="chip">Nave free · tower ≈ €7</span></div><p>Gothic heart of the city. 343 steps up the south tower for the tiled-roof close-up; the catacombs are the quieter tour.</p></div></div>
+      <div class="sight"><img src="img/naschmarkt_3.jpg" alt=""><div class="cap"><div class="row"><h3>Naschmarkt</h3><span class="chip">Free</span></div><p>1.5 km of stalls, Levantine snacks and Viennese vegetable stands. Lunch at Neni or a Käsekrainer at a stand.</p></div></div>
+      <div class="sight"><img src="img/w_riesenrad.jpg" alt=""><div class="cap"><div class="row"><h3>Riesenrad, Prater</h3><span class="chip">≈ €14</span></div><p>The 1897 Ferris wheel from <i>The Third Man</i>. Twenty minutes in a wooden cabin at golden hour; the Prater woods for a run.</p></div></div>
+      <div class="sight"><img src="img/sacher_cake.jpg" alt=""><div class="cap"><div class="row"><h3>Coffee-house hour</h3><span class="chip">Torte + melange ≈ €14</span></div><p>Café Sacher for the original torte, Café Central for the room, Café Prückel or Sperl for the locals’ version.</p></div></div>
+    </div>
+    <p class="more"><b>If there is time:</b> Hofburg and the Sisi Museum · Kunsthistorisches Museum (Bruegel room) · MuseumsQuartier courtyards · Karlskirche · a Heuriger evening in Grinzing · Hundertwasserhaus.</p>
+  </div>
+  <div class="foot"><span>Prices are 2026 adult admissions, approximate</span><span>6</span></div>
+</section>
+
+<!-- 7 · VIENNA HOTELS -->
+<section class="page">
+  <div class="pad">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end">
+      <div><div class="kicker vie">Vienna · where to sleep</div><h2 style="margin-bottom:4px">Four beds, four budgets</h2></div>
+      <p class="small muted" style="text-align:right;margin:0">Nightly rates for 8 → 10 Sept 2026, 1 adult, as listed on Google Hotels on 5 Sept<br>CHF at 0.94 per euro · totals are for two nights</p>
+    </div>
+    <div class="hotels">
+      <div class="hotel"><img src="img/h_vie_sacher.jpg" alt=""><div class="txt">
+        <div class="top"><h3>Hotel Sacher Wien</h3><div class="rate"><span>★</span> 4.5 · 14.1K reviews</div></div>
+        <div class="area">Philharmonikerstraße, behind the Staatsoper · 1st district</div>
+        <p>The icon: red velvet, the original torte downstairs, doormen in livery. You are paying for the address and the story, and on a two-night trip that is a defensible choice.</p>
+        <div class="tags"><span class="chip vie">Grand hotel</span><span class="chip">Opera at the door</span><span class="chip">Café Sacher</span></div>
+        <div class="price"><div class="p">€646<small>/ night</small></div><div class="tot">Deluxe room via Priceline / Skyscanner<br>2 nights €1,292 ≈ CHF 1,215</div></div>
+      </div></div>
+      <div class="hotel"><img src="img/h_vie_grandferdinand.jpg" alt=""><div class="txt">
+        <div class="top"><h3>Grand Ferdinand</h3><div class="rate"><span>★</span> 4.4 · 2.6K reviews</div></div>
+        <div class="area">Schubertring, on the Ringstraße · 1st district</div>
+        <p>A 1950s Ringstraße block turned design hotel: rooftop pool with a view of the Belvedere, Meissl &amp; Schadn schnitzel restaurant at street level, Thonet chairs everywhere.</p>
+        <div class="tags"><span class="chip vie">Design</span><span class="chip">Rooftop pool</span><span class="chip">Tablet award</span></div>
+        <div class="price"><div class="p">€213<small>/ night</small></div><div class="tot">Via Priceline · 2 nights €426 ≈ CHF 401</div></div>
+      </div></div>
+      <div class="hotel"><img src="img/h_vie_25h.jpg" alt=""><div class="txt">
+        <div class="top"><h3>25hours Hotel at MuseumsQuartier</h3><div class="rate"><span>★</span> 4.5 · 4.9K reviews</div></div>
+        <div class="area">Lerchenfelder Straße · 7th district, Neubau</div>
+        <p>Circus-themed, playful, with the best rooftop bar in the city (Dachboden) and the MuseumsQuartier across the road. Rooms are compact; the terrace at sunset is the reason to stay.</p>
+        <div class="tags"><span class="chip vie">Playful</span><span class="chip">Rooftop bar</span><span class="chip">Free cancellation</span></div>
+        <div class="price"><div class="p">€210<small>/ night</small></div><div class="tot">Lowest listed rate · 2 nights €420 ≈ CHF 395</div></div>
+      </div></div>
+      <div class="hotel"><img src="img/h_vie_rubymarie.jpg" alt=""><div class="txt">
+        <div class="top"><h3>Ruby Marie</h3><div class="rate"><span>★</span> 4.6 · 3.6K reviews</div></div>
+        <div class="area">Kaiserstraße, off Mariahilfer Straße · 6th district</div>
+        <p>“Lean luxury”: small, well-made rooms, a 24-hour bar, a rooftop with deckchairs, and the best rating of the four. Ten minutes by U3 to Stephansplatz. Hard to beat at this price.</p>
+        <div class="tags"><span class="chip vie">Value</span><span class="chip">Rooftop</span><span class="chip">Top-rated</span></div>
+        <div class="price"><div class="p">€92<small>/ night</small></div><div class="tot">Cozy room via Priceline · 2 nights €184 ≈ CHF 173</div></div>
+      </div></div>
+    </div>
+    <p class="also"><b>Also priced for these nights:</b> Hotel Imperial €495 (official site, Classic Room, 4.7★) · Hotel Kaiserhof €234 (4.8★) · Hotel Am Konzerthaus MGallery €330 · Hotel Beethoven €104 (4.7★) · Ruby Lissi €181.</p>
+  </div>
+  <div class="foot"><span>Rates move daily; these were live listings, not “from” prices</span><span>7</span></div>
+</section>
+
+<!-- 8 · VIENNA ITINERARY -->
+<section class="page">
+  <div class="pad">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end">
+      <div><div class="kicker vie">Vienna · the plan</div><h2 style="margin-bottom:4px">One evening, one day, one morning</h2></div>
+      <p class="small muted" style="text-align:right;margin:0">Built around the 06:34 out and 10:28 back<br>Swap to the 08:04 train if a 4-minute change in Zürich worries you (arrive 19:32, skip the opera)</p>
+    </div>
+    <div class="days">
+      <div class="day"><img src="img/opera_1.jpg" alt=""><div class="hd"><h3>Tuesday<small>Arrival · 32° and sunny</small></h3><span class="chip vie">Opera night</span></div>
+        <ul>
+          <li><span class="t">17:32</span><span>Arrive Wien Hbf. U1 two stops to Karlsplatz, check in, shower.</span></li>
+          <li><span class="t">18:30</span><span><b>Quick dinner</b> at Naschmarkt (Neni, Umar) or a Würstelstand at Albertina.</span></li>
+          <li><span class="t">19:00</span><span><b>Staatsoper: <i>Adriana Lecouvreur</i></b>, Jaho and Garanča. Tickets €88–145 on wiener-staatsoper.at now.</span></li>
+          <li><span class="t">22:15</span><span>Nightcap and Sachertorte at Café Sacher, or the Loos Bar (tiny, 1908, perfect).</span></li>
+        </ul>
+      </div>
+      <div class="day"><img src="img/naschmarkt_1.jpg" alt=""><div class="hd"><h3>Wednesday<small>Full day · showers from midday</small></h3><span class="chip">Museums</span></div>
+        <ul>
+          <li><span class="t">08:30</span><span><b>Schönbrunn</b> at opening (U4 to Schönbrunn, 12 min). Grand Tour, then the Gloriette before the crowds.</span></li>
+          <li><span class="t">11:30</span><span>Tram back along the Ring; lunch at <b>Naschmarkt</b> under cover.</span></li>
+          <li><span class="t">13:30</span><span><b>Belvedere</b> (The Kiss) or the <b>Kunsthistorisches</b>. Rain does not matter here.</span></li>
+          <li><span class="t">16:30</span><span>Coffee-house hour: <b>Café Central</b>, then Stephansdom and the Graben on foot.</span></li>
+          <li><span class="t">19:00</span><span><i>Figaro</i> standing room if you can get it; otherwise Heuriger dinner at a Grinzing wine tavern (tram 38).</span></li>
+        </ul>
+      </div>
+      <div class="day"><img src="img/cafe_7.jpg" alt=""><div class="hd"><h3>Thursday<small>Departure · overcast, 20°</small></h3><span class="chip">Slow start</span></div>
+        <ul>
+          <li><span class="t">08:00</span><span>Breakfast at <b>Café Prückel</b> or the hotel; walk the Stadtpark to the Riesenrad if you skipped it.</span></li>
+          <li><span class="t">09:45</span><span>U1 to Wien Hbf, buy a Manner-wafer supply.</span></li>
+          <li><span class="t">10:28</span><span><b>RJX 13470</b> to Zürich, IC 832 and ICE 375 to Interlaken West, home 21:54.</span></li>
+          <li><span class="t">Alt.</span><span class="m">Nightjet 21:39 → Zürich 08:20 Fri gives you all of Thursday and <i>Don Carlo</i>. Only if Friday morning is free.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>Opening times: Schönbrunn 08:30 · Belvedere 09:00 · Kunsthistorisches 10:00 (closed Mon) · Café Central 07:30</span><span>8</span></div>
+</section>
+
+<!-- 9 · MUNICH HERO -->
+<section class="page hero">
+  <img class="bg" src="img/frauenkirche_1.jpg" alt="">
+  <div class="shade r"></div>
+  <div class="panel r">
+    <div class="kicker muc">Option B</div>
+    <h1>Munich</h1>
+    <p class="lede">Bavaria’s easy-going capital: a Gothic square, a river you can surf, and the biggest urban park in Europe with a beer garden at its centre. Six hours from Interlaken, door to door.</p>
+    <div class="why">
+      <div><span class="n">1</span><p><b>Two full days instead of one.</b> Arrive for lunch on Tuesday, leave after lunch on Thursday. Nothing about the trip is rushed.</p></div>
+      <div><span class="n">2</span><p><b>Outdoors first.</b> The Eisbach surfers, the Englischer Garten and the Viktualienmarkt are all free, and Tuesday will be 30° and dry.</p></div>
+      <div><span class="n">3</span><p><b>World-class indoors for Wednesday.</b> Deutsches Museum, the Pinakotheken and the Residenz absorb a thunderstorm without effort.</p></div>
+    </div>
+    <div class="facts">
+      <div><b>Arrive</b>München Hbf · 15-min walk or S-Bahn 1 stop to Marienplatz</div>
+      <div><b>Get around</b>MVV day ticket zone M ≈ €9.20 · walkable centre</div>
+      <div><b>Spend</b>Euro · cash still useful in beer gardens</div>
+      <div><b>Watch out</b>Wed storms · Wiesn grounds closed for build-up</div>
+    </div>
+  </div>
+  <div class="cap l">The Frauenkirche from St Peter’s tower · photo Joshua Kettle, Unsplash</div>
+  <div class="foot light" style="left:auto"><span></span><span>9</span></div>
+</section>
+
+<!-- 10 · MUNICH SIGHTS -->
+<section class="page">
+  <div class="pad">
+    <div class="kicker muc">Munich · the shortlist</div>
+    <h2 style="margin-bottom:6px">Six things, most of them free</h2>
+    <div class="grid6">
+      <div class="sight"><img src="img/marienplatz_5.jpg" alt=""><div class="cap"><div class="row"><h3>Marienplatz</h3><span class="chip">Free · tower ≈ €6</span></div><p>Neo-Gothic Rathaus and the Glockenspiel at 11:00, 12:00 and 17:00. Climb St Peter’s (Alter Peter) for the view on page 9.</p></div></div>
+      <div class="sight"><img src="img/eisbach_2.jpg" alt=""><div class="cap"><div class="row"><h3>Eisbach surfers</h3><span class="chip">Free</span></div><p>A standing wave on a city stream, surfed year-round at the edge of the Englischer Garten. Ten minutes of watching is compulsory.</p></div></div>
+      <div class="sight"><img src="img/englgarten_1.jpg" alt=""><div class="cap"><div class="row"><h3>Englischer Garten</h3><span class="chip">Free · Maß ≈ €11</span></div><p>Bigger than Central Park. Monopteros for the skyline, the Chinesischer Turm beer garden for a Maß and Obatzda under the chestnuts.</p></div></div>
+      <div class="sight"><img src="img/viktualien_2.jpg" alt=""><div class="cap"><div class="row"><h3>Viktualienmarkt</h3><span class="chip">Free</span></div><p>Two-hundred-year-old food market off Marienplatz: cheese stalls, Weißwurst before noon, a beer garden under the maypole.</p></div></div>
+      <div class="sight"><img src="img/nymphenburg_3.jpg" alt=""><div class="cap"><div class="row"><h3>Nymphenburg</h3><span class="chip">≈ €12 palace · park free</span></div><p>Baroque summer palace with a canal, swans and the Gallery of Beauties. Tram 17 from the Hauptbahnhof, 15 minutes.</p></div></div>
+      <div class="sight"><img src="img/frauenkirche_3.jpg" alt=""><div class="cap"><div class="row"><h3>Frauenkirche</h3><span class="chip">Free · tower ≈ €10</span></div><p>The twin onion domes on every skyline. The south tower reopened with a lift; on a clear day you see the Alps.</p></div></div>
+    </div>
+    <p class="more"><b>For the stormy Wednesday:</b> Deutsches Museum (≈ €15, the largest science museum anywhere) · Alte Pinakothek and Pinakothek der Moderne (≈ €9 each) · Residenz and Cuvilliés Theatre (≈ €10) · BMW Welt (free) · Hofbräuhaus, if only once.</p>
+  </div>
+  <div class="foot"><span>Prices are 2026 adult admissions, approximate</span><span>10</span></div>
+</section>
+
+<!-- 11 · MUNICH HOTELS -->
+<section class="page">
+  <div class="pad">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end">
+      <div><div class="kicker muc">Munich · where to sleep</div><h2 style="margin-bottom:4px">Four beds, four budgets</h2></div>
+      <p class="small muted" style="text-align:right;margin:0">Nightly rates for 8 → 10 Sept 2026, 1 adult, as listed on Google Hotels on 5 Sept<br>CHF at 0.94 per euro · totals are for two nights</p>
+    </div>
+    <div class="hotels">
+      <div class="hotel"><img src="img/h_muc_bayhof.jpg" alt=""><div class="txt">
+        <div class="top"><h3>Hotel Bayerischer Hof</h3><div class="rate"><span>★</span> 4.4 · 4.6K reviews</div></div>
+        <div class="area">Promenadeplatz · Altstadt, 5 min from Marienplatz</div>
+        <p>Munich’s grand hotel since 1841, family-run, with a rooftop pool and terrace looking at the Frauenkirche, Falk’s Bar, and a jazz club in the cellar. Cheaper than Vienna’s equivalent by a wide margin.</p>
+        <div class="tags"><span class="chip muc">Grand hotel</span><span class="chip">Rooftop pool</span><span class="chip">Altstadt</span></div>
+        <div class="price"><div class="p">€400<small>/ night</small></div><div class="tot">Standard double via Priceline<br>2 nights €800 ≈ CHF 752</div></div>
+      </div></div>
+      <div class="hotel"><img src="img/h_muc_louis.jpg" alt=""><div class="txt">
+        <div class="top"><h3>Louis Hotel</h3><div class="rate"><span>★</span> 4.4 · 609 reviews</div></div>
+        <div class="area">Viktualienmarkt · Altstadt</div>
+        <p>Seventy-two calm, timber-and-stone rooms above the market, a courtyard terrace, and a Japanese restaurant (Emiko) on the roof. The design pick, and you fall out of bed into the Viktualienmarkt.</p>
+        <div class="tags"><span class="chip muc">Design</span><span class="chip">Market views</span><span class="chip">Rooftop dining</span></div>
+        <div class="price"><div class="p">€294<small>/ night</small></div><div class="tot">Courtyard Superior via Priceline<br>2 nights €588 ≈ CHF 553</div></div>
+      </div></div>
+      <div class="hotel"><img src="img/h_muc_platzl.jpg" alt=""><div class="txt">
+        <div class="top"><h3>Platzl Hotel</h3><div class="rate"><span>★</span> 4.5 · 1.5K reviews</div></div>
+        <div class="area">Sparkassenstraße, opposite the Hofbräuhaus · Altstadt</div>
+        <p>Family-owned Bavarian classic: wood panelling, a Moorish-style spa, the Pfistermühle restaurant in a 16th-century mill. Old-Munich charm at a mid-range price, on the quietest lane in the centre.</p>
+        <div class="tags"><span class="chip muc">Bavarian classic</span><span class="chip">Spa</span><span class="chip">Family-run</span></div>
+        <div class="price"><div class="p">€210<small>/ night</small></div><div class="tot">Classic Queen via Priceline<br>2 nights €420 ≈ CHF 395</div></div>
+      </div></div>
+      <div class="hotel"><img src="img/h_muc_rubylilly.jpg" alt=""><div class="txt">
+        <div class="top"><h3>Ruby Lilly</h3><div class="rate"><span>★</span> 4.4 · 2.7K reviews</div></div>
+        <div class="area">Dachauer Straße, Stiglmaierplatz · Maxvorstadt</div>
+        <p>Same lean-luxury formula as Vienna’s Ruby Marie: compact rooms, a good bar, a terrace, and the Pinakotheken ten minutes away on foot. Two U-Bahn stops from the Hauptbahnhof.</p>
+        <div class="tags"><span class="chip muc">Value</span><span class="chip">Near the museums</span><span class="chip">Bar</span></div>
+        <div class="price"><div class="p">from €144<small>/ night</small></div><div class="tot">Google Hotels list rate; Wow Room €229 via Priceline<br>2 nights from €288 ≈ CHF 271</div></div>
+      </div></div>
+    </div>
+    <p class="also"><b>Also priced for these nights:</b> Schwan Locke aparthotel €89 (Locke Studio, 4.3★) · Pullman Munich €125 · Munich Marriott €159 · Mercure City Center €169 · NH Collection Bavaria €199 · 25hours The Royal Bavarian from €644 (almost sold out).</p>
+  </div>
+  <div class="foot"><span>Rates move daily; these were live listings, not “from” prices</span><span>11</span></div>
+</section>
+
+<!-- 12 · MUNICH ITINERARY -->
+<section class="page">
+  <div class="pad">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end">
+      <div><div class="kicker muc">Munich · the plan</div><h2 style="margin-bottom:4px">Two full days, one lazy morning</h2></div>
+      <p class="small muted" style="text-align:right;margin:0">Built around the 05:34 out (arrive 11:16) and EC 192 back at 12:32<br>Take the 07:04 instead and simply start Tuesday at 13:30</p>
+    </div>
+    <div class="days">
+      <div class="day"><img src="img/viktualien_3.jpg" alt=""><div class="hd"><h3>Tuesday<small>Arrival · 30° and warm</small></h3><span class="chip muc">Outdoors</span></div>
+        <ul>
+          <li><span class="t">11:16</span><span>Arrive München Hbf. Drop bags, walk 15 min to Marienplatz.</span></li>
+          <li><span class="t">12:00</span><span><b>Glockenspiel</b>, then lunch under the maypole at the <b>Viktualienmarkt</b> beer garden.</span></li>
+          <li><span class="t">14:00</span><span>Frauenkirche and <b>Alter Peter</b> tower; Residenz courtyards on the way north.</span></li>
+          <li><span class="t">16:00</span><span><b>Eisbach surfers</b>, then the Englischer Garten to the Monopteros.</span></li>
+          <li><span class="t">18:30</span><span><b>Chinesischer Turm</b> beer garden till sunset at 19:41; U-Bahn back from Giselastraße.</span></li>
+        </ul>
+      </div>
+      <div class="day"><img src="img/w_deutschesmuseum.jpg" alt=""><div class="hd"><h3>Wednesday<small>Full day · thunderstorms</small></h3><span class="chip">Indoors</span></div>
+        <ul>
+          <li><span class="t">09:00</span><span><b>Deutsches Museum</b> at opening (mines, aviation, the physics shows). Three hours vanish.</span></li>
+          <li><span class="t">12:30</span><span>Lunch at <b>Schneider Bräuhaus</b> (Weißwurst, Tap 4) under a roof.</span></li>
+          <li><span class="t">14:00</span><span><b>Alte Pinakothek</b> (Dürer, Rubens) and, if the storm holds, the Pinakothek der Moderne next door.</span></li>
+          <li><span class="t">17:00</span><span><b>Residenz</b> Treasury and the Cuvilliés Theatre, last entry 17:00 in summer hours.</span></li>
+          <li><span class="t">20:00</span><span><b>The Black Keys</b> at the Zenith (U6 Freimann), or Augustiner-Keller if the sky clears.</span></li>
+        </ul>
+      </div>
+      <div class="day"><img src="img/nymphenburg_2.jpg" alt=""><div class="hd"><h3>Thursday<small>Departure · cool, 17°</small></h3><span class="chip">Palace</span></div>
+        <ul>
+          <li><span class="t">09:00</span><span>Tram 17 to <b>Nymphenburg</b> at opening: palace, then the canal and the Amalienburg in the park.</span></li>
+          <li><span class="t">11:15</span><span>Tram back to the Hauptbahnhof; Leberkässemmel from the station bakery for the train.</span></li>
+          <li><span class="t">12:32</span><span><b>EC 192</b> to Zürich (16:28), IC 826 to Interlaken West, home 18:53.</span></li>
+          <li><span class="t">Alt.</span><span class="m">Stay for lunch at Nymphenburg’s Schlosscafé and take EC 190 at 14:32, home 20:53.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>Opening times: Deutsches Museum 09:00 · Alte Pinakothek 10:00 (closed Mon) · Residenz 09:00 · Nymphenburg 09:00</span><span>12</span></div>
+</section>
+
+<!-- 13 · BUDGET -->
+<section class="page">
+  <div class="pad">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end">
+      <div><div class="kicker">The money</div><h2 style="margin-bottom:4px">What three days actually costs</h2></div>
+      <p class="small muted" style="text-align:right;margin:0">Per person, in CHF, mid-range hotel (Grand Ferdinand / Platzl) · food €85 a day · sights as listed · local transport<br>Value variant: Ruby Marie €92 / Ruby Lilly €144</p>
+    </div>
+    <div class="bud">
+      <div class="chart">
+        <div class="barwrap"><div class="bar" style="height:100%">
+          <div class="tot">≈ CHF 950</div>
+          <div class="seg train" style="height:33.2%">Train ≈ 315 (est.)</div>
+          <div class="seg s-hotel" style="height:42.2%">Hotel 401</div>
+          <div class="seg food" style="height:16.8%">Food 160</div>
+          <div class="seg sights" style="height:5.9%">Sights 56</div>
+          <div class="seg local" style="height:1.9%"></div>
+          <div class="lbl" style="color:var(--vie)">Vienna</div>
+        </div></div>
+        <div class="barwrap"><div class="bar" style="height:88.4%">
+          <div class="tot">≈ CHF 840</div>
+          <div class="seg train" style="height:25.5%">Train 214</div>
+          <div class="seg s-hotel" style="height:47%">Hotel 395</div>
+          <div class="seg food" style="height:20.2%">Food 170</div>
+          <div class="seg sights" style="height:5%">Sights 42</div>
+          <div class="seg local" style="height:2.3%"></div>
+          <div class="lbl" style="color:var(--muc)">Munich</div>
+        </div></div>
+      </div>
+      <table>
+        <tr><th>Line</th><th style="text-align:right;color:var(--vie)">Vienna</th><th style="text-align:right;color:var(--muc)">Munich</th></tr>
+        <tr><td>Train, return</td><td class="r">≈ 315 <span class="chip est">est.</span></td><td class="r">214</td></tr>
+        <tr><td>Hotel, 2 nights (mid)</td><td class="r">401</td><td class="r">395</td></tr>
+        <tr><td>Food and drink</td><td class="r">160</td><td class="r">170</td></tr>
+        <tr><td>Sights</td><td class="r">56</td><td class="r">42</td></tr>
+        <tr><td>Local transport</td><td class="r">16</td><td class="r">19</td></tr>
+        <tr class="total"><td>Mid-range trip</td><td class="r">≈ 950</td><td class="r">≈ 840</td></tr>
+        <tr><td class="muted">Value variant (Ruby hotels)</td><td class="r muted">≈ 720</td><td class="r muted">≈ 715</td></tr>
+      </table>
+    </div>
+    <div class="legend"><span><i style="background:#3A3A45"></i>Train</span><span><i style="background:var(--gold)"></i>Hotel</span><span><i style="background:#8C6A4A"></i>Food</span><span><i style="background:#5E8F6E"></i>Sights</span><span><i style="background:#9FA6B2"></i>Local transport</span><span style="margin-left:auto">At the value end the two trips cost the same; Vienna’s extra train fare is offset by cheaper beds. The real gap is ten hours of your time.</span></div>
+  </div>
+  <div class="foot"><span>CHF at 0.9405 per euro (ECB reference, 4 Sept 2026)</span><span>13</span></div>
+</section>
+
+<!-- 14 · BEFORE YOU BOOK + SOURCES -->
+<section class="page">
+  <div class="pad">
+    <div class="cols">
+      <div class="col" style="flex:0 0 700px">
+        <div class="kicker">Before you book</div>
+        <h2>Five clicks, in order</h2>
+        <ul class="check">
+          <li>Decide by tonight: hotel rates were live on 5 Sept and the Ruby, Platzl and 25hours rooms are the ones that vanish first.</li>
+          <li>Train on <b>sbb.ch</b>: Interlaken West → München Hbf, 08.09.2026, and the return 10.09.2026 (EC 192, 12:32). Confirm CHF 107 each way; a saver fare is train-specific, so pick the departure you will actually make.</li>
+          <li>If you go for Vienna instead: same search to Wien Hbf, 06:34 out and 10:28 back, then buy <i>Adriana Lecouvreur</i> on wiener-staatsoper.at the same minute.</li>
+          <li>Book the hotel on the official site once you have the Google price as a reference; Sacher, Imperial, Bayerischer Hof and Ruby usually match or beat the OTA rate with breakfast thrown in.</li>
+          <li>Pack for 30° on Tuesday and a storm on Wednesday. Museums, opera and beer halls do not care about the weather; the Englischer Garten does, so it goes on Tuesday.</li>
+        </ul>
+        <div class="rule"></div>
+        <p class="small muted">Assumptions: one adult, 2nd class, no rail pass. With a Halbtax the Swiss legs halve (≈ CHF 35 saved each way to Zürich). Times are the published timetable and can change on the day; check the app the evening before.</p>
+      </div>
+      <div class="col">
+        <div class="kicker">Sources and credits</div>
+        <h2 style="font-size:40px">Where the numbers come from</h2>
+        <div class="src">
+          <p><b>Train times</b> · ÖBB Scotty HAFAS timetable for 8 and 10 Sept 2026, queried 5 Sept.</p>
+          <p><b>Munich fare</b> · SBB, Interlaken West → München, 05:30 on 8 Sept: CHF 107, checked by the traveller.</p>
+          <p><b>Vienna fare</b> · Estimate from SBB domestic tariff (Interlaken–Zürich) plus ÖBB Sparschiene / Standard tiers. Live fare APIs at bahn.de, ÖBB and Booking refused automated access on 5 Sept; nothing here is a “from” marketing price.</p>
+          <p><b>Hotel rates</b> · Google Hotels listings for 8–10 Sept 2026, 1 adult, EUR, retrieved 5 Sept 2026; provider named on each card.</p>
+          <p><b>Weather</b> · Open-Meteo forecast run of 5 Sept 2026.</p>
+          <p><b>Events</b> · wiener-staatsoper.at (Sept 2026 calendar), munich.travel event listings, oktoberfest.de.</p>
+          <p><b>FX</b> · Frankfurter / ECB reference rate, 4 Sept 2026: 1 EUR = 0.9405 CHF.</p>
+          <p><b>Photos</b> · Unsplash: Martin Zenker (Schönbrunn), Daniel Seßler and Anastasiya Dalenka (Marienplatz), Sergey Mind (Rathaus), David Vives (Schönbrunn courtyard), Amir Arsalan Shamsabadi (Stephansdom), Fiona Frommelt and Jorge Franganillo (Naschmarkt), Luke Wang (Sachertorte), Joshi Milestoner (Staatsoper), Carrie Borden (Vienna dusk), Rikin Katyal (Café Central), Alistair MacRobert (Eisbach), Robert Biedermann (Monopteros), Sarah Donovan and Annie Spratt (Viktualienmarkt), Henry Lloyd and Dovlet Hojayev (Nymphenburg), Joshua Kettle and Daniel Schmidt (Frauenkirche), Laszlo Biro (Railjet). Wikimedia Commons, CC BY-SA: Belvedere (Diego Delso), Riesenrad, Deutsches Museum. Hotel photographs from the hotels’ own listings on Google Hotels.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>Vienna or Munich · 8–10 September 2026 · compiled 5 September 2026</span><span>14</span></div>
+</section>
+
+</body>
+</html>
